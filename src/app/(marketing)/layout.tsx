@@ -1,4 +1,7 @@
 // Layout wrapper for marketing pages with shared navigation and footer
+import { MarketingNav } from '@/components/marketing/nav'
+import { MarketingFooter } from '@/components/marketing/footer'
+
 export default function MarketingLayout({
     children,
 }: {
@@ -6,9 +9,9 @@ export default function MarketingLayout({
 }) {
     return (
         <div className="flex min-h-screen flex-col">
-            {/* Navigation will be added here */}
+            <MarketingNav />
             <main className="flex-1">{children}</main>
-            {/* Footer will be added here */}
+            <MarketingFooter />
         </div>
     )
 } 

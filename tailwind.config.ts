@@ -36,8 +36,8 @@ export default {
                 ...tokens.colors.semantic,
             },
             fontFamily: {
-                sans: [tokens.typography.fonts.body],
-                heading: [tokens.typography.fonts.heading],
+                sans: ['var(--font-satoshi)'],
+                heading: ['var(--font-satoshi)'],
             },
             fontSize: tokens.typography.sizes,
             lineHeight: tokens.typography.lineHeights,

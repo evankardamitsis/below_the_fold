@@ -44,8 +44,8 @@ export const tokens = {
   // Typography system - Font definitions and scale
   typography: {
     fonts: {
-      body: 'var(--font-inter)',
-      heading: 'var(--font-plus-jakarta)',
+      body: 'var(--font-satoshi)',
+      heading: 'var(--font-satoshi)',
     },
     sizes: {
       xs: '0.75rem',    // 12px
