@@ -1,13 +1,11 @@
 import { Metadata } from 'next'
 
-// Define types according to Next.js App Router expectations
-type Props = {
+// Use Next.js built-in types
+export default async function PortfolioPage({
+    params,
+}: {
     params: { slug: string }
-    searchParams: { [key: string]: string | string[] | undefined }
-}
-
-// Dynamic portfolio item page displaying project details
-export default async function PortfolioPage({ params }: Props) {
+}) {
     const { slug } = params
 
     return (
@@ -25,18 +23,19 @@ export default async function PortfolioPage({ params }: Props) {
 
 // Generate static paths
 export async function generateStaticParams() {
-    // Return an array of possible slug values
     return [
         { slug: 'project-1' },
         { slug: 'project-2' },
-        // ... more slugs
     ]
 }
 
-// Generate metadata for each page
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+// Generate metadata
+export async function generateMetadata({
+    params,
+}: {
+    params: { slug: string }
+}): Promise<Metadata> {
     return {
         title: `Portfolio - ${params.slug}`,
-        // ... other metadata
     }
 } 
