@@ -36,7 +36,7 @@ export function MarketingHero() {
                             className="text-[15px] text-neutral-900 hover:opacity-70 transition-opacity inline-flex items-center group mt-6"
                         >
                             <ExploreArrow />
-                            <span>Explore works</span>
+                            <span>Explore projects</span>
                         </Link>
                     </div>
                 </div>
@@ -45,18 +45,20 @@ export function MarketingHero() {
                 <ScrollingText />
 
                 {/* Hero Video */}
-                <div className="mt-10 w-full aspect-[16/9] rounded-2xl overflow-hidden">
+                <div className="mt-10 w-full aspect-[16/9] rounded-2xl overflow-hidden bg-neutral-100">
                     <video
                         autoPlay
                         loop
                         muted
                         playsInline
+                        poster="/video-poster.webp"
                         className="w-full h-full object-cover"
                     >
                         <source
-                            src="https://your-blob-storage-url.com/hero-video.mp4"
+                            src={process.env.NEXT_PUBLIC_HERO_VIDEO_URL}
                             type="video/mp4"
                         />
+                        Your browser does not support the video tag.
                     </video>
                 </div>
             </div>
