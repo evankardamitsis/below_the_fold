@@ -1,6 +1,7 @@
 // Layout wrapper for marketing pages with shared navigation and footer
 import { MarketingNav } from '@/components/marketing/nav'
 import { MarketingFooter } from '@/components/marketing/footer'
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export default function MarketingLayout({
     children,
@@ -10,7 +11,10 @@ export default function MarketingLayout({
     return (
         <div className="flex min-h-screen flex-col">
             <MarketingNav />
-            <main className="flex-1">{children}</main>
+            <main className="flex-1">
+                {children}
+                <SpeedInsights />
+            </main>
             <MarketingFooter />
         </div>
     )
