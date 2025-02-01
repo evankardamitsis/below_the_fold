@@ -13,10 +13,10 @@ export function MarketingHero() {
                 <div className="flex justify-between mt-12">
                     {/* Left Side - Main Heading */}
                     <div className="max-w-[75%]">
-                        <h1 className="text-[6rem] md:text-[7rem] leading-[0.95] tracking-[-0.03em] font-bold text-neutral-900 flex flex-col">
+                        <h1 className="text-[6rem] leading-[0.95] tracking-[-0.03em] font-bold text-neutral-900 flex flex-col">
                             <span>We build e-commerce</span>
                             <div className="flex items-center mt-4 gap-6 group">
-                                <span>that works for you</span>
+                                <span>stores that work for you</span>
                                 <div className="flex items-center justify-center w-[60px] h-[60px] rounded-full bg-purple-300/50 scale-[1.2]">
                                     <span className="text-neutral-900 flex items-center scale-[1.5]">
                                         <ArrowIcon />
@@ -43,6 +43,22 @@ export function MarketingHero() {
 
                 {/* Scrolling Text */}
                 <ScrollingText />
+
+                {/* Hero Video */}
+                <div className="mt-10 w-full aspect-[16/9] rounded-2xl overflow-hidden">
+                    <video
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="w-full h-full object-cover"
+                    >
+                        <source
+                            src="https://your-blob-storage-url.com/hero-video.mp4"
+                            type="video/mp4"
+                        />
+                    </video>
+                </div>
             </div>
         </section>
     )
