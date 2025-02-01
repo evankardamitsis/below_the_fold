@@ -11,6 +11,9 @@ export default {
                 input: "hsl(var(--input))",
                 ring: "hsl(var(--ring))",
                 background: "hsl(var(--background))",
+                page: {
+                    light: '#EBEBEB'
+                },
                 foreground: "hsl(var(--foreground))",
                 primary: {
                     DEFAULT: "hsl(var(--primary))",
@@ -46,6 +49,15 @@ export default {
             borderRadius: tokens.radii,
             boxShadow: tokens.shadows,
             screens: tokens.breakpoints,
+            animation: {
+                scroll: 'scroll 8s linear infinite',
+            },
+            keyframes: {
+                scroll: {
+                    '0%': { transform: 'translateX(0)' },
+                    '100%': { transform: 'translateX(-33.33333%)' },
+                },
+            },
         },
     },
     plugins: [

@@ -1,55 +1,43 @@
 'use client'
 
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { cn } from '@/lib/utils'
-
-const navigation = [
-    { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
-    { name: 'Portfolio', href: '/portfolio' },
-    { name: 'Contact', href: '/contact' },
-]
+import { ArrowIcon } from '@/components/icons/arrow-icon'
+import { DynamicIsland } from '@/components/marketing/dynamic-island'
 
 export function MarketingNav() {
-    const pathname = usePathname()
-    const isHome = pathname === '/'
-
-    if (isHome) return null // Don't render nav on home page as it has its own header
-
     return (
-        <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-            <div className="container flex h-16 items-center">
-                <div className="mr-8">
-                    <Link href="/" className="font-sans text-xl font-bold">
-                        Below The Fold
+        <div className="fixed top-0 left-0 right-0 z-50 flex justify-center">
+            <header className="w-full max-w-[1620px] rounded-full bg-page-light">
+                <div className="flex h-[72px] items-center justify-between px-8 relative">
+                    {/* Left side - Logo */}
+                    <Link
+                        href="/"
+                        className="text-lg font-medium hover:opacity-70 transition-opacity bg-page-light"
+                    >
+                        BelowTheFold
                     </Link>
-                </div>
-                <nav className="flex flex-1 items-center justify-between">
-                    <div className="flex gap-6">
-                        {navigation.map((item) => (
-                            <Link
-                                key={item.href}
-                                href={item.href}
-                                className={cn(
-                                    'text-sm font-medium transition-colors hover:text-foreground/80',
-                                    pathname === item.href ? 'text-foreground' : 'text-foreground/60'
-                                )}
-                            >
-                                {item.name}
-                            </Link>
-                        ))}
-                    </div>
-                    <div>
+
+                    {/* Dynamic Island */}
+                    <DynamicIsland />
+
+                    {/* Right side - Navigation */}
+                    <div className="flex items-center gap-8 bg-page-light">
+                        <Link
+                            href="/book-call"
+                            className="text-sm font-medium tracking-wide hover:opacity-70 transition-opacity bg-page-light py-3"
+                        >
+                            Book a call
+                        </Link>
                         <Link
                             href="/contact"
-                            className="inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow hover:bg-primary/90"
+                            className="group rounded-full bg-neutral-900 px-6 py-3.5 text-sm font-medium text-white transition-colors hover:bg-neutral-800 inline-flex items-center"
                         >
-                            Get in Touch
+                            <ArrowIcon />
+                            Let&apos;s connect
                         </Link>
                     </div>
-                </nav>
-            </div>
-        </header>
+                </div>
+            </header>
+        </div>
     )
 } 

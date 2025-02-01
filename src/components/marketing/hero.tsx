@@ -1,73 +1,48 @@
 'use client'
 
-import Image from 'next/image'
 import Link from 'next/link'
+import { ExploreArrow } from '@/components/icons/explore-arrow'
+import { ArrowIcon } from '../icons/arrow-icon'
+import { ScrollingText } from '@/components/marketing/scrolling-text'
 
 export function MarketingHero() {
-    const currentYear = new Date().getFullYear()
-
     return (
-        <section className="relative min-h-screen overflow-hidden bg-[#6B46C1]">
-            {/* Top Bar */}
-            <div className="absolute top-0 left-0 right-0 flex justify-between px-12 py-10 text-white z-40">
-                <div className="text-sm font-medium tracking-[0.2em]">BELOW.THE.FOLD</div>
-                <div className="text-sm font-medium tracking-[0.2em]">©{currentYear}</div>
-                <div className="text-sm font-medium tracking-[0.2em] cursor-pointer hover:opacity-80 transition-opacity">MENU</div>
-            </div>
-
-            {/* Hero Content */}
-            <div className="relative h-screen z-20">
-                <div className="container mx-auto px-12 h-full">
-                    {/* Left Side Content */}
-                    <div className="absolute top-32 left-12">
-                        <h1 className="text-[10rem] leading-[0.85] text-white font-normal tracking-[-0.02em]">
-                            E-Commerce
+        <section className="relative min-h-screen bg-page-light">
+            <div className="mx-auto max-w-[1620px] px-8 pt-24">
+                {/* Main Content */}
+                <div className="flex justify-between mt-12">
+                    {/* Left Side - Main Heading */}
+                    <div className="max-w-[75%]">
+                        <h1 className="text-[6rem] md:text-[7rem] leading-[0.95] tracking-[-0.03em] font-bold text-neutral-900 flex flex-col">
+                            <span>We build e-commerce</span>
+                            <div className="flex items-center mt-4 gap-6 group">
+                                <span>that works for you</span>
+                                <div className="flex items-center justify-center w-[60px] h-[60px] rounded-full bg-purple-300/50 scale-[1.2]">
+                                    <span className="text-neutral-900 flex items-center scale-[1.5]">
+                                        <ArrowIcon />
+                                    </span>
+                                </div>
+                            </div>
                         </h1>
                     </div>
-                    <div className="absolute bottom-32 left-12">
-                        <div className="flex flex-col gap-8">
-                            <span className="text-white/70 text-lg font-semibold tracking-[0.2em] w-[50%]">
-                                We create exceptional
-                                e-commerce experiences for growing brands on Shopify
-                            </span>
-                            <Link
-                                href="/contact"
-                                className="inline-flex items-center px-8 py-4 text-sm font-semibold tracking-[0.2em] text-white border-2 border-white/20 hover:bg-white/10 transition-colors"
-                            >
-                                LET&apos;S START
-                            </Link>
-                        </div>
-                    </div>
 
-                    {/* Right Side Content */}
-                    <div className="absolute bottom-32 right-12">
-                        <div className="text-right space-y-3 mb-8">
-                            {['UI/UX DESIGN', 'WEB DEVELOPMENT', 'GROWTH CONSULTING', 'LIFECYCLE MARKETING'].map((service) => (
-                                <p key={service} className="text-white text-sm font-semibold tracking-[0.2em] hover:opacity-60 transition-opacity cursor-pointer">
-                                    {service}
-                                </p>
-                            ))}
-                        </div>
-                        <h1 className="text-[10rem] leading-[0.85] text-white font-normal tracking-[-0.02em]">
-                            Agency
-                        </h1>
+                    {/* Right Side - Description */}
+                    <div className="max-w-[20%] flex flex-col justify-between py-8">
+                        <p className="text-neutral-600 text-[15px] leading-relaxed tracking-wide font-medium uppercase">
+                            <span className="text-neutral-400">BELOW THE FOLD</span> is a <span className="text-[#96bf48]">Shopify Partner</span> agency specializing in e-commerce design and development. We create high-performing stores that help businesses grow.
+                        </p>
+                        <Link
+                            href="/works"
+                            className="text-[15px] text-neutral-900 hover:opacity-70 transition-opacity inline-flex items-center group mt-6"
+                        >
+                            <ExploreArrow />
+                            <span>Explore works</span>
+                        </Link>
                     </div>
                 </div>
-            </div>
 
-            {/* Hero Image & Overlay */}
-            <div className="absolute inset-0 z-10">
-                <Image
-                    src="/images/hero.jpg"
-                    alt="Creative professional with orange glasses"
-                    fill
-                    priority
-                    className="object-cover object-center"
-                />
-                {/* Overlays - Increased opacity for better readability */}
-                <div className="absolute inset-0 bg-[#6B46C1]/30" />
-                <div className="absolute inset-0 bg-gradient-to-b from-[#6B46C1]/10 via-[#6B46C1]/30 to-[#6B46C1]/60" />
-                <div className="absolute inset-0 bg-gradient-to-r from-[#6B46C1]/40 to-transparent" />
+                {/* Scrolling Text */}
+                <ScrollingText />
             </div>
         </section>
     )
