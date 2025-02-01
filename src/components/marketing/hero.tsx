@@ -6,6 +6,8 @@ import { ArrowIcon } from '../icons/arrow-icon'
 import { ScrollingText } from '@/components/marketing/scrolling-text'
 
 export function MarketingHero() {
+    console.log('Video URL:', process.env.NEXT_PUBLIC_HERO_VIDEO_URL) // Temporary debug
+
     return (
         <section className="relative min-h-screen bg-page-light">
             <div className="mx-auto max-w-[1620px] px-8 pt-24">
