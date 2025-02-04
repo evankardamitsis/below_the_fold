@@ -1,4 +1,4 @@
-import { MarketingHero } from '@/components/marketing/hero'
+import { MarketingHero } from '@/components/@shared/hero'
 
 export default function HomePage() {
     return (

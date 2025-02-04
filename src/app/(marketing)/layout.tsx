@@ -1,6 +1,6 @@
 // Layout wrapper for marketing pages with shared navigation and footer
-import { MarketingNav } from '@/components/marketing/nav'
-import { MarketingFooter } from '@/components/marketing/footer'
+import { MarketingNav } from '@/components/@shared/nav'
+import { MarketingFooter } from '@/components/@shared/footer'
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export default function MarketingLayout({

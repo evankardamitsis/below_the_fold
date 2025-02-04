@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { ArrowIcon } from '@/components/icons/arrow-icon'
-import { DynamicIsland } from '@/components/marketing/dynamic-island'
+import { DynamicIsland } from '@/components/@shared/dynamic-island'
 
 export function MarketingNav() {
     return (

@@ -51,11 +51,23 @@ export default {
             screens: tokens.breakpoints,
             animation: {
                 scroll: 'scroll 8s linear infinite',
+                'float': 'float 3s ease-in-out infinite',
+                'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                'bounce-slow': 'bounce 3s infinite',
+                'float-subtle': 'float-subtle 3s ease-in-out infinite',
             },
             keyframes: {
                 scroll: {
                     '0%': { transform: 'translateX(0)' },
                     '100%': { transform: 'translateX(-33.33333%)' },
+                },
+                float: {
+                    '0%, 100%': { transform: 'translateY(0)' },
+                    '50%': { transform: 'translateY(-10px)' },
+                },
+                'float-subtle': {
+                    '0%, 100%': { transform: 'translateY(0)' },
+                    '50%': { transform: 'translateY(-4px)' },
                 },
             },
         },
