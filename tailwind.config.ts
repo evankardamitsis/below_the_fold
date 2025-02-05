@@ -12,7 +12,11 @@ export default {
                 ring: "hsl(var(--ring))",
                 background: "hsl(var(--background))",
                 page: {
-                    light: '#EBEBEB'
+                    light: '#EBEBEB',
+                    lighter: '#F5F5F5'
+                },
+                brand: {
+                    purple: '#E2D0F5',
                 },
                 foreground: "hsl(var(--foreground))",
                 primary: {

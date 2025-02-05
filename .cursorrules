@@ -48,3 +48,15 @@ Key Conventions
 - Avoid for data fetching or state management.
 
 Follow Next.js docs for Data Fetching, Rendering, and Routing.
+
+Responsive Design (Critical)
+
+- Always implement mobile-first responsive design
+- Use standard breakpoints: sm(640px), md(768px), lg(1024px), xl(1280px), 2xl(1536px)
+- Test layouts at all breakpoints before considering complete
+- Ensure text remains readable at all screen sizes
+- Maintain proper spacing and hierarchy across devices
+- Consider touch targets on mobile (min 44px)
+- Use relative units (rem, em) over fixed units
+- Implement responsive images and media
+- Adjust navigation for mobile experiences
