@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from 'next/font/local'
 import "./globals.css";
+import { AnimatedCursor } from '@/components/ui/animated-cursor'
 
 // Satoshi font family
 const satoshi = localFont({
@@ -22,6 +23,7 @@ export default function RootLayout({
         <html lang="en">
             <body className={`${satoshi.variable} font-sans antialiased`}>
                 {children}
+                <AnimatedCursor />
             </body>
         </html>
     )

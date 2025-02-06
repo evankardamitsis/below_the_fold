@@ -1,0 +1,18 @@
+/* Only hide cursor on project cards */
+.project-card {
+    cursor: none !important;
+}
+
+/* Rest of the site keeps default cursor */
+* {
+    cursor: default;
+}
+
+@media (max-width: 768px) {
+    .project-card {
+        cursor: pointer !important;
+    }
+    .animated-cursor {
+        display: none;
+    }
+} 

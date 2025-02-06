@@ -59,6 +59,7 @@ export default {
                 'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                 'bounce-slow': 'bounce 3s infinite',
                 'float-subtle': 'float-subtle 3s ease-in-out infinite',
+                'fade-in': 'fadeIn 1.5s ease-out forwards',
             },
             keyframes: {
                 scroll: {
@@ -72,6 +73,16 @@ export default {
                 'float-subtle': {
                     '0%, 100%': { transform: 'translateY(0)' },
                     '50%': { transform: 'translateY(-4px)' },
+                },
+                fadeIn: {
+                    '0%': { 
+                        opacity: '0',
+                        transform: 'translateX(-10px)'
+                    },
+                    '100%': { 
+                        opacity: '1',
+                        transform: 'translateX(0)'
+                    },
                 },
             },
         },

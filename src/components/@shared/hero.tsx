@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { ExploreArrow } from '@/components/icons/explore-arrow'
 import { ArrowIcon } from '../icons/arrow-icon'
 import { ScrollingText } from '@/components/@shared/scrolling-text'
-import { ShortPitch } from '@/components/sections/short-pitch'
+import { ShortPitch } from '@/components/sections/partner-section'
 import { ProjectsSection } from '@/components/sections/projects-section'
 
 export function MarketingHero() {
