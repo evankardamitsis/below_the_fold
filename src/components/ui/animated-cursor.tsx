@@ -39,7 +39,7 @@ export function AnimatedCursor() {
         if (isOverRightArea && !isActive) {
             setCursorState({
                 isVisible: true,
-                text: 'Look left to explore services',
+                text: 'Move me to the left to explore services',
                 type: 'service-hint'
             })
         } else if (cursorState.type === 'service-hint') {

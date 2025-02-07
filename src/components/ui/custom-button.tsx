@@ -18,11 +18,11 @@ export function CustomButton({
     variant = 'default',
     size = 'md'
 }: CustomButtonProps) {
-    const baseStyles = "group inline-flex items-center gap-3 uppercase font-bold transition-all duration-500 hover:shadow-md"
+    const baseStyles = "group inline-flex items-center gap-3 uppercase font-bold transition-all duration-500 hover:shadow-xs"
 
     const variants = {
         default: "bg-neutral-900 text-white hover:bg-neutral-800",
-        outline: "bg-page-lighter hover:bg-neutral-50 border border-neutral-200 text-neutral-900"
+        outline: "bg-page-lighter hover:bg-neutral-50 text-neutral-900"
     }
 
     const sizes = {

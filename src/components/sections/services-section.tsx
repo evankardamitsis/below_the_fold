@@ -160,7 +160,21 @@ export function ServicesSection() {
                                     onMouseLeave={() => setActiveService(null)}
                                     data-active={activeService === service.title}
                                 >
-                                    <h3 className="text-[6rem] leading-[1.1] font-bold text-neutral-900 transition-colors duration-300">
+                                    {/* Background animation */}
+                                    <motion.div
+                                        className="absolute inset-0 bg-neutral-900"
+                                        initial={{ width: 0 }}
+                                        animate={{
+                                            width: activeService === service.title ? '100%' : 0
+                                        }}
+                                        transition={{
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}
+                                    />
+
+                                    <h3 className={`relative text-[6rem] leading-[1.1] font-bold px-4 py-2 transition-colors duration-500 ${activeService === service.title ? 'text-white' : 'text-neutral-900'
+                                        }`}>
                                         {service.title}
                                     </h3>
                                 </div>
@@ -172,7 +186,7 @@ export function ServicesSection() {
                             label="Explore our Services"
                             variant="outline"
                             size="md"
-                            className="mt-12"
+                            className="mt-6"
                         />
                     </div>
 
@@ -231,23 +245,29 @@ export function ServicesSection() {
                                         transition={{ duration: 0.3 }}
                                         className="pt-4"
                                     >
-                                        {SERVICES.find(s => s.title === activeService)?.details.map((detail) => (
-                                            <div key={detail.title} className="mb-8">
-                                                <h4 className="text-lg font-bold text-neutral-800 mb-4">
-                                                    {detail.title}
-                                                </h4>
-                                                <div className="flex flex-wrap gap-2">
-                                                    {detail.items.map((item) => (
-                                                        <span
-                                                            key={item}
-                                                            className="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-[13px] font-medium text-neutral-900"
-                                                        >
-                                                            {item}
-                                                        </span>
-                                                    ))}
+                                        {/* Background Panel */}
+                                        <div className="absolute inset-0 bg-page-light/80 backdrop-blur-xs rounded-xl -z-10" />
+
+                                        {/* Content */}
+                                        <div className="p-6">
+                                            {SERVICES.find(s => s.title === activeService)?.details.map((detail) => (
+                                                <div key={detail.title} className="mb-8">
+                                                    <h4 className="text-lg font-bold text-neutral-800 mb-4">
+                                                        {detail.title}
+                                                    </h4>
+                                                    <div className="flex flex-wrap gap-2">
+                                                        {detail.items.map((item) => (
+                                                            <span
+                                                                key={item}
+                                                                className="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-[13px] font-medium text-neutral-900"
+                                                            >
+                                                                {item}
+                                                            </span>
+                                                        ))}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        ))}
+                                            ))}
+                                        </div>
                                     </motion.div>
                                 )}
                             </AnimatePresence>
