@@ -1,62 +1,104 @@
 'use client'
 
 import { motion, useMotionValue, useSpring } from 'framer-motion'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
+
+interface CursorState {
+    isVisible: boolean
+    text: string
+    type: 'project' | 'service-hint' | null
+}
 
 export function AnimatedCursor() {
     const cursorX = useMotionValue(-100)
     const cursorY = useMotionValue(-100)
-    const [isVisible, setIsVisible] = useState(false)
+    const [cursorState, setCursorState] = useState<CursorState>({
+        isVisible: false,
+        text: '',
+        type: null
+    })
 
     const springConfig = { damping: 25, stiffness: 700 }
     const cursorXSpring = useSpring(cursorX, springConfig)
     const cursorYSpring = useSpring(cursorY, springConfig)
 
+    const handleServiceHint = useCallback((e: MouseEvent) => {
+        const rightArea = document.querySelector('.services-right-area')
+        if (!rightArea) return
+
+        const rect = rightArea.getBoundingClientRect()
+        const isOverRightArea = (
+            e.clientX >= rect.left &&
+            e.clientX <= rect.right &&
+            e.clientY >= rect.top &&
+            e.clientY <= rect.bottom
+        )
+
+        const isActive = rightArea.getAttribute('data-active') === 'true'
+
+        if (isOverRightArea && !isActive) {
+            setCursorState({
+                isVisible: true,
+                text: 'Look left to explore services',
+                type: 'service-hint'
+            })
+        } else if (cursorState.type === 'service-hint') {
+            setCursorState({
+                isVisible: false,
+                text: '',
+                type: null
+            })
+        }
+    }, [cursorState.type])
+
     useEffect(() => {
         const moveCursor = (e: MouseEvent) => {
             cursorX.set(e.clientX - 50)
             cursorY.set(e.clientY - 25)
+            handleServiceHint(e)
         }
 
-        const handleMouseEnter = () => {
-            setIsVisible(true)
-        }
-
-        const handleMouseLeave = () => {
-            setIsVisible(false)
-        }
-
-        // Add listeners to project card images only
-        const addProjectCardListeners = () => {
-            const projectCardImages = document.querySelectorAll('.project-card-image')
-            projectCardImages.forEach(card => {
-                card.addEventListener('mouseenter', handleMouseEnter)
-                card.addEventListener('mouseleave', handleMouseLeave)
+        const handleProjectEnter = () => {
+            setCursorState({
+                isVisible: true,
+                text: 'View Project',
+                type: 'project'
             })
         }
 
-        // Initial setup
-        window.addEventListener('mousemove', moveCursor)
-        addProjectCardListeners()
+        const handleProjectLeave = () => {
+            setCursorState({
+                isVisible: false,
+                text: '',
+                type: null
+            })
+        }
 
-        // Cleanup
+        // Add listeners to project card images
+        const projectCardImages = document.querySelectorAll('.project-card-image')
+        projectCardImages.forEach(card => {
+            card.addEventListener('mouseenter', handleProjectEnter)
+            card.addEventListener('mouseleave', handleProjectLeave)
+        })
+
+        window.addEventListener('mousemove', moveCursor)
+
         return () => {
             window.removeEventListener('mousemove', moveCursor)
-            const projectCardImages = document.querySelectorAll('.project-card-image')
             projectCardImages.forEach(card => {
-                card.removeEventListener('mouseenter', handleMouseEnter)
-                card.removeEventListener('mouseleave', handleMouseLeave)
+                card.removeEventListener('mouseenter', handleProjectEnter)
+                card.removeEventListener('mouseleave', handleProjectLeave)
             })
         }
-    }, [cursorX, cursorY])
+    }, [cursorX, cursorY, handleServiceHint])
 
     return (
         <motion.div
-            className="fixed top-0 left-0 z-50 pointer-events-none"
+            className="fixed top-0 left-0 z-50 pointer-events-none hidden lg:block"
             style={{
                 x: cursorXSpring,
                 y: cursorYSpring,
-                opacity: isVisible ? 1 : 0,
+                opacity: cursorState.isVisible ? 1 : 0,
             }}
         >
             <motion.div
@@ -69,12 +111,12 @@ export function AnimatedCursor() {
                 }}
             >
                 <motion.span
-                    className="project-hover-text text-sm text-center font-medium whitespace-nowrap"
+                    className="text-sm text-center font-medium whitespace-nowrap"
                     initial={{ opacity: 0 }}
-                    animate={{ opacity: isVisible ? 1 : 0 }}
+                    animate={{ opacity: cursorState.isVisible ? 1 : 0 }}
                     transition={{ duration: 0.2 }}
                 >
-                    View Project
+                    {cursorState.text}
                 </motion.span>
             </motion.div>
         </motion.div>
