@@ -5,6 +5,8 @@ import Link from 'next/link'
 import { LinkedinIcon } from '../icons/social/linkedin-icon'
 import { InstagramIcon } from '../icons/social/instagram-icon'
 import { FacebookIcon } from '../icons/social/facebook-icon'
+import { useForm } from 'react-hook-form'
+import { useState } from 'react'
 
 const FOOTER_LINKS = [
     { label: 'Services', href: '/services' },
@@ -32,7 +34,44 @@ const SOCIAL_LINKS = [
     }
 ]
 
-export function Footer() {
+interface NewsletterFormInputs {
+    email: string
+}
+
+export default function Footer() {
+    const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+    const [message, setMessage] = useState('')
+
+    const {
+        register,
+        handleSubmit,
+        reset,
+        formState: { errors }
+    } = useForm<NewsletterFormInputs>()
+
+    const onSubmit = async (data: NewsletterFormInputs) => {
+        setStatus('loading')
+
+        try {
+            const response = await fetch('/api/newsletter', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+
+            const result = await response.json()
+
+            if (!response.ok) throw new Error(result.error)
+
+            setStatus('success')
+            setMessage(result.message)
+            reset()
+        } catch (error) {
+            setStatus('error')
+            setMessage(error instanceof Error ? error.message : 'Failed to subscribe')
+        }
+    }
+
     const currentYear = new Date().getFullYear()
 
     return (
@@ -109,13 +148,23 @@ export function Footer() {
                             <h3 className="text-white text-[15px] font-medium mb-6">
                                 Sign up for monthly Below The Fold Insights.
                             </h3>
-                            <form className="space-y-6">
+                            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                                 <input
+                                    {...register('email', {
+                                        required: 'Email is required',
+                                        pattern: {
+                                            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                            message: 'Invalid email address'
+                                        }
+                                    })}
                                     type="email"
                                     placeholder="Email Address*"
-                                    className="w-full bg-neutral-800 text-white px-4 h-12 rounded text-[15px] placeholder:text-neutral-500"
+                                    className="w-full bg-neutral-800 text-white px-4 h-12 rounded text-[15px] placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-neutral-700"
                                     required
                                 />
+                                {errors.email && (
+                                    <span className="text-red-500 text-sm mt-1">{errors.email.message}</span>
+                                )}
                                 <label className="flex items-start gap-3 cursor-pointer group">
                                     <input
                                         type="checkbox"
@@ -130,12 +179,21 @@ export function Footer() {
                                         .
                                     </span>
                                 </label>
-                                <button
-                                    type="submit"
-                                    className="text-[15px] font-medium text-white hover:opacity-60 transition-opacity"
-                                >
-                                    SUBMIT
-                                </button>
+                                <div className="flex items-center gap-4">
+                                    <button
+                                        type="submit"
+                                        disabled={status === 'loading'}
+                                        className="px-8 h-12 bg-white text-neutral-900 rounded text-[15px] font-medium hover:bg-neutral-200 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                                    >
+                                        {status === 'loading' ? 'SUBSCRIBING...' : 'SUBMIT'}
+                                    </button>
+
+                                    {message && (
+                                        <p className={status === 'success' ? 'text-green-500' : 'text-red-500'}>
+                                            {message}
+                                        </p>
+                                    )}
+                                </div>
                             </form>
                         </div>
                     </div>
