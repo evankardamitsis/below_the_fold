@@ -3,54 +3,76 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { useForm } from 'react-hook-form'
 import { useReCaptcha } from '@/hooks/use-recaptcha'
 
+interface FormInputs {
+    firstName: string
+    lastName: string
+    workEmail: string
+    company: string
+    platform?: string
+    country: string
+    phone?: string
+    description: string
+    privacyPolicy: boolean
+}
+
 export default function ContactPage() {
-    const { loaded, executeReCaptcha } = useReCaptcha()
+    const { ready: recaptchaReady, execute: executeRecaptcha } = useReCaptcha()
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
+    const {
+        register,
+        handleSubmit,
+        reset,
+        formState: { errors }
+    } = useForm<FormInputs>({
+        defaultValues: {
+            firstName: '',
+            lastName: '',
+            workEmail: '',
+            company: '',
+            platform: '',
+            country: '',
+            phone: '',
+            description: '',
+            privacyPolicy: false
+        }
+    })
+
+    const onSubmit = async (formData: FormInputs) => {
+        if (isSubmitting) return
         setIsSubmitting(true)
         setSubmitStatus('idle')
 
         try {
-            if (!loaded) {
-                throw new Error('Security check not loaded. Please refresh the page.')
+            if (!recaptchaReady) {
+                throw new Error('Security check not ready. Please refresh the page.')
             }
 
-            const token = await executeReCaptcha('contact_form')
-            if (!token) {
-                throw new Error('Security verification failed. Please try again.')
-            }
-
-            const formData = new FormData(e.currentTarget)
-            const data = {
-                firstName: formData.get('firstName'),
-                lastName: formData.get('lastName'),
-                email: formData.get('workEmail'),
-                company: formData.get('company'),
-                platform: formData.get('platform'),
-                country: formData.get('country'),
-                phone: formData.get('phone'),
-                description: formData.get('description'),
-                recaptchaToken: token
-            }
+            const token = await executeRecaptcha('contact_form')
 
             const response = await fetch('/api/contact', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    ...formData,
+                    recaptchaToken: token
+                })
             })
 
+            const data = await response.json()
+
             if (!response.ok) {
-                const errorData = await response.json()
-                throw new Error(errorData.error || 'Failed to send message')
+                throw new Error(data.error || 'Failed to send message')
             }
 
             setSubmitStatus('success')
-            e.currentTarget.reset()
+            reset()
         } catch (error) {
             setSubmitStatus('error')
             console.error('Form submission error:', error instanceof Error ? error.message : 'Unknown error')
@@ -84,7 +106,7 @@ export default function ContactPage() {
 
                 {/* Contact Form */}
                 <motion.form
-                    onSubmit={handleSubmit}
+                    onSubmit={handleSubmit(onSubmit)}
                     className="max-w-[800px] space-y-6"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -92,43 +114,65 @@ export default function ContactPage() {
                 >
                     {/* Name Fields */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        <input
-                            name="firstName"
-                            type="text"
-                            placeholder="First Name*"
-                            required
-                            className="w-full bg-neutral-100 px-4 h-12 rounded text-[15px] placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-neutral-900"
-                        />
-                        <input
-                            name="lastName"
-                            type="text"
-                            placeholder="Last Name*"
-                            required
-                            className="w-full bg-neutral-100 px-4 h-12 rounded text-[15px] placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-neutral-900"
-                        />
+                        <div>
+                            <input
+                                {...register('firstName', { required: 'First name is required' })}
+                                type="text"
+                                placeholder="First Name*"
+                                className="w-full bg-neutral-100 px-4 h-12 rounded text-[15px] placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-neutral-900"
+                            />
+                            {errors.firstName && (
+                                <span className="text-red-500 text-sm mt-1">{errors.firstName.message}</span>
+                            )}
+                        </div>
+                        <div>
+                            <input
+                                {...register('lastName', { required: 'Last name is required' })}
+                                type="text"
+                                placeholder="Last Name*"
+                                className="w-full bg-neutral-100 px-4 h-12 rounded text-[15px] placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-neutral-900"
+                            />
+                            {errors.lastName && (
+                                <span className="text-red-500 text-sm mt-1">{errors.lastName.message}</span>
+                            )}
+                        </div>
                     </div>
 
                     {/* Work Email and Company */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        <input
-                            name="workEmail"
-                            type="email"
-                            placeholder="Work Email*"
-                            required
-                            className="w-full bg-neutral-100 px-4 h-12 rounded text-[15px] placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-neutral-900"
-                        />
-                        <input
-                            name="company"
-                            type="text"
-                            placeholder="Company Name*"
-                            required
-                            className="w-full bg-neutral-100 px-4 h-12 rounded text-[15px] placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-neutral-900"
-                        />
+                        <div>
+                            <input
+                                {...register('workEmail', {
+                                    required: 'Email is required',
+                                    pattern: {
+                                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                        message: 'Invalid email address'
+                                    }
+                                })}
+                                type="email"
+                                placeholder="Work Email*"
+                                className="w-full bg-neutral-100 px-4 h-12 rounded text-[15px] placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-neutral-900"
+                            />
+                            {errors.workEmail && (
+                                <span className="text-red-500 text-sm mt-1">{errors.workEmail.message}</span>
+                            )}
+                        </div>
+                        <div>
+                            <input
+                                {...register('company', { required: 'Company name is required' })}
+                                type="text"
+                                placeholder="Company Name*"
+                                className="w-full bg-neutral-100 px-4 h-12 rounded text-[15px] placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-neutral-900"
+                            />
+                            {errors.company && (
+                                <span className="text-red-500 text-sm mt-1">{errors.company.message}</span>
+                            )}
+                        </div>
                     </div>
 
                     {/* Platform */}
                     <input
-                        name="platform"
+                        {...register('platform')}
                         type="text"
                         placeholder="Current Ecommerce Platform (Optional)"
                         className="w-full bg-neutral-100 px-4 h-12 rounded text-[15px] placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-neutral-900"
@@ -136,45 +180,68 @@ export default function ContactPage() {
 
                     {/* Location and Phone */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        <input
-                            name="country"
-                            type="text"
-                            placeholder="Country/Region*"
-                            required
-                            className="w-full bg-neutral-100 px-4 h-12 rounded text-[15px] placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-neutral-900"
-                        />
-                        <input
-                            name="phone"
-                            type="tel"
-                            placeholder="Phone number (Optional)"
-                            className="w-full bg-neutral-100 px-4 h-12 rounded text-[15px] placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-neutral-900"
-                        />
+                        <div>
+                            <input
+                                {...register('country', { required: 'Country/Region is required' })}
+                                type="text"
+                                placeholder="Country/Region*"
+                                className="w-full bg-neutral-100 px-4 h-12 rounded text-[15px] placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-neutral-900"
+                            />
+                            {errors.country && (
+                                <span className="text-red-500 text-sm mt-1">{errors.country.message}</span>
+                            )}
+                        </div>
+                        <div>
+                            <input
+                                {...register('phone')}
+                                type="tel"
+                                placeholder="Phone number (Optional)"
+                                className="w-full bg-neutral-100 px-4 h-12 rounded text-[15px] placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-neutral-900"
+                            />
+                        </div>
                     </div>
 
                     {/* Project Description */}
-                    <textarea
-                        name="description"
-                        placeholder="Project Description*"
-                        required
-                        rows={6}
-                        className="w-full bg-neutral-100 p-4 rounded text-[15px] placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-neutral-900 resize-none"
-                    />
+                    <div>
+                        <textarea
+                            {...register('description', {
+                                required: 'Project description is required',
+                                minLength: {
+                                    value: 20,
+                                    message: 'Please provide more details (minimum 20 characters)'
+                                }
+                            })}
+                            placeholder="Project Description*"
+                            rows={6}
+                            className="w-full bg-neutral-100 p-4 rounded text-[15px] placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-neutral-900 resize-none"
+                        />
+                        {errors.description && (
+                            <span className="text-red-500 text-sm mt-1">{errors.description.message}</span>
+                        )}
+                    </div>
 
                     {/* Privacy Policy Checkbox */}
-                    <label className="flex items-start gap-3 cursor-pointer group">
-                        <input
-                            type="checkbox"
-                            className="mt-1 rounded border-neutral-300 text-neutral-900 focus:ring-neutral-900"
-                            required
-                        />
-                        <span className="text-[13px] text-neutral-600 leading-relaxed">
-                            By checking this box, you agree to be contacted by Below The Fold regarding our products and services. You also consent to allow Below The Fold to store and process the personal information submitted in this form for the purpose of contacting you. For information on how to unsubscribe, our privacy practices, and our commitment to protecting your privacy, please see our{' '}
-                            <Link href="/privacy" className="text-neutral-900 hover:opacity-70 transition-opacity underline">
-                                Privacy Policy
-                            </Link>
-                            .
-                        </span>
-                    </label>
+                    <div>
+                        <label className="flex items-start gap-3 cursor-pointer group">
+                            <input
+                                type="checkbox"
+                                {...register('privacyPolicy', {
+                                    required: 'You must accept the privacy policy'
+                                })}
+                                className="mt-1 rounded border-neutral-300 text-neutral-900 focus:ring-neutral-900"
+                            />
+                            <span className="text-[13px] text-neutral-600 leading-relaxed">
+                                By checking this box, you agree to be contacted by Below The Fold regarding our products and services. You also consent to allow Below The Fold to store and process the personal information submitted in this form for the purpose of contacting you. For information on how to unsubscribe, our privacy practices, and our commitment to protecting your privacy, please see our{' '}
+                                <Link href="/privacy" className="text-neutral-900 hover:opacity-70 transition-opacity underline">
+                                    Privacy Policy
+                                </Link>
+                                .
+                            </span>
+                        </label>
+                        {errors.privacyPolicy && (
+                            <span className="text-red-500 text-sm mt-1 block">{errors.privacyPolicy.message}</span>
+                        )}
+                    </div>
 
                     {/* Submit Button */}
                     <div className="flex items-center gap-4">
