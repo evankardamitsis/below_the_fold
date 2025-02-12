@@ -14,7 +14,7 @@ interface ProjectCardProps {
     index: number
 }
 
-export function ProjectCard({ title, description, image, hoverImage, category, tags, href, index }: ProjectCardProps) {
+export function ProjectCard({ title, description, image, category, tags, href, index }: ProjectCardProps) {
     const [isHovered, setIsHovered] = useState(false)
 
     useEffect(() => {
@@ -82,7 +82,7 @@ export function ProjectCard({ title, description, image, hoverImage, category, t
                             <div className="absolute inset-0 bg-black/20" />
 
                             {/* Secondary Image Container */}
-                            <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
+                            {/* <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
                                 <div className="relative h-[80%] w-[60%]">
                                     <motion.div
                                         initial={{ scaleX: 0 }}
@@ -102,7 +102,7 @@ export function ProjectCard({ title, description, image, hoverImage, category, t
                                         />
                                     </motion.div>
                                 </div>
-                            </div>
+                            </div> */}
 
                             {/* Tags */}
                             <motion.div
