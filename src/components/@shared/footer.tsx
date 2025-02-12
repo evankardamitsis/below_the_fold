@@ -7,6 +7,7 @@ import { InstagramIcon } from '../icons/social/instagram-icon'
 import { FacebookIcon } from '../icons/social/facebook-icon'
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
+import { toast } from 'sonner'
 
 const FOOTER_LINKS = [
     { label: 'Services', href: '/services' },
@@ -19,17 +20,17 @@ const FOOTER_LINKS = [
 const SOCIAL_LINKS = [
     {
         label: 'LinkedIn',
-        href: 'https://linkedin.com',
+        href: 'https://www.linkedin.com/company/below-the-fold-digital/?viewAsMember=true',
         icon: LinkedinIcon
     },
     {
         label: 'Instagram',
-        href: 'https://instagram.com',
+        href: 'https://www.instagram.com/below_the_fold_digital/',
         icon: InstagramIcon
     },
     {
         label: 'Facebook',
-        href: 'https://facebook.com',
+        href: 'https://www.facebook.com/belowthefolddigital/',
         icon: FacebookIcon
     }
 ]
@@ -39,18 +40,12 @@ interface NewsletterFormInputs {
 }
 
 export default function Footer() {
-    const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
-    const [message, setMessage] = useState('')
-
-    const {
-        register,
-        handleSubmit,
-        reset,
-        formState: { errors }
-    } = useForm<NewsletterFormInputs>()
+    const [isSubmitting, setIsSubmitting] = useState(false)
+    const { register, handleSubmit, reset, formState: { errors } } = useForm<NewsletterFormInputs>()
 
     const onSubmit = async (data: NewsletterFormInputs) => {
-        setStatus('loading')
+        if (isSubmitting) return
+        setIsSubmitting(true)
 
         try {
             const response = await fetch('/api/newsletter', {
@@ -63,12 +58,12 @@ export default function Footer() {
 
             if (!response.ok) throw new Error(result.error)
 
-            setStatus('success')
-            setMessage(result.message)
+            toast.success('Successfully subscribed to newsletter!')
             reset()
         } catch (error) {
-            setStatus('error')
-            setMessage(error instanceof Error ? error.message : 'Failed to subscribe')
+            toast.error(error instanceof Error ? error.message : 'Failed to subscribe')
+        } finally {
+            setIsSubmitting(false)
         }
     }
 
@@ -149,22 +144,23 @@ export default function Footer() {
                                 Sign up for monthly Below The Fold Insights.
                             </h3>
                             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                                <input
-                                    {...register('email', {
-                                        required: 'Email is required',
-                                        pattern: {
-                                            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                                            message: 'Invalid email address'
-                                        }
-                                    })}
-                                    type="email"
-                                    placeholder="Email Address*"
-                                    className="w-full bg-neutral-800 text-white px-4 h-12 rounded text-[15px] placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-neutral-700"
-                                    required
-                                />
-                                {errors.email && (
-                                    <span className="text-red-500 text-sm mt-1">{errors.email.message}</span>
-                                )}
+                                <div>
+                                    <input
+                                        {...register('email', {
+                                            required: 'Email is required',
+                                            pattern: {
+                                                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                                message: 'Invalid email address'
+                                            }
+                                        })}
+                                        type="email"
+                                        placeholder="Email Address*"
+                                        className="w-full bg-neutral-800 text-white px-4 h-12 rounded text-[15px] placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-neutral-700"
+                                    />
+                                    {errors.email && (
+                                        <span className="text-red-500 text-sm mt-1">{errors.email.message}</span>
+                                    )}
+                                </div>
                                 <label className="flex items-start gap-3 cursor-pointer group">
                                     <input
                                         type="checkbox"
@@ -182,17 +178,11 @@ export default function Footer() {
                                 <div className="flex items-center gap-4">
                                     <button
                                         type="submit"
-                                        disabled={status === 'loading'}
+                                        disabled={isSubmitting}
                                         className="px-8 h-12 bg-white text-neutral-900 rounded text-[15px] font-medium hover:bg-neutral-200 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                                     >
-                                        {status === 'loading' ? 'SUBSCRIBING...' : 'SUBMIT'}
+                                        {isSubmitting ? 'SUBSCRIBING...' : 'SUBMIT'}
                                     </button>
-
-                                    {message && (
-                                        <p className={status === 'success' ? 'text-green-500' : 'text-red-500'}>
-                                            {message}
-                                        </p>
-                                    )}
                                 </div>
                             </form>
                         </div>

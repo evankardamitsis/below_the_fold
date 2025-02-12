@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 import { useReCaptcha } from '@/hooks/use-recaptcha'
+import { toast } from 'sonner'
 
 interface FormInputs {
     firstName: string
@@ -21,31 +22,11 @@ interface FormInputs {
 export default function ContactPage() {
     const { ready: recaptchaReady, execute: executeRecaptcha } = useReCaptcha()
     const [isSubmitting, setIsSubmitting] = useState(false)
-    const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
-
-    const {
-        register,
-        handleSubmit,
-        reset,
-        formState: { errors }
-    } = useForm<FormInputs>({
-        defaultValues: {
-            firstName: '',
-            lastName: '',
-            workEmail: '',
-            company: '',
-            platform: '',
-            country: '',
-            phone: '',
-            description: '',
-            privacyPolicy: false
-        }
-    })
+    const { register, handleSubmit, reset, formState: { errors } } = useForm<FormInputs>()
 
     const onSubmit = async (formData: FormInputs) => {
         if (isSubmitting) return
         setIsSubmitting(true)
-        setSubmitStatus('idle')
 
         try {
             if (!recaptchaReady) {
@@ -71,11 +52,10 @@ export default function ContactPage() {
                 throw new Error(data.error || 'Failed to send message')
             }
 
-            setSubmitStatus('success')
+            toast.success('Message sent successfully!')
             reset()
         } catch (error) {
-            setSubmitStatus('error')
-            console.error('Form submission error:', error instanceof Error ? error.message : 'Unknown error')
+            toast.error(error instanceof Error ? error.message : 'Failed to send message')
         } finally {
             setIsSubmitting(false)
         }
@@ -252,13 +232,6 @@ export default function ContactPage() {
                         >
                             {isSubmitting ? 'SENDING...' : 'SUBMIT'}
                         </button>
-
-                        {submitStatus === 'success' && (
-                            <span className="text-green-600 text-sm">Message sent successfully!</span>
-                        )}
-                        {submitStatus === 'error' && (
-                            <span className="text-red-600 text-sm">Failed to send message. Please try again.</span>
-                        )}
                     </div>
                 </motion.form>
 

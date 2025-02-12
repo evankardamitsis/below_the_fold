@@ -2,6 +2,8 @@
 import { MarketingNav } from '@/components/@shared/nav'
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import Footer from '@/components/@shared/footer'
+import { Toaster } from 'sonner'
+
 export default function MarketingLayout({
     children,
 }: {
@@ -15,6 +17,16 @@ export default function MarketingLayout({
                 <SpeedInsights />
             </main>
             <Footer />
+            <Toaster
+                position="bottom-right"
+                toastOptions={{
+                    style: {
+                        background: '#1c1c1c',
+                        color: '#fff',
+                        border: '1px solid #333'
+                    }
+                }}
+            />
         </div>
     )
 } 
