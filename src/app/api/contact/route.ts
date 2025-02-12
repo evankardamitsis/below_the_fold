@@ -39,7 +39,7 @@ export async function POST(req: Request) {
             html: `
                 <h2>New Contact Form Submission</h2>
                 <p><strong>Name:</strong> ${formData.firstName} ${formData.lastName}</p>
-                <p><strong>Email:</strong> ${formData.email}</p>
+                <p><strong>Email:</strong> ${formData.workEmail}</p>
                 <p><strong>Company:</strong> ${formData.company}</p>
                 <p><strong>Platform:</strong> ${formData.platform || 'Not specified'}</p>
                 <p><strong>Country:</strong> ${formData.country}</p>
