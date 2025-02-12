@@ -49,8 +49,8 @@ export function OurClientsSection() {
                 {/* Logos Slider */}
                 <div className="relative">
                     {/* Gradient Overlays */}
-                    <div className="absolute left-0 top-0 bottom-0 w-[100px] bg-gradient-to-r from-page-light to-transparent z-10" />
-                    <div className="absolute right-0 top-0 bottom-0 w-[100px] bg-gradient-to-l from-page-light to-transparent z-10" />
+                    <div className="absolute left-0 top-0 bottom-0 w-[100px] bg-gradient-to-r from-page-lighter to-transparent z-10" />
+                    <div className="absolute right-0 top-0 bottom-0 w-[100px] bg-gradient-to-l from-page-lighter to-transparent z-10" />
 
                     {/* Scrolling Container */}
                     <div className="flex overflow-hidden">

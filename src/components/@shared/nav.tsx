@@ -43,7 +43,7 @@ export function MarketingNav() {
     return (
         <div className="fixed top-0 left-0 right-0 z-50 flex justify-center">
             <header className={`w-full max-w-[1620px] transition-colors duration-300 ${currentBackground}`}>
-                <div className="flex h-[72px] items-center justify-between px-8 relative">
+                <div className="flex h-[72px] items-center justify-between px-4 sm:px-8 relative">
                     {/* Left side - Logo */}
                     <Link
                         href="/"
@@ -52,24 +52,29 @@ export function MarketingNav() {
                         BelowTheFold
                     </Link>
 
-                    {/* Dynamic Island */}
-                    <DynamicIsland />
+                    {/* Dynamic Island - Hidden on Mobile */}
+                    <div className="hidden lg:block">
+                        <DynamicIsland />
+                    </div>
 
                     {/* Right side - Navigation */}
-                    <div className={`flex items-center gap-8 ${currentBackground}`}>
+                    <div className={`flex items-center gap-4 sm:gap-8 ${currentBackground}`}>
+                        {/* Book Call - Hidden on Mobile */}
                         <Link
                             href="https://calendly.com/kardamitsis-e-belowthefold/30min"
                             target="_blank"
-                            className={`text-sm font-medium tracking-wide hover:opacity-70 transition-opacity ${currentBackground} py-3`}
+                            className={`hidden md:inline-block text-sm font-medium tracking-wide hover:opacity-70 transition-opacity ${currentBackground} py-3`}
                         >
                             Book a call
                         </Link>
                         <Link
                             href="/contact"
-                            className="inline-flex items-center justify-between px-6 h-10 bg-neutral-900 rounded text-white text-[15px] font-medium hover:bg-neutral-800 transition-colors duration-300 group"
+                            className="inline-flex items-center justify-between px-4 sm:px-6 h-10 bg-neutral-900 rounded text-white text-[15px] font-medium hover:bg-neutral-800 transition-colors duration-300 group"
                         >
-                            <ArrowIcon />
-                            Let&apos;s connect
+                            <span>
+                                <ArrowIcon />
+                            </span>
+                            <span className="sm:ml-1">Let&apos;s connect</span>
                         </Link>
                     </div>
                 </div>

@@ -4,8 +4,10 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import { CustomButton } from '../ui/custom-button'
+import { ServiceModal } from '../ui/service-modal'
+import { useMediaQuery } from '@/hooks/use-media-query'
 
-interface Service {
+export interface Service {
     title: string
     category: string
     images: {
@@ -136,9 +138,24 @@ const IMAGE_POSITIONS = {
 
 export function ServicesSection() {
     const [activeService, setActiveService] = useState<string | null>(null)
+    const [isModalOpen, setIsModalOpen] = useState(false)
+    const isMobile = useMediaQuery('(max-width: 1024px)')
+
+    const handleServiceClick = (title: string) => {
+        if (isMobile) {
+            setActiveService(title)
+            setIsModalOpen(true)
+        }
+    }
+
+    const handleServiceHover = (title: string | null) => {
+        if (!isMobile) {
+            setActiveService(title)
+        }
+    }
 
     return (
-        <section className="services-section relative py-24 bg-page-light overflow-hidden">
+        <section className="services-section relative py-12 bg-page-light overflow-hidden">
             <div className="relative mx-auto max-w-[1620px] px-8">
                 {/* Header */}
                 <div className="mb-16">
@@ -156,9 +173,9 @@ export function ServicesSection() {
                                 <div
                                     key={service.title}
                                     className="group relative mb-8"
-                                    onMouseEnter={() => setActiveService(service.title)}
-                                    onMouseLeave={() => setActiveService(null)}
-                                    data-active={activeService === service.title}
+                                    onClick={() => handleServiceClick(service.title)}
+                                    onMouseEnter={() => handleServiceHover(service.title)}
+                                    onMouseLeave={() => handleServiceHover(null)}
                                 >
                                     {/* Background animation */}
                                     <motion.div
@@ -275,6 +292,16 @@ export function ServicesSection() {
                     </div>
                 </div>
             </div>
+
+            {/* Service Modal - Mobile Only */}
+            <ServiceModal
+                service={SERVICES.find(s => s.title === activeService) || null}
+                isOpen={isModalOpen}
+                onClose={() => {
+                    setIsModalOpen(false)
+                    setActiveService(null)
+                }}
+            />
         </section>
     )
 } 

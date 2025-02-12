@@ -43,7 +43,7 @@ export function Footer() {
                     {/* Left Column */}
                     <div className="space-y-8">
                         <motion.h2
-                            className="text-[3rem] md:text-[4rem]  leading-[1.1] font-bold text-white"
+                            className="text-[2.3rem] md:text-[4rem]  leading-[1.1] font-bold text-white"
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}

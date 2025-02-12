@@ -13,7 +13,7 @@ export function MarketingHero() {
                 <div className="flex flex-col lg:flex-row lg:justify-between mt-12 md:mt-8 lg:mt-12">
                     {/* Left Side - Main Heading */}
                     <div className="lg:max-w-[75%]">
-                        <h1 className="text-[2.5rem] sm:text-[4rem] md:text-[5rem] lg:text-[6rem] leading-[0.95] tracking-[-0.03em] font-bold text-neutral-900 flex flex-col">
+                        <h1 className="text-[2.5rem] sm:text-[4rem] md:text-[5rem] lg:text-[6rem] leading-[0.85] tracking-[-0.03em] font-bold text-neutral-900 flex flex-col">
                             <span className="mb-3 md:mb-4">We make e-shops</span>
                             <div className="flex items-center gap-4 lg:gap-6 group">
                                 <span>that work for you</span>

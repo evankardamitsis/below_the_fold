@@ -2,6 +2,7 @@
 
 import { motion, useAnimationControls } from 'framer-motion'
 import { useState } from 'react'
+import { useMediaQuery } from '@/hooks/use-media-query'
 
 const WORK_STEPS = [
     {
@@ -31,8 +32,9 @@ const WORK_STEPS = [
 ]
 
 export function HowWeWorkSection() {
-    const [activeStep, setActiveStep] = useState<number | null>(null)
+    const [activeStep, setActiveStep] = useState<string | null>(null)
     const [selectedStep, setSelectedStep] = useState<number | null>(null)
+    const isMobile = useMediaQuery('(max-width: 1024px)')
 
     const control1 = useAnimationControls()
     const control2 = useAnimationControls()
@@ -41,22 +43,17 @@ export function HowWeWorkSection() {
 
     const controls = [control1, control2, control3, control4]
 
-    const handleStepHover = async (index: number) => {
-        setActiveStep(index)
-        await controls[index].start({
-            scale: 1.05,
-            y: -10,
-            transition: { duration: 0.3, ease: "easeOut" }
-        })
+    const handleStepInteraction = (step: string, index: number) => {
+        if (isMobile) {
+            setActiveStep(step === activeStep ? null : step)
+        }
+        handleStepClick(index)
     }
 
-    const handleStepLeave = async (index: number) => {
-        setActiveStep(null)
-        await controls[index].start({
-            scale: 1,
-            y: 0,
-            transition: { duration: 0.3, ease: "easeOut" }
-        })
+    const handleStepHover = (step: string | null) => {
+        if (!isMobile) {
+            setActiveStep(step)
+        }
     }
 
     const handleStepClick = (index: number) => {
@@ -112,16 +109,16 @@ export function HowWeWorkSection() {
 
                     {WORK_STEPS.map((step, index) => (
                         <motion.div
-                            key={step.number}
+                            key={step.title}
                             className="group relative bg-neutral-900 rounded-xl p-6 min-h-[400px] border border-white/10 cursor-pointer"
                             animate={controls[index]}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
-                            onHoverStart={() => handleStepHover(index)}
-                            onHoverEnd={() => handleStepLeave(index)}
-                            onClick={() => handleStepClick(index)}
+                            onClick={() => handleStepInteraction(step.title, index)}
+                            onMouseEnter={() => handleStepHover(step.title)}
+                            onMouseLeave={() => handleStepHover(null)}
                             style={{
                                 zIndex: selectedStep === index ? 50 : 1,
                                 position: selectedStep === index ? 'relative' : 'relative'
@@ -134,8 +131,8 @@ export function HowWeWorkSection() {
                                 className={`absolute inset-0 bg-gradient-to-b ${step.gradient} rounded-xl`}
                                 initial={{ opacity: 0 }}
                                 animate={{
-                                    opacity: activeStep === index ? 0.15 : 0,
-                                    scale: activeStep === index ? 1.02 : 1
+                                    opacity: activeStep === step.title ? 0.15 : 0,
+                                    scale: activeStep === step.title ? 1.02 : 1
                                 }}
                                 transition={{ duration: 0.3 }}
                             />
@@ -151,8 +148,8 @@ export function HowWeWorkSection() {
                                 <motion.span
                                     className="block text-[3rem] font-bold text-white/20 mb-4"
                                     animate={{
-                                        scale: activeStep === index ? 1.1 : 1,
-                                        color: activeStep === index ? 'rgba(255, 255, 255, 0.4)' : 'rgba(255, 255, 255, 0.2)'
+                                        scale: activeStep === step.title ? 1.1 : 1,
+                                        color: activeStep === step.title ? 'rgba(255, 255, 255, 0.4)' : 'rgba(255, 255, 255, 0.2)'
                                     }}
                                     transition={{ duration: 0.3 }}
                                 >
@@ -160,14 +157,14 @@ export function HowWeWorkSection() {
                                 </motion.span>
                                 <motion.h3
                                     className="text-[1.25rem] font-bold text-white mb-3"
-                                    animate={{ x: activeStep === index ? 10 : 0 }}
+                                    animate={{ x: activeStep === step.title ? 10 : 0 }}
                                     transition={{ duration: 0.3 }}
                                 >
                                     {step.title}
                                 </motion.h3>
                                 <motion.p
                                     className="text-[15px] text-neutral-400 tracking-wide font-medium"
-                                    animate={{ x: activeStep === index ? 10 : 0 }}
+                                    animate={{ x: activeStep === step.title ? 10 : 0 }}
                                     transition={{ duration: 0.3 }}
                                 >
                                     {step.description}
@@ -178,10 +175,8 @@ export function HowWeWorkSection() {
                                     <motion.div
                                         className="absolute -right-6 top-1/2 w-12 h-[2px] hidden lg:block"
                                         animate={{
-                                            backgroundColor: activeStep === index || activeStep === index + 1
-                                                ? 'rgba(255, 255, 255, 0.4)'
-                                                : 'rgba(255, 255, 255, 0.1)',
-                                            height: activeStep === index || activeStep === index + 1 ? '3px' : '2px'
+                                            backgroundColor: activeStep === step.title ? 'rgba(255, 255, 255, 0.4)' : 'rgba(255, 255, 255, 0.1)',
+                                            height: activeStep === step.title ? '3px' : '2px'
                                         }}
                                         transition={{ duration: 0.3 }}
                                     />
@@ -192,12 +187,12 @@ export function HowWeWorkSection() {
                             <motion.div
                                 className="absolute inset-0 rounded-xl border border-white/0"
                                 animate={{
-                                    borderColor: activeStep === index || selectedStep === index
+                                    borderColor: activeStep === step.title || selectedStep === index
                                         ? 'rgba(255, 255, 255, 0.2)'
                                         : 'rgba(255, 255, 255, 0)',
                                     scale: selectedStep === index
                                         ? 1.1
-                                        : activeStep === index
+                                        : activeStep === step.title
                                             ? 1.02
                                             : 1
                                 }}
