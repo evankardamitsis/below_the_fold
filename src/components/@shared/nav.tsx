@@ -65,7 +65,7 @@ export function MarketingNav() {
                         </Link>
                         <Link
                             href="/contact"
-                            className="group rounded-full bg-neutral-900 px-6 py-3.5 text-sm font-medium text-white transition-colors hover:bg-neutral-800 inline-flex items-center"
+                            className="inline-flex items-center justify-between px-6 h-10 bg-neutral-900 rounded text-white text-[15px] font-medium hover:bg-neutral-800 transition-colors duration-300 group"
                         >
                             <ArrowIcon />
                             Let&apos;s connect

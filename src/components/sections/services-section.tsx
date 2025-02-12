@@ -173,7 +173,7 @@ export function ServicesSection() {
                                         }}
                                     />
 
-                                    <h3 className={`relative text-[6rem] leading-[1.1] font-bold px-4 py-2 transition-colors duration-500 ${activeService === service.title ? 'text-white' : 'text-neutral-900'
+                                    <h3 className={`relative text-[3rem] md:text-[4rem] lg:text-[6rem] leading-[1.1] font-bold px-4 py-2 transition-colors duration-500 ${activeService === service.title ? 'text-white' : 'text-neutral-900'
                                         }`}>
                                         {service.title}
                                     </h3>
