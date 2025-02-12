@@ -58,7 +58,8 @@ export function MarketingNav() {
                     {/* Right side - Navigation */}
                     <div className={`flex items-center gap-8 ${currentBackground}`}>
                         <Link
-                            href="/book-call"
+                            href="https://calendly.com/kardamitsis-e-belowthefold/30min"
+                            target="_blank"
                             className={`text-sm font-medium tracking-wide hover:opacity-70 transition-opacity ${currentBackground} py-3`}
                         >
                             Book a call

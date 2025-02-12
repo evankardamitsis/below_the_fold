@@ -43,7 +43,7 @@ export function Footer() {
                     {/* Left Column */}
                     <div className="space-y-8">
                         <motion.h2
-                            className="text-[2.5rem] sm:text-[3rem] leading-[1.1] font-bold text-white"
+                            className="text-[3rem] md:text-[4rem]  leading-[1.1] font-bold text-white"
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
@@ -79,7 +79,8 @@ export function Footer() {
                                 <span className="ml-2 opacity-0 group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all duration-300">→</span>
                             </Link>
                             <Link
-                                href="/book-call"
+                                href="https://calendly.com/kardamitsis-e-belowthefold/30min"
+                                target="_blank"
                                 className="inline-flex items-center justify-between px-6 h-12 bg-transparent border border-white/20 rounded text-[15px] font-medium text-white hover:bg-white/5 transition-colors duration-300 group"
                             >
                                 Book a call
