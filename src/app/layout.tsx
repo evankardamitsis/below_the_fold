@@ -11,7 +11,13 @@ const satoshi = localFont({
 
 export const metadata: Metadata = {
     title: "Below The Fold",
-    description: "Ecommerce Design & Development Agency",
+    description: "Ecommerce Design & Development Agency. We make e-shops that work for you.",
+    icons: {
+        icon: [
+            { url: '/btf-monogram.svg', type: 'image/svg+xml' },
+            { url: '/icons/favicon.png', sizes: '32x32', type: 'image/png' }
+        ]
+    }
 };
 
 export default function RootLayout({
