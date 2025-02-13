@@ -8,6 +8,7 @@ import { FacebookIcon } from '../icons/social/facebook-icon'
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
 import { toast } from 'sonner'
+import Image from 'next/image'
 
 const FOOTER_LINKS = [
     { label: 'Services', href: '/services' },
@@ -120,6 +121,23 @@ export default function Footer() {
                                 Book a call
                                 <span className="ml-2 opacity-0 group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all duration-300">→</span>
                             </Link>
+                        </motion.div>
+
+                        {/* Award Badge - Moved below buttons */}
+                        <motion.div
+                            className="pt-10"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.3 }}
+                        >
+                            <Image
+                                src="/images/E-volution-Awards-2022_Stickers_Silver.png"
+                                alt="E-volution Awards 2022 Silver Award"
+                                width={80}
+                                height={80}
+                                className="object-contain"
+                            />
                         </motion.div>
                     </div>
 
