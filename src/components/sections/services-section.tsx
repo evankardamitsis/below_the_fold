@@ -61,9 +61,9 @@ const SERVICES: Service[] = [
         title: 'Design',
         category: 'Design',
         images: {
-            main: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=2940&auto=format&fit=crop',
-            secondary: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=2940&auto=format&fit=crop',
-            tertiary: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=2940&auto=format&fit=crop'
+            main: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=2400&auto=format&fit=crop',
+            secondary: 'https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?q=80&w=2400&auto=format&fit=crop',
+            tertiary: 'https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?q=80&w=2400&auto=format&fit=crop'
         },
         details: [
             {
@@ -97,9 +97,9 @@ const SERVICES: Service[] = [
         title: 'Development',
         category: 'Development',
         images: {
-            main: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2940&auto=format&fit=crop',
-            secondary: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2940&auto=format&fit=crop',
-            tertiary: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2940&auto=format&fit=crop'
+            main: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2400&auto=format&fit=crop',
+            secondary: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=2400&auto=format&fit=crop',
+            tertiary: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2400&auto=format&fit=crop'
         },
         details: [
             {
@@ -131,9 +131,9 @@ const SERVICES: Service[] = [
         title: 'Growth',
         category: 'Growth',
         images: {
-            main: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2940&auto=format&fit=crop',
-            secondary: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2940&auto=format&fit=crop',
-            tertiary: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2940&auto=format&fit=crop'
+            main: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2400&auto=format&fit=crop',
+            secondary: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2400&auto=format&fit=crop',
+            tertiary: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=2400&auto=format&fit=crop'
         },
         details: [
             {
@@ -144,7 +144,7 @@ const SERVICES: Service[] = [
                     'Meta Ads',
                     'Social Media Strategy',
                     'Email Marketing',
-                    'Email Automation',
+                    'Email Automations',
                     'Analytics & Tracking',
                     'Content Strategy'
                 ]
@@ -160,20 +160,20 @@ const IMAGE_POSITIONS = {
         'top-[35%] left-[10%] w-[200px] h-[250px]',
         'bottom-[5%] right-[15%] w-[220px] h-[280px]',
     ],
-    Design: [  // Changed from 'Creative'
-        'top-[5%] left-[5%] w-[240px] h-[280px]',
-        'top-[25%] right-[10%] w-[220px] h-[300px]',
-        'bottom-[8%] left-[15%] w-[200px] h-[250px]',
+    Design: [
+        'top-[8%] right-[10%] w-[280px] h-[320px]',
+        'top-[35%] left-[5%] w-[220px] h-[280px]',
+        'bottom-[10%] right-[15%] w-[240px] h-[260px]',
     ],
-    Development: [  // Changed from 'Technology'
-        'top-[8%] left-[15%] w-[230px] h-[270px]',
-        'top-[20%] right-[5%] w-[250px] h-[280px]',
-        'bottom-[5%] right-[10%] w-[210px] h-[260px]',
+    Development: [
+        'top-[5%] left-[8%] w-[300px] h-[280px]',
+        'top-[25%] right-[5%] w-[260px] h-[300px]',
+        'bottom-[8%] left-[15%] w-[240px] h-[260px]',
     ],
-    Growth: [  // Changed from 'Marketing'
-        'top-[5%] right-[15%] w-[220px] h-[270px]',
-        'top-[30%] left-[5%] w-[240px] h-[280px]',
-        'bottom-[8%] right-[5%] w-[210px] h-[250px]',
+    Growth: [
+        'top-[10%] right-[8%] w-[280px] h-[300px]',
+        'top-[20%] left-[5%] w-[260px] h-[280px]',
+        'bottom-[5%] right-[12%] w-[240px] h-[270px]',
     ],
 } as const
 
