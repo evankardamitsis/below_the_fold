@@ -5,28 +5,49 @@ import Image from 'next/image'
 
 const CLIENTS = [
     {
-        name: 'Aite',
-        logo: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&auto=format&fit=crop&q=60'
+        name: 'LNR',
+        logo: '/images/client-logos/LNR-HEART-1.png',
+        url: 'https://shop.luvnroll.com/'
     },
     {
-        name: 'Bombas',
-        logo: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=800&auto=format&fit=crop&q=60'
+        name: 'Swaplanet',
+        logo: '/images/client-logos/swaplanet.webp',
+        url: 'https://swaplanet.gr'
     },
     {
-        name: 'Fenty Beauty',
-        logo: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=800&auto=format&fit=crop&q=60'
+        name: 'Maggoosh',
+        logo: '/images/client-logos/maggoosh.png',
+        url: 'https://maggoosh.com'
     },
     {
-        name: 'Industry West',
-        logo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&auto=format&fit=crop&q=60'
+        name: 'Fresh',
+        logo: '/images/client-logos/fresh.png',
+        url: 'https://order-freshpatisserie.gr/'
     },
     {
-        name: 'Daily Harvest',
-        logo: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=800&auto=format&fit=crop&q=60'
+        name: 'More Than This',
+        logo: '/images/client-logos/morethanthis.png',
+        url: 'https://morethanthis.gr'
     },
     {
-        name: 'Peloton',
-        logo: 'https://images.unsplash.com/photo-1463453091185-61582044d556?w=800&auto=format&fit=crop&q=60'
+        name: 'Philoselfie',
+        logo: '/images/client-logos/philoselfie.png',
+        url: 'https://philoselfie.gr'
+    },
+    {
+        name: 'Miss Beauty',
+        logo: '/images/client-logos/logo-miss-beauty.png',
+        url: 'https://missbeauty.gr'
+    },
+    {
+        name: 'Racquet Creation',
+        logo: '/images/client-logos/racquetcreation.webp',
+        url: 'https://racquetcreation.gr'
+    },
+    {
+        name: 'Vitamelia',
+        logo: '/images/client-logos/vitamelia.png',
+        url: 'https://vitamelia.gr'
     }
 ]
 
@@ -42,8 +63,8 @@ export function OurClientsSection() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                 >
-                    We grow brands across<br />
-                    all industries and verticals.
+                    We empower brands across<br />
+                    multiple industries.
                 </motion.h2>
 
                 {/* Logos Slider */}
@@ -59,30 +80,44 @@ export function OurClientsSection() {
                             {CLIENTS.map((client) => (
                                 <div
                                     key={client.name}
-                                    className="flex items-center justify-center min-w-[300px] px-12"
+                                    className="flex items-center justify-center min-w-[300px] h-[120px] px-12"
                                 >
-                                    <Image
-                                        src={client.logo}
-                                        alt={client.name}
-                                        width={200}
-                                        height={80}
-                                        className="w-auto h-[80px] object-contain opacity-60 hover:opacity-100 transition-opacity duration-300"
-                                    />
+                                    <a
+                                        href={client.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="flex items-center justify-center h-full group"
+                                    >
+                                        <Image
+                                            src={client.logo}
+                                            alt={client.name}
+                                            width={200}
+                                            height={80}
+                                            className="w-auto max-h-[50px] object-contain opacity-60 group-hover:opacity-100 transition-opacity duration-300"
+                                        />
+                                    </a>
                                 </div>
                             ))}
                             {/* Duplicate Set for Seamless Loop */}
                             {CLIENTS.map((client) => (
                                 <div
                                     key={`${client.name}-duplicate`}
-                                    className="flex items-center justify-center min-w-[300px] px-12"
+                                    className="flex items-center justify-center min-w-[300px] h-[120px] px-12"
                                 >
-                                    <Image
-                                        src={client.logo}
-                                        alt={client.name}
-                                        width={200}
-                                        height={80}
-                                        className="w-auto h-[80px] object-contain opacity-60 hover:opacity-100 transition-opacity duration-300"
-                                    />
+                                    <a
+                                        href={client.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="flex items-center justify-center h-full group"
+                                    >
+                                        <Image
+                                            src={client.logo}
+                                            alt={client.name}
+                                            width={200}
+                                            height={80}
+                                            className="w-auto max-h-[50px] object-contain opacity-60 group-hover:opacity-100 transition-opacity duration-300"
+                                        />
+                                    </a>
                                 </div>
                             ))}
                         </div>

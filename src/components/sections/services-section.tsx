@@ -38,15 +38,27 @@ const SERVICES: Service[] = [
                     'Conversion Rate Optimization (CRO)',
                     'Persona Definition',
                     'Objective & KPI Development',
-                    'Guided Ideation',
+                    'Guided Workshops',
                     'Roadmapping & Prioritization',
                     'Personalization',
+                ]
+            },
+            {
+                title: 'Research & Analysis',
+                items: [
+                    'Competitor Analysis',
+                    'Market Research',
+                    'Customer Journey Mapping',
+                    'E-commerce Trend Analysis',
+                    'Shopify Store Performance Reviews',
+                    'Gap & Opportunity Analysis',
+                    'SWOT Analysis',
                 ]
             }
         ]
     },
     {
-        title: 'Creative',
+        title: 'Design',
         category: 'Design',
         images: {
             main: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=2940&auto=format&fit=crop',
@@ -57,18 +69,32 @@ const SERVICES: Service[] = [
             {
                 title: 'Design',
                 items: [
-                    'UI/UX Design',
+                    'UI Design',
                     'Landing Page Design',
                     'Email Design',
                     'Brand Identity',
                     'Design Systems',
                     'Custom Illustrations',
+                    'Animation & Interaction',
+                ]
+            },
+            {
+                title: 'User Experience',
+                items: [
+                    'User Experience (UX) Design',
+                    'User Testing',
+                    'Navigation & Information Architecture (IA)',
+                    'User Flows',
+                    'Wireframing',
+                    'Prototyping',
+                    'Feature Alignment & Prioritization',
+                    'User Experience (UX) Consultation & Audits'
                 ]
             }
         ]
     },
     {
-        title: 'Technology',
+        title: 'Development',
         category: 'Development',
         images: {
             main: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2940&auto=format&fit=crop',
@@ -77,20 +103,32 @@ const SERVICES: Service[] = [
         },
         details: [
             {
-                title: 'Analytics',
+                title: 'Ecommerce Development',
                 items: [
-                    'Dashboard Creation',
-                    'GA4 / GTM Configuration & Maintenance',
-                    'Customer Lifetime Value (LTV) Modeling',
-                    'Customer Surveys',
-                    'Customer Data Appends',
-                    'Revenue Growth Modeling'
+                    'Shopify Theme Development',
+                    'Custom Shopify Apps',
+                    'API Integrations',
+                    'Performance Optimization',
+                    'Responsive Design',
+                    'Cross-Browser Compatibility',
+                    'SEO Optimization',
+                    'Accessibility Compliance',
+                    'Internationalization'
+                ]
+            },
+            {
+                title: 'Migrations to Shopify',
+                items: [
+                    'WooCommerce Migrations',
+                    'Salesforce Migrations',
+                    'BigCommerce Migrations',
+                    'Custom Platform Migrations',
                 ]
             }
         ]
     },
     {
-        title: 'Marketing',
+        title: 'Growth',
         category: 'Growth',
         images: {
             main: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2940&auto=format&fit=crop',
@@ -101,9 +139,12 @@ const SERVICES: Service[] = [
             {
                 title: 'Growth',
                 items: [
-                    'Digital Marketing',
+                    'Google Ads',
+                    'Merchant Campaigns',
+                    'Meta Ads',
                     'Social Media Strategy',
-                    'SEO Optimization',
+                    'Email Marketing',
+                    'Email Automation',
                     'Analytics & Tracking',
                     'Content Strategy'
                 ]
@@ -112,24 +153,24 @@ const SERVICES: Service[] = [
     }
 ]
 
-// Define fixed positions for each service's images
+// Update IMAGE_POSITIONS to match new service titles
 const IMAGE_POSITIONS = {
     Strategy: [
         'top-[5%] right-[5%] w-[250px] h-[300px]',
         'top-[35%] left-[10%] w-[200px] h-[250px]',
         'bottom-[5%] right-[15%] w-[220px] h-[280px]',
     ],
-    Creative: [
+    Design: [  // Changed from 'Creative'
         'top-[5%] left-[5%] w-[240px] h-[280px]',
         'top-[25%] right-[10%] w-[220px] h-[300px]',
         'bottom-[8%] left-[15%] w-[200px] h-[250px]',
     ],
-    Technology: [
+    Development: [  // Changed from 'Technology'
         'top-[8%] left-[15%] w-[230px] h-[270px]',
         'top-[20%] right-[5%] w-[250px] h-[280px]',
         'bottom-[5%] right-[10%] w-[210px] h-[260px]',
     ],
-    Marketing: [
+    Growth: [  // Changed from 'Marketing'
         'top-[5%] right-[15%] w-[220px] h-[270px]',
         'top-[30%] left-[5%] w-[240px] h-[280px]',
         'bottom-[8%] right-[5%] w-[210px] h-[250px]',

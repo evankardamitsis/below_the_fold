@@ -7,26 +7,26 @@ import { useMediaQuery } from '@/hooks/use-media-query'
 const WORK_STEPS = [
     {
         number: '01',
-        title: 'Customer Insight',
-        description: 'We dive deep into your audience and analyze how your brand performs across channels. This reveals key opportunities to enhance the shopping experience.',
+        title: 'Discovery & Insights (Week 1)',
+        description: 'We start with you—understanding your goals, your audience, and your brand. Through workshops and research, we uncover opportunities to create an e-shop that truly connects with your customers.',
         gradient: 'from-emerald-500/70 to-emerald-400/70'
     },
     {
         number: '02',
-        title: 'Strategic Planning',
-        description: 'We develop a clear plan based on your goals, outlining the steps and priorities needed to achieve them.',
+        title: 'Strategy & Planning (Week 2-3)',
+        description: 'With your vision in mind, we craft a step-by-step plan—from user flows to KPIs—so every move brings you closer to your goals.',
         gradient: 'from-blue-500/70 to-cyan-400/70'
     },
     {
         number: '03',
-        title: 'Execute & Adapt',
-        description: 'We bring the plan to life, staying agile and refining along the way to maximize impact.',
+        title: 'Build & Launch (Week 4-6)',
+        description: 'We bring your store to life, keeping you in the loop with updates and reviews. We adapt quickly, ensuring a smooth launch without surprises.',
         gradient: 'from-rose-500/70 to-rose-400/70'
     },
     {
         number: '04',
-        title: 'Testing & Learning',
-        description: 'Once live, we track performance, test improvements, and optimize continuously to ensure long-term success.',
+        title: 'Optimize & Grow (Ongoing)',
+        description: 'After launch, we monitor performance, gather insights, and test improvements—so your store keeps growing with your business.',
         gradient: 'from-purple-500/70 to-indigo-400/70'
     }
 ]
@@ -81,7 +81,7 @@ export function HowWeWorkSection() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.5 }}
                     >
-                        HOW WE WORK
+                        HOW WE DELIVER IN 6 WEEKS
                     </motion.h2>
                     <motion.p
                         className="text-neutral-400 text-[14px] lg:text-[15px] leading-relaxed tracking-wide font-medium uppercase w-full lg:max-w-[550px]"
