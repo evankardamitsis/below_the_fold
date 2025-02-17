@@ -21,7 +21,7 @@ export interface Service {
     }[]
 }
 
-const SERVICES: Service[] = [
+export const SERVICES: Service[] = [
     {
         title: 'Strategy',
         category: 'Consulting',
