@@ -1,8 +1,8 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { SERVICES } from '@/components/sections/services-section'
 import Link from 'next/link'
+import { SERVICES } from '@/constants/services'
 
 // Services page displaying agency's service offerings
 export default function ServicesPage() {
@@ -103,7 +103,7 @@ export default function ServicesPage() {
                     {/* Strategy Section */}
                     <div className="mb-24 bg-black p-8 rounded-xl">
                         <div className="flex items-center justify-between mb-12">
-                            <h2 className="text-[10rem] font-bold text-white">Strategy</h2>
+                            <h2 className="text-[7rem] font-bold text-white">Strategy</h2>
                             <p className="text-[18px] text-white/60 max-w-[400px] uppercase">
                                 Providing actionable insights to help build the best version of each ecommerce presence.
                             </p>
@@ -122,16 +122,16 @@ export default function ServicesPage() {
                                     <h3 className="text-[22px] text-white/60 uppercase">{detail.title}</h3>
                                     {detail.items.map((item) => (
                                         <div
-                                            key={item}
+                                            key={item.name}
                                             className="group relative border-t border-white/10 transition-all duration-200"
                                         >
                                             <div className="flex items-center justify-between py-6 px-12 group-hover:bg-neutral-900">
                                                 <h4 className="text-[1.75rem] font-medium group-hover:text-white transition-colors duration-200">
-                                                    {item}
+                                                    {item.name}
                                                 </h4>
                                                 <div className="opacity-0 group-hover:opacity-100 transition-all duration-200">
                                                     <p className="text-[15px] text-white max-w-[400px]">
-                                                        Providing actionable insights to help build the best version of each ecommerce presence.
+                                                        {item.description}
                                                     </p>
                                                 </div>
                                             </div>
@@ -145,7 +145,7 @@ export default function ServicesPage() {
                     {/* Design Section */}
                     <div className="mb-24 bg-page-lighter p-8 rounded-xl">
                         <div className="flex items-center justify-between mb-12">
-                            <h2 className="text-[10rem] font-bold">Design</h2>
+                            <h2 className="text-[7rem] font-bold">Design</h2>
                             <p className="text-[18px] text-black/60 max-w-[400px] uppercase">
                                 Creating beautiful, functional, and user-centric digital experiences.
                             </p>
@@ -164,16 +164,16 @@ export default function ServicesPage() {
                                     <h3 className="text-[22px] text-black/60 uppercase">{detail.title}</h3>
                                     {detail.items.map((item) => (
                                         <div
-                                            key={item}
+                                            key={item.name}
                                             className="group relative border-t border-black/10 transition-all duration-200"
                                         >
                                             <div className="flex items-center justify-between py-6 px-12 group-hover:bg-neutral-900">
                                                 <h4 className="text-[1.75rem] font-medium group-hover:text-white transition-colors duration-200">
-                                                    {item}
+                                                    {item.name}
                                                 </h4>
                                                 <div className="opacity-0 group-hover:opacity-100 transition-all duration-200">
                                                     <p className="text-[15px] text-white max-w-[400px]">
-                                                        Creating beautiful, functional, and user-centric digital experiences.
+                                                        {item.description}
                                                     </p>
                                                 </div>
                                             </div>
@@ -187,8 +187,8 @@ export default function ServicesPage() {
                     {/* Development Section */}
                     <div className="mb-24 bg-black p-8 rounded-xl">
                         <div className="flex items-center justify-between mb-12">
-                            <h2 className="text-[10rem] font-bold text-white">Development</h2>
-                            <p className="text-[15px] text-white/60 max-w-[400px] uppercase">
+                            <h2 className="text-[7rem] font-bold text-white">Development</h2>
+                            <p className="text-[18px] text-white/60 max-w-[400px] uppercase">
                                 Building robust, scalable, and high-performing ecommerce solutions.
                             </p>
                         </div>
@@ -206,16 +206,16 @@ export default function ServicesPage() {
                                     <h3 className="text-[22px] text-white/60 uppercase">{detail.title}</h3>
                                     {detail.items.map((item) => (
                                         <div
-                                            key={item}
+                                            key={item.name}
                                             className="group relative border-t border-white/10 transition-all duration-200 text-white"
                                         >
                                             <div className="flex items-center justify-between py-6 px-12 group-hover:bg-neutral-900">
                                                 <h4 className="text-[1.75rem] font-medium group-hover:text-white transition-colors duration-200">
-                                                    {item}
+                                                    {item.name}
                                                 </h4>
                                                 <div className="opacity-0 group-hover:opacity-100 transition-all duration-200">
                                                     <p className="text-[15px] text-white max-w-[400px]">
-                                                        Building robust, scalable, and high-performing ecommerce solutions.
+                                                        {item.description}
                                                     </p>
                                                 </div>
                                             </div>
@@ -229,7 +229,7 @@ export default function ServicesPage() {
                     {/* Growth Section */}
                     <div className="mb-24 bg-page-lighter p-8 rounded-xl">
                         <div className="flex items-center justify-between mb-12">
-                            <h2 className="text-[10rem] font-bold">Growth</h2>
+                            <h2 className="text-[7rem] font-bold">Growth</h2>
                             <p className="text-[18px] text-black/60 max-w-[400px] uppercase">
                                 Optimizing and scaling your ecommerce business for sustainable growth.
                             </p>
@@ -248,16 +248,16 @@ export default function ServicesPage() {
                                     <h3 className="text-[22px] text-black/60 uppercase">{detail.title}</h3>
                                     {detail.items.map((item) => (
                                         <div
-                                            key={item}
+                                            key={item.name}
                                             className="group relative border-t border-black/10 transition-all duration-200"
                                         >
                                             <div className="flex items-center justify-between py-6 px-12 group-hover:bg-neutral-900">
                                                 <h4 className="text-[1.75rem] font-medium group-hover:text-white transition-colors duration-200">
-                                                    {item}
+                                                    {item.name}
                                                 </h4>
                                                 <div className="opacity-0 group-hover:opacity-100 transition-all duration-200">
                                                     <p className="text-[15px] text-white max-w-[400px]">
-                                                        Optimizing and scaling your ecommerce business for sustainable growth.
+                                                        {item.description}
                                                     </p>
                                                 </div>
                                             </div>

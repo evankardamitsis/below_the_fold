@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 export function ShortPitch() {
     return (
@@ -16,7 +17,10 @@ export function ShortPitch() {
                     </div>
 
                     {/* Shopify Partner Badge */}
-                    <div className="bg-[#95BF47] text-white rounded-lg p-4 lg:p-5 flex items-start gap-4 w-full lg:w-[400px] cursor-pointer hover:bg-[#85A940] transition-colors duration-300 lg:self-start">
+                    <Link
+                        href="/contact"
+                        className="bg-[#95BF47] text-white rounded-lg p-4 lg:p-5 flex items-start gap-4 w-full lg:w-[400px] hover:bg-[#85A940] transition-colors duration-300 lg:self-start"
+                    >
                         <Image
                             src="/shopify-icon.svg"
                             alt="Shopify"
@@ -32,7 +36,7 @@ export function ShortPitch() {
                                 Looking to partner with BelowTheFold for your Shopify needs?
                             </div>
                         </div>
-                    </div>
+                    </Link>
                 </div>
             </div>
         </section>

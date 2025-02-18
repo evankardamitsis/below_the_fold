@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { ExploreArrow } from '@/components/icons/explore-arrow'
 import { ArrowIcon } from '../icons/arrow-icon'
 import { ScrollingText } from '@/components/@shared/scrolling-text'
+import { motion } from 'framer-motion'
 
 export function MarketingHero() {
     return (
@@ -24,6 +25,30 @@ export function MarketingHero() {
                                 </div>
                             </div>
                         </h1>
+                        {/* Buttons */}
+                        <motion.div
+                            className="flex flex-row gap-4 mt-12"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.2 }}
+                        >
+                            <Link
+                                href="/contact"
+                                className="inline-flex items-center justify-between px-4 sm:px-6 h-12 bg-black/90 rounded text-[15px] font-medium text-white hover:bg-neutral-100 hover:text-black hover:border-black border border-transparent transition-colors duration-300 group whitespace-nowrap"
+                            >
+                                Let&apos;s Work Together
+                                <span className="ml-2 opacity-0 group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all duration-300">→</span>
+                            </Link>
+                            <Link
+                                href="https://calendly.com/kardamitsis-e-belowthefold/30min"
+                                target="_blank"
+                                className="inline-flex items-center justify-between px-4 sm:px-6 h-12 bg-transparent border border-black/20 rounded text-[15px] font-medium text-black hover:bg-black/5 transition-colors duration-300 group whitespace-nowrap"
+                            >
+                                Book a free call
+                                <span className="ml-2 opacity-0 group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all duration-300">→</span>
+                            </Link>
+                        </motion.div>
                     </div>
 
                     {/* Right Side - Description */}
