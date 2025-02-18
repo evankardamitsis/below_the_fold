@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { SERVICES } from '@/constants/services'
+import { VideoBackground } from '@/components/ui/video-background'
+import { ProjectBanner } from '@/components/ui/project-banner'
 
 // Services page displaying agency's service offerings
 export default function ServicesPage() {
@@ -10,23 +12,10 @@ export default function ServicesPage() {
         <>
             {/* Hero Section */}
             <section className="relative min-h-screen bg-neutral-900 overflow-hidden">
-                {/* Video Background */}
-                <div className="absolute inset-0 w-full h-full">
-                    <video
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        poster="/images/services-poster.webp"
-                        className="object-cover w-full h-full opacity-90"
-                    >
-                        <source
-                            src={process.env.NEXT_PUBLIC_SERVICES_VIDEO_URL}
-                            type="video/mp4"
-                        />
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
+                <VideoBackground
+                    src={process.env.NEXT_PUBLIC_SERVICES_VIDEO_URL!}
+                    poster="/images/services-poster.webp"
+                />
 
                 {/* Content */}
                 <div className="relative z-10 mx-auto max-w-[1620px] px-8 pt-48">
@@ -44,7 +33,7 @@ export default function ServicesPage() {
 
                         {/* Main Heading */}
                         <motion.h1
-                            className="text-[3.5rem] md:text-[5rem] lg:text-[7rem] leading-[0.9] font-bold text-white max-w-[80%]"
+                            className="text-[2.5rem] md:text-[5rem] lg:text-[6rem] leading-[1.1] font-bold text-white max-w-[80%]"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.1 }}
@@ -103,7 +92,7 @@ export default function ServicesPage() {
                     {/* Strategy Section */}
                     <div className="mb-24 bg-black p-8 rounded-xl">
                         <div className="flex items-center justify-between mb-12">
-                            <h2 className="text-[7rem] font-bold text-white">Strategy</h2>
+                            <h2 className="text-[5rem] font-bold text-white">Strategy</h2>
                             <p className="text-[18px] text-white/60 max-w-[400px] uppercase">
                                 Providing actionable insights to help build the best version of each ecommerce presence.
                             </p>
@@ -145,7 +134,7 @@ export default function ServicesPage() {
                     {/* Design Section */}
                     <div className="mb-24 bg-page-lighter p-8 rounded-xl">
                         <div className="flex items-center justify-between mb-12">
-                            <h2 className="text-[7rem] font-bold">Design</h2>
+                            <h2 className="text-[5rem] font-bold">Design</h2>
                             <p className="text-[18px] text-black/60 max-w-[400px] uppercase">
                                 Creating beautiful, functional, and user-centric digital experiences.
                             </p>
@@ -187,7 +176,7 @@ export default function ServicesPage() {
                     {/* Development Section */}
                     <div className="mb-24 bg-black p-8 rounded-xl">
                         <div className="flex items-center justify-between mb-12">
-                            <h2 className="text-[7rem] font-bold text-white">Development</h2>
+                            <h2 className="text-[5rem] font-bold text-white">Development</h2>
                             <p className="text-[18px] text-white/60 max-w-[400px] uppercase">
                                 Building robust, scalable, and high-performing ecommerce solutions.
                             </p>
@@ -229,7 +218,7 @@ export default function ServicesPage() {
                     {/* Growth Section */}
                     <div className="mb-24 bg-page-lighter p-8 rounded-xl">
                         <div className="flex items-center justify-between mb-12">
-                            <h2 className="text-[7rem] font-bold">Growth</h2>
+                            <h2 className="text-[5rem] font-bold">Growth</h2>
                             <p className="text-[18px] text-black/60 max-w-[400px] uppercase">
                                 Optimizing and scaling your ecommerce business for sustainable growth.
                             </p>
@@ -267,6 +256,9 @@ export default function ServicesPage() {
                             ))}
                         </div>
                     </div>
+
+                    {/* Project Banner */}
+                    <ProjectBanner className="mt-24" />
                 </div>
             </section>
         </>
