@@ -2,8 +2,8 @@
 
 import { useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import type { Service } from '@/components/sections/services-section'
 import Image from 'next/image'
+import { Service } from '@/constants/types'
 
 interface ServiceModalProps {
     service: Service | null
@@ -61,17 +61,17 @@ export function ServiceModal({ service, isOpen, onClose }: ServiceModalProps) {
                             {/* Service Details */}
                             <div className="space-y-8 mb-12">
                                 {service.details.map((detail) => (
-                                    <div key={detail.title}>
+                                    <div key={detail.title} className="mb-8">
                                         <h4 className="text-lg font-bold text-neutral-800 mb-4">
                                             {detail.title}
                                         </h4>
                                         <div className="flex flex-wrap gap-2">
                                             {detail.items.map((item) => (
                                                 <span
-                                                    key={item}
+                                                    key={item.name}
                                                     className="bg-white/80 backdrop-blur-sm px-3 py-1 rounded-full text-[13px] font-medium text-neutral-900"
                                                 >
-                                                    {item}
+                                                    {item.name}
                                                 </span>
                                             ))}
                                         </div>
