@@ -25,9 +25,10 @@ export function MarketingHero() {
                                 </div>
                             </div>
                         </h1>
+
                         {/* Buttons */}
                         <motion.div
-                            className="flex flex-row gap-4 mt-12"
+                            className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-8 sm:mt-12"
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
@@ -35,26 +36,26 @@ export function MarketingHero() {
                         >
                             <Link
                                 href="/contact"
-                                className="inline-flex items-center justify-between px-4 sm:px-6 h-12 bg-black/90 rounded text-[15px] font-medium text-white hover:bg-neutral-100 hover:text-black hover:border-black border border-transparent transition-colors duration-300 group whitespace-nowrap"
+                                className="flex items-center justify-center sm:justify-between px-4 sm:px-6 h-12 bg-black/90 rounded text-[15px] font-medium text-white hover:bg-neutral-100 hover:text-black hover:border-black border border-transparent transition-colors duration-300 group"
                             >
                                 Let&apos;s Work Together
-                                <span className="ml-2 opacity-0 group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all duration-300">→</span>
+                                <span className="hidden sm:inline-block ml-2 opacity-0 group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all duration-300">→</span>
                             </Link>
                             <Link
-                                href="https://calendly.com/kardamitsis-e-belowthefold/30min"
+                                href={process.env.NEXT_PUBLIC_CALENDLY_URL || '#'}
                                 target="_blank"
-                                className="inline-flex items-center justify-between px-4 sm:px-6 h-12 bg-transparent border border-black/20 rounded text-[15px] font-medium text-black hover:bg-black/5 transition-colors duration-300 group whitespace-nowrap"
+                                className="flex items-center justify-center sm:justify-between px-4 sm:px-6 h-12 bg-transparent border border-black/20 rounded text-[15px] font-medium text-black hover:bg-black/5 transition-colors duration-300 group"
                             >
                                 Book a free call
-                                <span className="ml-2 opacity-0 group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all duration-300">→</span>
+                                <span className="hidden sm:inline-block ml-2 opacity-0 group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all duration-300">→</span>
                             </Link>
                         </motion.div>
                     </div>
 
                     {/* Right Side - Description */}
-                    <div className="mt-12 lg:mt-0 lg:max-w-[20%] flex flex-col justify-between py-4 lg:py-8">
+                    <div className="mt-8 sm:mt-12 lg:mt-0 lg:max-w-[20%] flex flex-col justify-between py-4 lg:py-8">
                         <p className="text-neutral-600 text-[14px] lg:text-[15px] leading-relaxed tracking-wide font-medium uppercase">
-                            <span className="text-neutral-400">BELOW THE FOLD</span> is a <span className="text-[#96bf48]">Shopify Partner</span> agency specializing in e-commerce design and development. We create high-performing stores that help businesses grow.
+                            <span className="text-neutral-400">BELOW THE FOLD</span> is a <span className="text-[#96bf48]">Shopify Partner</span> agency specializing in e-commerce design and development. <span className="bg-neutral-800 text-white px-2 py-1">We help businesses grow by creating high-performing stores.</span>
                         </p>
                         <Link
                             href="/works"

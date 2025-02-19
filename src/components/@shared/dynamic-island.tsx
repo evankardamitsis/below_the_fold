@@ -20,7 +20,7 @@ export function DynamicIsland() {
     const isLargeScreen = useMediaQuery('(min-width: 1024px)')
 
     return (
-        <div className="fixed pr-24 lg:pr-0 md:pr-0 md:left-1/2 lg:left-1/2 top-4 -translate-x-1/2 z-50">
+        <div className="fixed pr-[7.2rem] lg:pr-0 md:pr-0 md:left-1/2 lg:left-1/2 top-4 -translate-x-1/2 z-50">
             <motion.div
                 className="bg-neutral-900 rounded-[24px] overflow-hidden shadow-lg relative"
                 animate={{
@@ -30,6 +30,7 @@ export function DynamicIsland() {
                     height: isExpanded
                         ? isLargeScreen ? '38px' : '280px'
                         : '38px',
+                    x: isExpanded && !isLargeScreen ? 'calc(50vw - 76% - 48px)' : 0
                 }}
                 transition={{
                     type: "spring",
@@ -68,9 +69,36 @@ export function DynamicIsland() {
                     </AnimatePresence>
                 </motion.div>
 
-                {/* Close Button */}
+                {/* Header Actions - Mobile Only */}
                 <AnimatePresence>
-                    {isExpanded && (
+                    {isExpanded && !isLargeScreen && (
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            className="absolute top-0 right-0 h-[38px] flex items-center"
+                        >
+                            <Link
+                                href={process.env.NEXT_PUBLIC_CALENDLY_URL || '#'}
+                                target="_blank"
+                                className="text-xs font-medium text-white/60 hover:text-white px-4 h-full flex items-center hover:bg-white/5 transition-colors"
+                                onClick={() => setIsExpanded(false)}
+                            >
+                                Book a Free Call
+                            </Link>
+                            <button
+                                className="w-[38px] h-full flex items-center justify-center text-white/60 hover:text-white hover:bg-white/5 transition-colors"
+                                onClick={() => setIsExpanded(false)}
+                            >
+                                ✕
+                            </button>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+
+                {/* Close Button - Desktop Only */}
+                <AnimatePresence>
+                    {isExpanded && isLargeScreen && (
                         <motion.button
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}

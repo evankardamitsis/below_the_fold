@@ -57,7 +57,7 @@ export function OurClientsSection() {
             <div className="mx-auto max-w-[1620px] px-8">
                 {/* Header */}
                 <motion.h2
-                    className="text-[3rem] md:text-[3rem] leading-[1.1] font-bold text-neutral-900 mb-16"
+                    className="text-[2.5rem] md:text-[3rem] leading-[1.1] font-bold text-neutral-900 mb-16"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}

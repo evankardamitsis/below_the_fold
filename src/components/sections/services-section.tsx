@@ -33,7 +33,7 @@ export function ServicesSection() {
                 <div className="mb-16">
                     <h2 className="text-[2rem] font-bold mb-4">SERVICES</h2>
                     <p className="text-neutral-600 text-[14px] lg:text-[15px] leading-relaxed tracking-wide font-medium uppercase w-full lg:max-w-[550px] mb-8 lg:mb-0">
-                        We craft high-performing Shopify stores through expert design, development, and optimization—turning e-commerce brands into industry leaders.
+                        We craft high-performing Shopify stores through expert design, development, and optimization <span className="bg-brand-purple px-1 rounded-sm font-bold">turning e-commerce brands into industry leaders.</span>
                     </p>
                 </div>
 
