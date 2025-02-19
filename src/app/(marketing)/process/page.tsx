@@ -134,7 +134,8 @@ export default function ProcessPage() {
                                     >
                                         <div className="relative">
                                             <motion.span
-                                                className={`text-[8rem] font-bold ${index % 2 === 0 ? 'text-white/5' : 'text-neutral-900/5'} leading-none block`}
+                                                className={`text-[8rem] font-bold ${index % 2 === 0 ? 'text-white/10' : 'text-neutral-900/10'
+                                                    } leading-none block`}
                                                 initial={{ scale: 0.5, opacity: 0 }}
                                                 whileInView={{ scale: 1, opacity: 1 }}
                                                 viewport={{ once: true }}
@@ -158,13 +159,14 @@ export default function ProcessPage() {
                                                 <p className={`${index % 2 === 0 ? 'text-white/60' : 'text-neutral-600'} mt-4 text-lg max-w-[90%]`}>
                                                     {step.description}
                                                 </p>
-                                                <motion.div
-                                                    className={`mt-6 inline-block px-4 py-2 ${index % 2 === 0 ? 'bg-white text-black hover:bg-brand-purple hover:text-white' : 'bg-black text-white hover:bg-brand-purple'} rounded-full text-sm font-medium relative overflow-hidden group`}
-                                                    whileHover={{ scale: 1.05 }}
-                                                    transition={{ duration: 0.2 }}
+                                                <div
+                                                    className={`mt-6 inline-block px-4 py-2 ${index % 2 === 0
+                                                        ? 'bg-white text-black'
+                                                        : 'bg-black text-white'
+                                                        } rounded-full text-sm font-medium relative overflow-hidden`}
                                                 >
                                                     <span className="relative z-10">{step.timeline}</span>
-                                                </motion.div>
+                                                </div>
                                             </motion.div>
                                         </div>
                                     </motion.div>
