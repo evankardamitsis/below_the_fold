@@ -6,6 +6,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRef, useState, useEffect } from 'react'
 import { ArrowIcon } from '@/components/icons/arrow-icon'
+import { ImageLightbox } from '@/components/ui/image-lightbox'
 
 function CountingNumber({ value, suffix = '' }: { value: number, suffix?: string }) {
     const ref = useRef(null)
@@ -204,12 +205,9 @@ export default function ProjectPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                 >
-                    <Image
+                    <ImageLightbox
                         src="https://images.unsplash.com/photo-1526045431048-f857369baa09?auto=format&fit=crop&q=80"
                         alt="Timex Project Overview"
-                        width={1920}
-                        height={1080}
-                        className="w-full h-full object-cover"
                     />
                 </motion.div>
             </section>
@@ -245,21 +243,15 @@ export default function ProjectPage() {
                         viewport={{ once: true }}
                     >
                         <div className="aspect-[4/5] rounded-xl overflow-hidden">
-                            <Image
+                            <ImageLightbox
                                 src="https://images.unsplash.com/photo-1547996160-81dfa63595aa?auto=format&fit=crop&q=80"
                                 alt="Product Detail"
-                                width={800}
-                                height={1000}
-                                className="w-full h-full object-cover"
                             />
                         </div>
                         <div className="aspect-[4/5] rounded-xl overflow-hidden">
-                            <Image
+                            <ImageLightbox
                                 src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&q=80"
                                 alt="Collection Page"
-                                width={800}
-                                height={1000}
-                                className="w-full h-full object-cover"
                             />
                         </div>
                     </motion.div>
@@ -372,30 +364,21 @@ export default function ProjectPage() {
                         </h3>
                         <div className="grid grid-cols-3 gap-8">
                             <div className="aspect-[9/16] rounded-xl overflow-hidden">
-                                <Image
+                                <ImageLightbox
                                     src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&q=80"
                                     alt="Mobile Home"
-                                    width={400}
-                                    height={800}
-                                    className="w-full h-full object-cover"
                                 />
                             </div>
                             <div className="aspect-[9/16] rounded-xl overflow-hidden">
-                                <Image
+                                <ImageLightbox
                                     src="https://images.unsplash.com/photo-1434494878577-86c23bcb06b9?auto=format&fit=crop&q=80"
                                     alt="Mobile Collection"
-                                    width={400}
-                                    height={800}
-                                    className="w-full h-full object-cover"
                                 />
                             </div>
                             <div className="aspect-[9/16] rounded-xl overflow-hidden">
-                                <Image
+                                <ImageLightbox
                                     src="https://images.unsplash.com/photo-1509048191080-d2984bad6ae5?auto=format&fit=crop&q=80"
                                     alt="Mobile Product"
-                                    width={400}
-                                    height={800}
-                                    className="w-full h-full object-cover"
                                 />
                             </div>
                         </div>
