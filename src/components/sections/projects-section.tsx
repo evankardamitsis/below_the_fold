@@ -11,7 +11,7 @@ const FEATURED_PROJECTS = [
         category: 'Enterprise',
         industry: 'Jewelry & Accessories',
         tags: ['Shopify Migration', 'UI/UX Audit', 'Dynamic Product Pages'],
-        href: '/portfolio/timex'
+        href: '/works/timex'
     },
     {
         title: 'Architectural Firm',
@@ -20,7 +20,7 @@ const FEATURED_PROJECTS = [
         hoverImage: 'https://picsum.photos/800/1000?random=3',
         category: 'Web Design',
         tags: ['3D Integration', 'Portfolio System'],
-        href: '/portfolio/architectural-firm'
+        href: '/works/architectural-firm'
     },
     {
         title: 'Ella Johnson',
@@ -29,7 +29,7 @@ const FEATURED_PROJECTS = [
         hoverImage: 'https://picsum.photos/800/1000?random=5',
         category: 'E-commerce',
         tags: ['Mobile First', 'AR Try-on'],
-        href: '/portfolio/ella-johnson'
+        href: '/works/ella-johnson'
     }
 ]
 
@@ -57,7 +57,7 @@ export function ProjectsSection() {
                     transition={{ duration: 0.5 }}
                 >
                     <motion.a
-                        href="/projects"
+                        href="/works"
                         className="text-neutral-900 text-[15px] font-medium tracking-wide uppercase relative group"
                         whileHover={{ x: 10 }}
                     >
