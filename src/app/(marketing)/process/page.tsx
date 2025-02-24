@@ -78,9 +78,9 @@ export default function ProcessPage() {
                 {/* Content */}
                 <div className="relative z-10 mx-auto max-w-[1620px] px-8 pt-48">
                     {/* Content Card */}
-                    <div className="bg-neutral-900/80 backdrop-blur-sm rounded-xl lg:rounded-2xl p-12 max-w-[90%]">
+                    <div className="bg-neutral-900/30 backdrop-blur-sm rounded-xl lg:rounded-2xl p-12 max-w-[90%]">
                         <motion.p
-                            className="text-white/60 text-sm font-medium mb-6 uppercase"
+                            className="text-white/80 text-sm font-medium mb-6 uppercase"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5 }}
@@ -89,7 +89,7 @@ export default function ProcessPage() {
                         </motion.p>
 
                         <motion.h1
-                            className="text-[2.5rem] md:text-[5rem] lg:text-[6rem] leading-[1.1] font-bold text-white max-w-[80%] mb-8"
+                            className="text-[2rem] md:text-[3.5rem] lg:text-[4.5rem] leading-[1.1] font-bold text-white/90 max-w-[80%]"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.1 }}
@@ -171,21 +171,79 @@ export default function ProcessPage() {
                                         </div>
                                     </motion.div>
 
-                                    {/* Deliverables */}
+                                    {/* Deliverables Timeline */}
                                     <div className="lg:w-1/2">
-                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                            {step.deliverables.map((deliverable, deliverableIndex) => (
-                                                <motion.div
-                                                    key={`${step.number}-${deliverableIndex}`}
-                                                    className={`p-4 rounded-lg ${index % 2 === 0 ? 'bg-neutral-900/50 text-white/80' : 'bg-white/50 text-neutral-800'}`}
-                                                    initial={{ opacity: 0, y: 20 }}
-                                                    whileInView={{ opacity: 1, y: 0 }}
-                                                    viewport={{ once: true }}
-                                                    transition={{ duration: 0.5, delay: 0.2 + deliverableIndex * 0.1 }}
-                                                >
-                                                    {deliverable}
-                                                </motion.div>
-                                            ))}
+                                        <div className="relative">
+                                            {/* Timeline Line */}
+                                            <motion.div
+                                                className={`absolute left-2 top-0 w-[2px] h-full ${index % 2 === 0 ? 'bg-white/20' : 'bg-black/20'
+                                                    }`}
+                                                initial={{ height: 0 }}
+                                                whileInView={{ height: '100%' }}
+                                                viewport={{ once: true }}
+                                                transition={{ duration: 0.8, delay: 0.2 }}
+                                            />
+
+                                            <div className="space-y-6">
+                                                {step.deliverables.map((deliverable, deliverableIndex) => (
+                                                    <motion.div
+                                                        key={`${step.number}-${deliverableIndex}`}
+                                                        className="relative pl-12"
+                                                        initial={{ opacity: 0, x: 20 }}
+                                                        whileInView={{ opacity: 1, x: 0 }}
+                                                        viewport={{ once: true }}
+                                                        transition={{ duration: 0.5, delay: 0.3 + deliverableIndex * 0.1 }}
+                                                    >
+                                                        {/* Timeline Dot */}
+                                                        <motion.div
+                                                            className={`absolute left-0 top-1/2 -translate-y-1/2 w-[18px] h-[18px] rounded-full ${index % 2 === 0
+                                                                ? 'bg-white shadow-glow-white'
+                                                                : 'bg-black shadow-glow-black'
+                                                                } flex items-center justify-center`}
+                                                            initial={{ scale: 0 }}
+                                                            whileInView={{ scale: 1 }}
+                                                            viewport={{ once: true }}
+                                                            transition={{
+                                                                type: "spring",
+                                                                stiffness: 260,
+                                                                damping: 20,
+                                                                delay: 0.4 + deliverableIndex * 0.1
+                                                            }}
+                                                        >
+                                                            <div
+                                                                className={`w-[8px] h-[8px] rounded-full ${index % 2 === 0
+                                                                    ? 'bg-black'
+                                                                    : 'bg-white'
+                                                                    }`}
+                                                            />
+                                                        </motion.div>
+
+                                                        {/* Deliverable Card */}
+                                                        <div
+                                                            className={`relative group p-4 rounded-lg transition-all duration-300 ${index % 2 === 0
+                                                                ? 'bg-neutral-900/50 hover:bg-neutral-900/70 text-white/80'
+                                                                : 'bg-white/50 hover:bg-white/70 text-neutral-800'
+                                                                }`}
+                                                        >
+                                                            <div className="flex items-center justify-between">
+                                                                <span className="font-medium">{deliverable}</span>
+                                                                <motion.span
+                                                                    className={`text-sm ${index % 2 === 0
+                                                                        ? 'text-white/40'
+                                                                        : 'text-neutral-500'
+                                                                        }`}
+                                                                    initial={{ opacity: 0 }}
+                                                                    whileInView={{ opacity: 1 }}
+                                                                    viewport={{ once: true }}
+                                                                    transition={{ delay: 0.5 + deliverableIndex * 0.1 }}
+                                                                >
+                                                                    {`Phase ${parseInt(step.number)}.${deliverableIndex + 1}`}
+                                                                </motion.span>
+                                                            </div>
+                                                        </div>
+                                                    </motion.div>
+                                                ))}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

@@ -118,7 +118,7 @@ export function DynamicIsland() {
                             initial={{ opacity: 0, y: isLargeScreen ? 0 : -10, x: isLargeScreen ? -10 : 0 }}
                             animate={{ opacity: 1, y: 0, x: 0 }}
                             exit={{ opacity: 0, y: isLargeScreen ? 0 : -10, x: isLargeScreen ? -10 : 0 }}
-                            className={`px-4 ${isLargeScreen ? '-mt-[38px] ml-[120px]' : 'py-3'}`}
+                            className={`px-0 ${isLargeScreen ? '-mt-[38px] ml-[80px]' : 'py-3'}`}
                         >
                             <nav className={`flex ${isLargeScreen ? 'flex-row' : 'flex-col'} gap-2`}>
                                 {NAVIGATION_ITEMS.map((item) => (

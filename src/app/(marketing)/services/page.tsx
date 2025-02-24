@@ -20,10 +20,10 @@ export default function ServicesPage() {
                 {/* Content */}
                 <div className="relative z-10 mx-auto max-w-[1620px] px-8 pt-48">
                     {/* Content Card */}
-                    <div className="bg-neutral-900/80 backdrop-blur-sm rounded-xl lg:rounded-2xl p-12 max-w-[90%]">
+                    <div className="bg-neutral-900/30 backdrop-blur-sm rounded-xl lg:rounded-2xl p-12 max-w-[90%]">
                         {/* Small Label */}
                         <motion.p
-                            className="text-white/60 text-sm font-medium mb-6 uppercase"
+                            className="text-white/80 text-sm font-medium mb-6 uppercase"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5 }}
@@ -33,7 +33,7 @@ export default function ServicesPage() {
 
                         {/* Main Heading */}
                         <motion.h1
-                            className="text-[2.5rem] md:text-[5rem] lg:text-[6rem] leading-[1.1] font-bold text-white max-w-[80%]"
+                            className="text-[2rem] md:text-[3.5rem] lg:text-[4.5rem] leading-[1.1] font-bold text-white/90 max-w-[80%]"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.1 }}
@@ -59,7 +59,7 @@ export default function ServicesPage() {
                     </div>
 
                     {/* Search Bar - Optional */}
-                    <motion.div
+                    {/* <motion.div
                         className="mt-12 max-w-xl"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -82,7 +82,7 @@ export default function ServicesPage() {
                                 <path d="M21 21l-4.35-4.35" />
                             </svg>
                         </div>
-                    </motion.div>
+                    </motion.div> */}
                 </div>
             </section>
 
@@ -92,8 +92,8 @@ export default function ServicesPage() {
                     {/* Strategy Section */}
                     <div className="mb-24 bg-black p-8 rounded-xl">
                         <div className="flex items-center justify-between mb-12">
-                            <h2 className="text-[5rem] font-bold text-white">Strategy</h2>
-                            <p className="text-[18px] text-white/60 max-w-[400px] uppercase">
+                            <h2 className="text-[3.5rem] font-bold text-white">Strategy</h2>
+                            <p className="text-[16px] text-white/60 max-w-[400px] uppercase">
                                 Providing actionable insights to help build the best version of each ecommerce presence.
                             </p>
                         </div>
@@ -115,7 +115,7 @@ export default function ServicesPage() {
                                             className="group relative border-t border-white/10 transition-all duration-200"
                                         >
                                             <div className="flex items-center justify-between py-6 px-12 group-hover:bg-neutral-900">
-                                                <h4 className="text-[1.75rem] font-medium group-hover:text-white transition-colors duration-200">
+                                                <h4 className="text-[1.5rem] font-medium group-hover:text-white transition-colors duration-200">
                                                     {item.name}
                                                 </h4>
                                                 <div className="opacity-0 group-hover:opacity-100 transition-all duration-200">
@@ -134,8 +134,8 @@ export default function ServicesPage() {
                     {/* Design Section */}
                     <div className="mb-24 bg-page-lighter p-8 rounded-xl">
                         <div className="flex items-center justify-between mb-12">
-                            <h2 className="text-[5rem] font-bold">Design</h2>
-                            <p className="text-[18px] text-black/60 max-w-[400px] uppercase">
+                            <h2 className="text-[3.5rem] font-bold">Design</h2>
+                            <p className="text-[16px] text-black/60 max-w-[400px] uppercase">
                                 Creating beautiful, functional, and user-centric digital experiences.
                             </p>
                         </div>
@@ -157,7 +157,7 @@ export default function ServicesPage() {
                                             className="group relative border-t border-black/10 transition-all duration-200"
                                         >
                                             <div className="flex items-center justify-between py-6 px-12 group-hover:bg-neutral-900">
-                                                <h4 className="text-[1.75rem] font-medium group-hover:text-white transition-colors duration-200">
+                                                <h4 className="text-[1.5rem] font-medium group-hover:text-white transition-colors duration-200">
                                                     {item.name}
                                                 </h4>
                                                 <div className="opacity-0 group-hover:opacity-100 transition-all duration-200">
@@ -176,8 +176,8 @@ export default function ServicesPage() {
                     {/* Development Section */}
                     <div className="mb-24 bg-black p-8 rounded-xl">
                         <div className="flex items-center justify-between mb-12">
-                            <h2 className="text-[5rem] font-bold text-white">Development</h2>
-                            <p className="text-[18px] text-white/60 max-w-[400px] uppercase">
+                            <h2 className="text-[3.5rem] font-bold text-white">Development</h2>
+                            <p className="text-[16px] text-white/60 max-w-[400px] uppercase">
                                 Building robust, scalable, and high-performing ecommerce solutions.
                             </p>
                         </div>
@@ -199,7 +199,7 @@ export default function ServicesPage() {
                                             className="group relative border-t border-white/10 transition-all duration-200 text-white"
                                         >
                                             <div className="flex items-center justify-between py-6 px-12 group-hover:bg-neutral-900">
-                                                <h4 className="text-[1.75rem] font-medium group-hover:text-white transition-colors duration-200">
+                                                <h4 className="text-[1.5rem] font-medium group-hover:text-white transition-colors duration-200">
                                                     {item.name}
                                                 </h4>
                                                 <div className="opacity-0 group-hover:opacity-100 transition-all duration-200">
@@ -218,8 +218,8 @@ export default function ServicesPage() {
                     {/* Growth Section */}
                     <div className="mb-24 bg-page-lighter p-8 rounded-xl">
                         <div className="flex items-center justify-between mb-12">
-                            <h2 className="text-[5rem] font-bold">Growth</h2>
-                            <p className="text-[18px] text-black/60 max-w-[400px] uppercase">
+                            <h2 className="text-[3.5rem] font-bold">Growth</h2>
+                            <p className="text-[16px] text-black/60 max-w-[400px] uppercase">
                                 Optimizing and scaling your ecommerce business for sustainable growth.
                             </p>
                         </div>
@@ -241,7 +241,7 @@ export default function ServicesPage() {
                                             className="group relative border-t border-black/10 transition-all duration-200"
                                         >
                                             <div className="flex items-center justify-between py-6 px-12 group-hover:bg-neutral-900">
-                                                <h4 className="text-[1.75rem] font-medium group-hover:text-white transition-colors duration-200">
+                                                <h4 className="text-[1.5rem] font-medium group-hover:text-white transition-colors duration-200">
                                                     {item.name}
                                                 </h4>
                                                 <div className="opacity-0 group-hover:opacity-100 transition-all duration-200">
