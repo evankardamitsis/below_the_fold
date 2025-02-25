@@ -7,6 +7,9 @@ import Link from 'next/link'
 import { useRef, useState, useEffect } from 'react'
 import { ArrowIcon } from '@/components/icons/arrow-icon'
 import { ImageLightbox } from '@/components/ui/image-lightbox'
+import { getProjectBySlug } from '@/lib/strapi'
+import { Project } from '@/types/project'
+import { useParams } from 'next/navigation'
 
 function CountingNumber({ value, suffix = '' }: { value: number, suffix?: string }) {
     const ref = useRef(null)
@@ -50,6 +53,11 @@ function CountingNumber({ value, suffix = '' }: { value: number, suffix?: string
 }
 
 export default function ProjectPage() {
+    const params = useParams()
+    const [project, setProject] = useState<Project | null>(null)
+    const [isLoading, setIsLoading] = useState(true)
+    const [error, setError] = useState<string | null>(null)
+
     const containerRef = useRef<HTMLDivElement>(null)
     const { scrollYProgress } = useScroll({
         target: containerRef,
@@ -59,6 +67,37 @@ export default function ProjectPage() {
     const imageScale = useTransform(scrollYProgress, [0, 1], [1, 1.2])
     const imageOpacity = useTransform(scrollYProgress, [0, 1], [1, 0.5])
     const titleY = useTransform(scrollYProgress, [0, 1], [0, 150])
+
+    useEffect(() => {
+        async function loadProject() {
+            try {
+                setIsLoading(true)
+                const data = await getProjectBySlug(params.slug as string)
+                setProject(data)
+            } catch (err) {
+                setError(err instanceof Error ? err.message : 'Failed to load project')
+            } finally {
+                setIsLoading(false)
+            }
+        }
+
+        loadProject()
+    }, [params.slug])
+
+    if (isLoading) {
+        return <div className="min-h-screen flex items-center justify-center">
+            <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-white"></div>
+        </div>
+    }
+
+    if (error || !project) {
+        return <div className="min-h-screen flex items-center justify-center">
+            <div className="text-center">
+                <h1 className="text-2xl font-bold text-white mb-4">Error</h1>
+                <p className="text-white/60">{error || 'Project not found'}</p>
+            </div>
+        </div>
+    }
 
     return (
         <article>
@@ -76,10 +115,10 @@ export default function ProjectPage() {
                     }}
                 >
                     <Image
-                        src="https://images.unsplash.com/photo-1526045431048-f857369baa09?auto=format&fit=crop&q=80"
-                        alt="Timex Project Hero"
-                        width={1920}
-                        height={1080}
+                        src={project.heroImage.url}
+                        alt={project.heroImage.alternativeText || project.title}
+                        width={project.heroImage.width}
+                        height={project.heroImage.height}
                         className="w-full h-full object-cover"
                         priority
                     />
@@ -96,7 +135,7 @@ export default function ProjectPage() {
                         style={{ y: titleY }}
                     >
                         <h1 className="text-[7.5rem] sm:text-[3.5rem] md:text-[9.5rem] lg:text-[12.5rem] leading-[0.95] tracking-[-0.02em] font-bold text-white mt-4">
-                            Timex
+                            {project.title}
                         </h1>
                     </motion.div>
                 </div>
@@ -135,32 +174,34 @@ export default function ProjectPage() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                             >
-                                A complete platform migration from Salesforce Commerce Cloud to Shopify Plus, enabling global expansion and improved customer experience. A complete platform migration from Salesforce Commerce Cloud to Shopify Plus, enabling global expansion and improved customer experience.
+                                {project.description}
                             </motion.p>
 
                             {/* Visit Website Button */}
-                            <motion.div
-                                className="mt-12"
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.2 }}
-                            >
-                                <Link
-                                    href="https://timex.com"
-                                    target="_blank"
-                                    className="inline-flex items-center gap-3 px-8 py-4 bg-white rounded-full text-neutral-900 hover:bg-white/90 transition-colors group"
+                            {project.websiteUrl && (
+                                <motion.div
+                                    className="mt-12"
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.2 }}
                                 >
-                                    <span className="text-lg font-medium">Visit Website</span>
-                                    <motion.span
-                                        className="text-xl"
-                                        initial={{ x: 0 }}
-                                        whileHover={{ x: 5 }}
+                                    <Link
+                                        href={project.websiteUrl}
+                                        target="_blank"
+                                        className="inline-flex items-center gap-3 px-8 py-4 bg-white rounded-full text-neutral-900 hover:bg-white/90 transition-colors group"
                                     >
-                                        ↗
-                                    </motion.span>
-                                </Link>
-                            </motion.div>
+                                        <span className="text-lg font-medium">Visit Website</span>
+                                        <motion.span
+                                            className="text-xl"
+                                            initial={{ x: 0 }}
+                                            whileHover={{ x: 5 }}
+                                        >
+                                            ↗
+                                        </motion.span>
+                                    </Link>
+                                </motion.div>
+                            )}
                         </div>
 
                         {/* Right Side - Project Details Card */}
@@ -176,7 +217,7 @@ export default function ProjectPage() {
                                         Client Overview
                                     </h3>
                                     <p className="text-white/80">
-                                        Timex, a global leader in watchmaking since 1854, needed to modernize their digital presence and streamline operations across multiple markets.
+                                        {project.clientOverview}
                                     </p>
                                 </div>
 
@@ -185,10 +226,11 @@ export default function ProjectPage() {
                                         Services
                                     </h3>
                                     <ul className="space-y-2">
-                                        <li className="text-white/80">Platform Migration</li>
-                                        <li className="text-white/80">UI/UX Design</li>
-                                        <li className="text-white/80">Custom Theme Development</li>
-                                        <li className="text-white/80">International Expansion</li>
+                                        {project.services.map((service) => (
+                                            <li key={service.id} className="text-white/80">
+                                                {service.name}
+                                            </li>
+                                        ))}
                                     </ul>
                                 </div>
                             </motion.div>
@@ -206,317 +248,164 @@ export default function ProjectPage() {
                     viewport={{ once: true }}
                 >
                     <ImageLightbox
-                        src="https://images.unsplash.com/photo-1526045431048-f857369baa09?auto=format&fit=crop&q=80"
-                        alt="Timex Project Overview"
+                        src={project.overviewImage.url}
+                        alt={project.overviewImage.alternativeText || `${project.title} Overview`}
                     />
                 </motion.div>
             </section>
 
-            {/* Project Content */}
-            <section className="bg-page-lighter py-24">
+            {/* Image Grid Section */}
+            {project.detailImages.length > 0 && (
+                <motion.div
+                    className="grid grid-cols-2 gap-8 mb-32"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                >
+                    {project.detailImages.map((image, index) => (
+                        <div key={index} className="aspect-[4/5] rounded-xl overflow-hidden">
+                            <ImageLightbox
+                                src={image.url}
+                                alt={image.alternativeText || `${project.title} Detail ${index + 1}`}
+                            />
+                        </div>
+                    ))}
+                </motion.div>
+            )}
+
+            {/* Results Grid */}
+            <section className="relative w-screen left-1/2 right-1/2 -mx-[50vw] bg-neutral-900 py-24">
                 <div className="mx-auto max-w-[1620px] px-8">
-                    {/* Overview */}
                     <motion.div
-                        className="mb-32"
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
+                        className="grid grid-cols-1 md:grid-cols-3 gap-8"
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
                     >
-                        <h2 className="text-3xl font-bold text-neutral-900 mb-8">
-                            Project Overview
-                        </h2>
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                            <p className="text-neutral-600 text-lg">
-                                Timex approached us with the challenge of migrating their global e-commerce presence from Salesforce Commerce Cloud to Shopify Plus. The goal was to improve site performance, reduce operational costs, and enable faster market expansion.
-                            </p>
-                            <p className="text-neutral-600 text-lg">
-                                Our solution involved a phased migration approach, custom theme development, and implementation of a scalable multi-market architecture. The result was a faster, more efficient platform that could easily scale to new markets.
-                            </p>
-                        </div>
-                    </motion.div>
-
-                    {/* Image Grid Section */}
-                    <motion.div
-                        className="grid grid-cols-2 gap-8 mb-32"
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                    >
-                        <div className="aspect-[4/5] rounded-xl overflow-hidden">
-                            <ImageLightbox
-                                src="https://images.unsplash.com/photo-1547996160-81dfa63595aa?auto=format&fit=crop&q=80"
-                                alt="Product Detail"
-                            />
-                        </div>
-                        <div className="aspect-[4/5] rounded-xl overflow-hidden">
-                            <ImageLightbox
-                                src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&q=80"
-                                alt="Collection Page"
-                            />
-                        </div>
-                    </motion.div>
-
-                    {/* Video Section - Using an image placeholder for now */}
-                    <motion.div
-                        className="mb-32"
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                    >
-                        <h3 className="text-2xl font-bold text-neutral-900 mb-8">
-                            User Experience
-                        </h3>
-                        <div className="aspect-video rounded-xl overflow-hidden bg-neutral-200">
-                            <Image
-                                src="https://images.unsplash.com/photo-1434494878577-86c23bcb06b9?auto=format&fit=crop&q=80"
-                                alt="User Experience Video"
-                                width={1920}
-                                height={1080}
-                                className="w-full h-full object-cover"
-                            />
-                        </div>
-                    </motion.div>
-
-                    {/* Results Grid */}
-                    <section className="relative w-screen left-1/2 right-1/2 -mx-[50vw] bg-neutral-900 py-24">
-                        <div className="mx-auto max-w-[1620px] px-8">
+                        {project.stats.map((stat, index) => (
                             <motion.div
-                                className="grid grid-cols-1 md:grid-cols-3 gap-8"
-                                initial={{ opacity: 0 }}
-                                whileInView={{ opacity: 1 }}
-                                viewport={{ once: true }}
+                                key={stat.id}
+                                className="bg-neutral-800 p-8 rounded-2xl overflow-hidden relative group"
+                                whileHover={{ scale: 1.02 }}
+                                transition={{ type: "spring", stiffness: 300 }}
                             >
                                 <motion.div
-                                    className="bg-neutral-800 p-8 rounded-2xl overflow-hidden relative group"
-                                    whileHover={{ scale: 1.02 }}
-                                    transition={{ type: "spring", stiffness: 300 }}
+                                    className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity"
+                                    initial={false}
+                                />
+                                <CountingNumber value={stat.value} suffix={stat.suffix} />
+                                <motion.p
+                                    className="mt-2 text-white/60 text-lg relative z-10"
+                                    initial={{ opacity: 0, x: -20 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.5 + index * 0.1 }}
                                 >
-                                    <motion.div
-                                        className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity"
-                                        initial={false}
-                                    />
-                                    <CountingNumber value={45} suffix="%" />
-                                    <motion.p
-                                        className="mt-2 text-white/60 text-lg relative z-10"
-                                        initial={{ opacity: 0, x: -20 }}
-                                        whileInView={{ opacity: 1, x: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: 0.5 }}
-                                    >
-                                        Faster page load times
-                                    </motion.p>
-                                </motion.div>
-
-                                <motion.div
-                                    className="bg-neutral-800 p-8 rounded-2xl overflow-hidden relative group"
-                                    whileHover={{ scale: 1.02 }}
-                                    transition={{ type: "spring", stiffness: 300 }}
-                                >
-                                    <motion.div
-                                        className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity"
-                                        initial={false}
-                                    />
-                                    <CountingNumber value={32} suffix="%" />
-                                    <motion.p
-                                        className="mt-2 text-white/60 text-lg relative z-10"
-                                        initial={{ opacity: 0, x: -20 }}
-                                        whileInView={{ opacity: 1, x: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: 0.6 }}
-                                    >
-                                        Increase in conversion rate
-                                    </motion.p>
-                                </motion.div>
-
-                                <motion.div
-                                    className="bg-neutral-800 p-8 rounded-2xl overflow-hidden relative group"
-                                    whileHover={{ scale: 1.02 }}
-                                    transition={{ type: "spring", stiffness: 300 }}
-                                >
-                                    <motion.div
-                                        className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity"
-                                        initial={false}
-                                    />
-                                    <CountingNumber value={4} />
-                                    <motion.p
-                                        className="mt-2 text-white/60 text-lg relative z-10"
-                                        initial={{ opacity: 0, x: -20 }}
-                                        whileInView={{ opacity: 1, x: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: 0.7 }}
-                                    >
-                                        New markets launched
-                                    </motion.p>
-                                </motion.div>
+                                    {stat.label}
+                                </motion.p>
                             </motion.div>
-                        </div>
-                    </section>
-
-                    {/* Mobile Showcase */}
-                    <motion.div
-                        className="my-32"
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                    >
-                        <h3 className="text-2xl font-bold text-neutral-900 mb-8">
-                            Mobile Experience
-                        </h3>
-                        <div className="grid grid-cols-3 gap-8">
-                            <div className="aspect-[9/16] rounded-xl overflow-hidden">
-                                <ImageLightbox
-                                    src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&q=80"
-                                    alt="Mobile Home"
-                                />
-                            </div>
-                            <div className="aspect-[9/16] rounded-xl overflow-hidden">
-                                <ImageLightbox
-                                    src="https://images.unsplash.com/photo-1434494878577-86c23bcb06b9?auto=format&fit=crop&q=80"
-                                    alt="Mobile Collection"
-                                />
-                            </div>
-                            <div className="aspect-[9/16] rounded-xl overflow-hidden">
-                                <ImageLightbox
-                                    src="https://images.unsplash.com/photo-1509048191080-d2984bad6ae5?auto=format&fit=crop&q=80"
-                                    alt="Mobile Product"
-                                />
-                            </div>
-                        </div>
+                        ))}
                     </motion.div>
-
-                    {/* Full Width Image */}
-                    <motion.div
-                        className="mb-32"
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                    >
-                        <div className="aspect-[21/9] rounded-xl overflow-hidden">
-                            <Image
-                                src="https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&q=80"
-                                alt="Design System"
-                                width={2100}
-                                height={900}
-                                className="w-full h-full object-cover"
-                            />
-                        </div>
-                    </motion.div>
-
-                    {/* Process & Deliverables */}
-                    <div className="relative py-24">
-                        {/* Background Accent */}
-                        <div className="absolute inset-0 bg-neutral-900 rounded-3xl -mx-8" />
-
-                        <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-24 px-8">
-                            {/* Process Column */}
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                            >
-                                <h3 className="text-3xl font-bold text-white mb-12">
-                                    The Process
-                                </h3>
-                                <div className="space-y-8">
-                                    {[
-                                        {
-                                            step: "01",
-                                            title: "Technical Audit",
-                                            description: "Comprehensive analysis of existing infrastructure and migration planning"
-                                        },
-                                        {
-                                            step: "02",
-                                            title: "Design System",
-                                            description: "Development of scalable design components and guidelines"
-                                        },
-                                        {
-                                            step: "03",
-                                            title: "Implementation",
-                                            description: "Custom theme development and platform integration"
-                                        },
-                                        {
-                                            step: "04",
-                                            title: "Market Customization",
-                                            description: "Region-specific features and content adaptation"
-                                        },
-                                        {
-                                            step: "05",
-                                            title: "Optimization",
-                                            description: "Performance tuning and conversion optimization"
-                                        },
-                                        {
-                                            step: "06",
-                                            title: "Launch",
-                                            description: "Phased market rollout and monitoring"
-                                        }
-                                    ].map((item, index) => (
-                                        <motion.div
-                                            key={item.step}
-                                            className="flex gap-6 group"
-                                            initial={{ opacity: 0, x: -20 }}
-                                            whileInView={{ opacity: 1, x: 0 }}
-                                            viewport={{ once: true }}
-                                            transition={{ delay: index * 0.1 }}
-                                        >
-                                            <div className="flex-shrink-0 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
-                                                <span className="text-white/60 text-sm font-medium">
-                                                    {item.step}
-                                                </span>
-                                            </div>
-                                            <div>
-                                                <h4 className="text-white text-lg font-medium mb-2">
-                                                    {item.title}
-                                                </h4>
-                                                <p className="text-white/60">
-                                                    {item.description}
-                                                </p>
-                                            </div>
-                                        </motion.div>
-                                    ))}
-                                </div>
-                            </motion.div>
-
-                            {/* Key Features Column */}
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.2 }}
-                            >
-                                <h3 className="text-3xl font-bold text-white mb-12">
-                                    Key Features
-                                </h3>
-                                <div className="grid grid-cols-2 gap-6">
-                                    {[
-                                        "Custom Product Configurator",
-                                        "Market-specific Pricing",
-                                        "Advanced Filtering",
-                                        "Localized Content",
-                                        "Size Guide Integration",
-                                        "Cross-market Analytics"
-                                    ].map((feature, index) => (
-                                        <motion.div
-                                            key={feature}
-                                            className="bg-white/5 rounded-xl p-6 hover:bg-white/10 transition-colors group"
-                                            initial={{ opacity: 0, y: 20 }}
-                                            whileInView={{ opacity: 1, y: 0 }}
-                                            viewport={{ once: true }}
-                                            transition={{ delay: index * 0.1 }}
-                                        >
-                                            <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center mb-4 text-white group-hover:bg-white/20 transition-colors">
-                                                <ArrowIcon />
-                                            </div>
-                                            <p className="text-white font-medium">
-                                                {feature}
-                                            </p>
-                                        </motion.div>
-                                    ))}
-                                </div>
-                            </motion.div>
-                        </div>
-                    </div>
                 </div>
             </section>
+
+            {/* Mobile Showcase */}
+            {project.mobileImages.length > 0 && (
+                <motion.div
+                    className="my-32"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                >
+                    <h3 className="text-2xl font-bold text-neutral-900 mb-8">
+                        Mobile Experience
+                    </h3>
+                    <div className="grid grid-cols-3 gap-8">
+                        {project.mobileImages.map((image, index) => (
+                            <div key={index} className="aspect-[9/16] rounded-xl overflow-hidden">
+                                <ImageLightbox
+                                    src={image.url}
+                                    alt={image.alternativeText || `Mobile View ${index + 1}`}
+                                />
+                            </div>
+                        ))}
+                    </div>
+                </motion.div>
+            )}
+
+            {/* Process & Features */}
+            <div className="relative py-24">
+                <div className="absolute inset-0 bg-neutral-900 rounded-3xl -mx-8" />
+                <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-24 px-8">
+                    {/* Process Column */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                    >
+                        <h3 className="text-3xl font-bold text-white mb-12">
+                            The Process
+                        </h3>
+                        <div className="space-y-8">
+                            {project.process.map((item, index) => (
+                                <motion.div
+                                    key={item.id}
+                                    className="flex gap-6 group"
+                                    initial={{ opacity: 0, x: -20 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: index * 0.1 }}
+                                >
+                                    <div className="flex-shrink-0 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
+                                        <span className="text-white/60 text-sm font-medium">
+                                            {item.step}
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <h4 className="text-white text-lg font-medium mb-2">
+                                            {item.title}
+                                        </h4>
+                                        <p className="text-white/60">
+                                            {item.description}
+                                        </p>
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </motion.div>
+
+                    {/* Key Features Column */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.2 }}
+                    >
+                        <h3 className="text-3xl font-bold text-white mb-12">
+                            Key Features
+                        </h3>
+                        <div className="grid grid-cols-2 gap-6">
+                            {project.features.map((feature, index) => (
+                                <motion.div
+                                    key={feature.id}
+                                    className="bg-white/5 rounded-xl p-6 hover:bg-white/10 transition-colors group"
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: index * 0.1 }}
+                                >
+                                    <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center mb-4 text-white group-hover:bg-white/20 transition-colors">
+                                        <ArrowIcon />
+                                    </div>
+                                    <p className="text-white font-medium">
+                                        {feature.title}
+                                    </p>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </motion.div>
+                </div>
+            </div>
 
             {/* Project Banner */}
             <div className="bg-page-light py-24">

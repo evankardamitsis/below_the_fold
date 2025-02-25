@@ -242,7 +242,7 @@ export const SERVICES: Service[] = [
         },
         details: [
             {
-                title: 'Growth',
+                title: 'Digital Marketing',
                 items: [
                     {
                         name: 'Google Ads',

@@ -209,9 +209,9 @@ export default function Footer() {
 
                 {/* Bottom Section */}
                 <div className="pt-12 border-t border-neutral-800">
-                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
+                    <div className="flex flex-col md:flex-row md:items-center gap-8 relative">
                         {/* Social Links */}
-                        <div className="flex items-center gap-6">
+                        <div className="flex items-center gap-6 md:w-1/3">
                             {SOCIAL_LINKS.map((link) => (
                                 <a
                                     key={link.label}
@@ -227,7 +227,7 @@ export default function Footer() {
                         </div>
 
                         {/* Contact Info */}
-                        <div className="flex items-center gap-6">
+                        <div className="flex items-center justify-center gap-6 md:w-1/3">
                             <a
                                 href="mailto:hello@belowthefold.gr"
                                 className="text-[15px] font-medium text-white hover:opacity-60 transition-opacity"
@@ -243,7 +243,7 @@ export default function Footer() {
                         </div>
 
                         {/* Copyright & Policy */}
-                        <div className="flex items-center gap-6">
+                        <div className="flex items-center justify-end gap-6 md:w-1/3">
                             <Link
                                 href="/privacy"
                                 className="text-[15px] font-medium text-white hover:opacity-60 transition-opacity"
