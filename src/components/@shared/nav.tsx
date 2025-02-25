@@ -7,29 +7,13 @@ import { useEffect, useState } from 'react'
 import { useMediaQuery } from '@/hooks/use-media-query'
 
 export function MarketingNav() {
-    const [currentBackground, setCurrentBackground] = useState('bg-page-light')
+    const [hasScrolled, setHasScrolled] = useState(false)
     const isLargeScreen = useMediaQuery('(min-width: 1024px)')
 
     useEffect(() => {
         const handleScroll = () => {
-            const sections = document.querySelectorAll('section')
-            const scrollPosition = window.scrollY + 72
-
-            sections.forEach((section) => {
-                const sectionTop = section.offsetTop
-                const sectionHeight = section.offsetHeight
-
-                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                    const hasLightBg = section.classList.contains('bg-page-light')
-                    const hasLighterBg = section.classList.contains('bg-page-lighter')
-
-                    if (hasLightBg) {
-                        setCurrentBackground('bg-page-light')
-                    } else if (hasLighterBg) {
-                        setCurrentBackground('bg-page-lighter')
-                    }
-                }
-            })
+            const scrollPosition = window.scrollY
+            setHasScrolled(scrollPosition > 0)
         }
 
         window.addEventListener('scroll', handleScroll)
@@ -42,13 +26,15 @@ export function MarketingNav() {
 
     return (
         <div className="fixed top-0 left-0 right-0 z-50 flex justify-center">
-            <header className={`w-full max-w-[1620px] transition-colors duration-300 ${currentBackground}`}>
+            <header className={`w-full max-w-[1620px] transition-all duration-300 ${hasScrolled ? 'bg-black/15 backdrop-blur-md border-b border-white/10 rounded-b-md' : ''
+                }`}>
                 <div className="flex h-[72px] items-center justify-between px-4 sm:px-8">
                     {/* Left side - Logo */}
                     <div className="flex items-center">
                         <Link
                             href="/"
-                            className={`text-lg font-medium hover:opacity-70 transition-opacity ${currentBackground}`}
+                            className={`text-lg font-medium transition-colors duration-300 ${hasScrolled ? 'text-white hover:opacity-70' : 'text-neutral-900 hover:text-neutral-700'
+                                }`}
                         >
                             BelowTheFold
                         </Link>
@@ -56,7 +42,7 @@ export function MarketingNav() {
 
                     {/* Center - Dynamic Island (Desktop) */}
                     {isLargeScreen && (
-                        <div>
+                        <div className="relative z-50">
                             <DynamicIsland />
                         </div>
                     )}
@@ -67,20 +53,26 @@ export function MarketingNav() {
                         <Link
                             href="https://calendly.com/kardamitsis-e-belowthefold/30min"
                             target="_blank"
-                            className={`hidden md:inline-block text-sm font-medium tracking-wide hover:opacity-70 transition-opacity ${currentBackground}`}
+                            className={`hidden md:inline-block text-sm font-medium tracking-wide transition-colors duration-300 ${hasScrolled ? 'text-white hover:opacity-70' : 'text-neutral-900 hover:text-neutral-700'
+                                }`}
                         >
                             Book a call
                         </Link>
 
                         {/* Dynamic Island - Mobile only */}
                         {!isLargeScreen && (
-                            <DynamicIsland />
+                            <div className="relative z-50">
+                                <DynamicIsland />
+                            </div>
                         )}
 
                         {/* Contact Button - Desktop only */}
                         <Link
                             href="/contact"
-                            className="hidden md:inline-flex items-center justify-between px-4 sm:px-6 h-10 bg-neutral-900 rounded text-white text-[15px] font-medium hover:bg-neutral-800 transition-colors duration-300 group"
+                            className={`hidden md:inline-flex items-center justify-between px-4 sm:px-6 h-10 rounded text-[15px] font-medium transition-colors duration-300 group ${hasScrolled
+                                ? 'bg-black hover:bg-neutral-800 text-white'
+                                : 'bg-neutral-900 hover:bg-neutral-800 text-white'
+                                }`}
                         >
                             <span>
                                 <ArrowIcon />
