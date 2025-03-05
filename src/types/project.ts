@@ -14,7 +14,7 @@ export interface ProjectProcess {
 
 export interface ProjectStat {
     id: number
-    value: number
+    value: string | number
     suffix?: string
     label: string
 }
@@ -31,15 +31,11 @@ export interface Project {
     description: string
     clientOverview: string
     websiteUrl: string
-    heroImage: ImageType
-    overviewImage: ImageType
+    heroImage: ImageType | null
+    overviewImage?: ImageType | null
     detailImages: ImageType[]
-    userExperienceVideo?: {
-        url: string
-        thumbnailUrl: string
-    }
     mobileImages: ImageType[]
-    designSystemImage: ImageType
+    designSystemImage?: ImageType | null
     stats: ProjectStat[]
     features: ProjectFeature[]
     services: ProjectService[]

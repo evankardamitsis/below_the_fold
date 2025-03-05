@@ -1,88 +1,49 @@
-'use client'
+import { getProjects } from '@/lib/contentful'
 
-import { motion } from 'framer-motion'
-import { useState, useEffect } from 'react'
-import Link from 'next/link'
-import Image from 'next/image'
-import { getProjects } from '@/lib/strapi'
-import { Project } from '@/types/project'
+export default async function WorksPage() {
+    const projects = await getProjects()
 
-export default function WorksPage() {
-    const [projects, setProjects] = useState<Project[]>([])
-    const [isLoading, setIsLoading] = useState(true)
-    const [error, setError] = useState<string | null>(null)
-
-    useEffect(() => {
-        async function loadProjects() {
-            try {
-                setIsLoading(true)
-                const data = await getProjects()
-                setProjects(data)
-            } catch (err) {
-                setError(err instanceof Error ? err.message : 'Failed to load projects')
-            } finally {
-                setIsLoading(false)
-            }
-        }
-
-        loadProjects()
-    }, [])
-
-    if (isLoading) {
-        return <div className="min-h-screen flex items-center justify-center">
-            <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-white"></div>
-        </div>
-    }
-
-    if (error) {
-        return <div className="min-h-screen flex items-center justify-center">
-            <div className="text-center">
-                <h1 className="text-2xl font-bold text-white mb-4">Error</h1>
-                <p className="text-white/60">{error}</p>
-            </div>
-        </div>
-    }
+    console.log('Projects from Contentful:', projects)
 
     return (
-        <div className="min-h-screen bg-neutral-900">
-            <div className="mx-auto max-w-[1620px] px-8 py-32">
-                <motion.h1
-                    className="text-4xl md:text-6xl font-bold text-white mb-16"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                >
-                    Our Work
-                </motion.h1>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {projects.map((project, index) => (
-                        <motion.div
-                            key={project.id}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: index * 0.1 }}
-                        >
-                            <Link href={`/works/${project.slug}`} className="block group">
-                                <div className="relative aspect-[4/3] rounded-xl overflow-hidden mb-4">
-                                    <Image
-                                        src={project.heroImage.url}
-                                        alt={project.heroImage.alternativeText || project.title}
-                                        width={project.heroImage.width}
-                                        height={project.heroImage.height}
-                                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                    />
-                                    <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors" />
-                                </div>
-                                <h2 className="text-2xl font-bold text-white mb-2">
-                                    {project.title}
-                                </h2>
-                                <p className="text-white/60 line-clamp-2">
-                                    {project.description}
-                                </p>
-                            </Link>
-                        </motion.div>
-                    ))}
-                </div>
+        <div className="min-h-screen bg-neutral-900 text-white p-8">
+            <h1 className="text-4xl font-bold mb-8">Projects</h1>
+            <div className="grid gap-8">
+                {projects.map((project) => (
+                    <div key={project.id} className="bg-neutral-800 p-6 rounded-lg">
+                        <h2 className="text-2xl font-bold mb-4">{project.title}</h2>
+                        <p className="text-neutral-400 mb-4">{project.description}</p>
+                        {project.heroImage && (
+                            <img
+                                src={project.heroImage.url}
+                                alt={project.heroImage.alternativeText || project.title}
+                                width={project.heroImage.width}
+                                height={project.heroImage.height}
+                                className="rounded-lg mb-4"
+                            />
+                        )}
+                        <div className="grid grid-cols-2 gap-4">
+                            <div>
+                                <h3 className="text-xl font-semibold mb-2">Stats</h3>
+                                <ul className="space-y-2">
+                                    {project.stats.map((stat) => (
+                                        <li key={stat.id}>
+                                            {stat.label}: {stat.value}{stat.suffix}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                            <div>
+                                <h3 className="text-xl font-semibold mb-2">Features</h3>
+                                <ul className="space-y-2">
+                                    {project.features.map((feature) => (
+                                        <li key={feature.id}>{feature.title}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                ))}
             </div>
         </div>
     )
