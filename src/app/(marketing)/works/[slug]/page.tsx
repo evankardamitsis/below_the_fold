@@ -3,9 +3,9 @@ import { ProjectPageClient } from '@/components/project-page-client'
 import { Suspense } from 'react'
 
 interface PageProps {
-    params: {
+    params: Promise<{
         slug: string
-    }
+    }>
 }
 
 export default async function ProjectPage({ params }: PageProps) {
