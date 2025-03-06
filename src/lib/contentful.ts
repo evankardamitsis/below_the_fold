@@ -65,6 +65,15 @@ interface ContentfulProcess {
     }
 }
 
+interface ContentfulVideo {
+    fields: {
+        file: {
+            url: string
+        }
+        title: string
+    }
+}
+
 interface IProject extends EntrySkeletonType {
     contentTypeId: 'project'
     fields: {
@@ -74,7 +83,7 @@ interface IProject extends EntrySkeletonType {
         clientOverview?: string
         websiteUrl?: string
         heroImage: ContentfulImage
-        overviewImage?: ContentfulImage
+        overviewVideo?: ContentfulVideo
         detailImages?: ContentfulImage[]
         mobileImages?: ContentfulImage[]
         designSystemImage?: ContentfulImage
@@ -128,7 +137,7 @@ export async function getProjects(): Promise<Project[]> {
         clientOverview: item.fields.clientOverview || '',
         websiteUrl: item.fields.websiteUrl || '',
         heroImage: mapContentfulImage(item.fields.heroImage),
-        overviewImage: mapContentfulImage(item.fields.overviewImage),
+        overviewVideo: (item.fields.overviewVideo as ContentfulVideo | undefined)?.fields.file.url || '',
         detailImages: ((item.fields.detailImages || []) as ContentfulImage[]).map(mapContentfulImage).filter((img): img is ImageType => img !== null),
         mobileImages: ((item.fields.mobileImages || []) as ContentfulImage[]).map(mapContentfulImage).filter((img): img is ImageType => img !== null),
         designSystemImage: mapContentfulImage(item.fields.designSystemImage),
@@ -178,7 +187,7 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
         clientOverview: item.fields.clientOverview || '',
         websiteUrl: item.fields.websiteUrl || '',
         heroImage: mapContentfulImage(item.fields.heroImage),
-        overviewImage: mapContentfulImage(item.fields.overviewImage),
+        overviewVideo: (item.fields.overviewVideo as ContentfulVideo | undefined)?.fields.file.url || '',
         detailImages: ((item.fields.detailImages || []) as ContentfulImage[]).map(mapContentfulImage).filter((img): img is ImageType => img !== null),
         mobileImages: ((item.fields.mobileImages || []) as ContentfulImage[]).map(mapContentfulImage).filter((img): img is ImageType => img !== null),
         designSystemImage: mapContentfulImage(item.fields.designSystemImage),

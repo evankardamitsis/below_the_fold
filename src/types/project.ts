@@ -32,10 +32,11 @@ export interface Project {
     clientOverview: string
     websiteUrl: string
     heroImage: ImageType | null
+    overviewVideo: string
     overviewImage?: ImageType | null
     detailImages: ImageType[]
     mobileImages: ImageType[]
-    designSystemImage?: ImageType | null
+    designSystemImage: ImageType | null
     stats: ProjectStat[]
     features: ProjectFeature[]
     services: ProjectService[]

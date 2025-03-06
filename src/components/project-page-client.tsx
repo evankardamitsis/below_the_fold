@@ -207,8 +207,8 @@ export function ProjectPageClient({ project }: { project: Project }) {
                 </div>
             </section>
 
-            {/* Full Width Image */}
-            {project.overviewImage && (
+            {/* Full Width Video */}
+            {project.overviewVideo && (
                 <section className="bg-page-light">
                     <motion.div
                         className="w-full h-[80vh]"
@@ -216,11 +216,39 @@ export function ProjectPageClient({ project }: { project: Project }) {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                     >
-                        <ImageLightbox
-                            src={project.overviewImage.url}
-                            alt={project.overviewImage.alternativeText || `${project.title} Overview`}
+                        <video
+                            src={project.overviewVideo}
+                            className="w-full h-full object-cover"
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
                         />
                     </motion.div>
+                </section>
+            )}
+
+            {/* Design System Section */}
+            {project.designSystemImage && (
+                <section className="bg-page-light py-24">
+                    <div className="mx-auto max-w-[1620px] px-8">
+                        <motion.div
+                            className="space-y-8"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                        >
+                            <h3 className="text-2xl font-bold text-neutral-900">
+                                Design System
+                            </h3>
+                            <div className="aspect-[16/9] rounded-xl overflow-hidden">
+                                <ImageLightbox
+                                    src={project.designSystemImage.url}
+                                    alt={project.designSystemImage.alternativeText || `${project.title} Design System`}
+                                />
+                            </div>
+                        </motion.div>
+                    </div>
                 </section>
             )}
 
