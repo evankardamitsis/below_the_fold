@@ -209,7 +209,7 @@ export function ProjectPageClient({ project }: { project: Project }) {
 
             {/* Image Grid Section */}
             {project.detailImages.length > 0 && (
-                <section className="bg-page-light py-24">
+                <section className="bg-neutral-900 py-24">
                     <div className="mx-auto max-w-[1620px] px-8">
                         <motion.div
                             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
@@ -232,7 +232,7 @@ export function ProjectPageClient({ project }: { project: Project }) {
 
             {/* Full Width Video */}
             {project.overviewVideo && (
-                <section className="bg-neutral-800">
+                <section className="bg-page-lighter">
                     <div className="mx-auto max-w-[1620px] px-8 rounded-full py-24">
                         <motion.div
                             className="w-full h-full]"
@@ -261,7 +261,7 @@ export function ProjectPageClient({ project }: { project: Project }) {
 
             {/* Mobile Showcase */}
             {project.mobileImages.length > 0 && (
-                <section className="bg-page-light py-24">
+                <section className="bg-page-lighter py-24">
                     <div className="mx-auto max-w-[1620px] px-8">
                         <motion.div
                             className="space-y-8"
@@ -289,7 +289,7 @@ export function ProjectPageClient({ project }: { project: Project }) {
 
             {/* Design System Section */}
             {project.designSystemImage && (
-                <section className="bg-page-light py-24">
+                <section className="bg-page-lighter py-24">
                     <div className="mx-auto max-w-[1620px] px-8">
                         <motion.div
                             className="space-y-8"
