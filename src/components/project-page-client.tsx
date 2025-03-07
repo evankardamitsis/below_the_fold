@@ -228,6 +228,29 @@ export function ProjectPageClient({ project }: { project: Project }) {
                 </section>
             )}
 
+            {/* Image Grid Section */}
+            {project.detailImages.length > 0 && (
+                <section className="bg-page-light py-24">
+                    <div className="mx-auto max-w-[1620px] px-8">
+                        <motion.div
+                            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                        >
+                            {project.detailImages.map((image, index) => (
+                                <div key={index} className="aspect-[4/5] rounded-xl overflow-hidden">
+                                    <ImageLightbox
+                                        src={image.url}
+                                        alt={image.alternativeText || `${project.title} Detail ${index + 1}`}
+                                    />
+                                </div>
+                            ))}
+                        </motion.div>
+                    </div>
+                </section>
+            )}
+
             {/* Design System Section */}
             {project.designSystemImage && (
                 <section className="bg-page-light py-24">
@@ -250,25 +273,6 @@ export function ProjectPageClient({ project }: { project: Project }) {
                         </motion.div>
                     </div>
                 </section>
-            )}
-
-            {/* Image Grid Section */}
-            {project.detailImages.length > 0 && (
-                <motion.div
-                    className="grid grid-cols-2 gap-8 mb-32"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                >
-                    {project.detailImages.map((image, index) => (
-                        <div key={index} className="aspect-[4/5] rounded-xl overflow-hidden">
-                            <ImageLightbox
-                                src={image.url}
-                                alt={image.alternativeText || `${project.title} Detail ${index + 1}`}
-                            />
-                        </div>
-                    ))}
-                </motion.div>
             )}
 
             {/* Results Grid */}
