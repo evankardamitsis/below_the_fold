@@ -5,6 +5,7 @@ import { ArrowIcon } from '@/components/icons/arrow-icon'
 import { DynamicIsland } from '@/components/@shared/dynamic-island'
 import { useEffect, useState } from 'react'
 import { useMediaQuery } from '@/hooks/use-media-query'
+import Image from 'next/image'
 
 export function MarketingNav() {
     const [hasScrolled, setHasScrolled] = useState(false)
@@ -33,10 +34,15 @@ export function MarketingNav() {
                     <div className="flex items-center">
                         <Link
                             href="/"
-                            className={`text-lg font-medium transition-colors duration-300 ${hasScrolled ? 'text-white hover:opacity-70' : 'text-neutral-900 hover:text-neutral-700'
-                                }`}
+                            className={`relative w-[120px] h-[16px] transition-opacity duration-300 ${hasScrolled ? 'hover:opacity-70' : 'hover:opacity-80'}`}
                         >
-                            BelowTheFold
+                            <Image
+                                src="/images/belowthefold.svg"
+                                alt="Below The Fold"
+                                fill
+                                className={`object-contain ${hasScrolled ? 'brightness-0 invert' : ''}`}
+                                priority
+                            />
                         </Link>
                     </div>
 
