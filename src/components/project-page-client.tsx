@@ -272,9 +272,9 @@ export function ProjectPageClient({ project }: { project: Project }) {
                             <h3 className="text-2xl font-bold text-neutral-900">
                                 Mobile Experience
                             </h3>
-                            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+                            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
                                 {project.mobileImages.map((image, index) => (
-                                    <div key={index} className="aspect-[9/16] rounded-xl overflow-hidden">
+                                    <div key={index} className="aspect-auto rounded-sm overflow-hidden shadow-md">
                                         <ImageLightbox
                                             src={image.url}
                                             alt={image.alternativeText || `Mobile View ${index + 1}`}
