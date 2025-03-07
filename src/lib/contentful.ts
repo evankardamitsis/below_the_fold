@@ -137,7 +137,9 @@ export async function getProjects(): Promise<Project[]> {
         clientOverview: item.fields.clientOverview || '',
         websiteUrl: item.fields.websiteUrl || '',
         heroImage: mapContentfulImage(item.fields.heroImage),
-        overviewVideo: (item.fields.overviewVideo as ContentfulVideo | undefined)?.fields.file.url || '',
+        overviewVideo: (item.fields.overviewVideo as ContentfulVideo | undefined)?.fields.file.url.startsWith('//') 
+            ? `https:${(item.fields.overviewVideo as ContentfulVideo | undefined)?.fields.file.url}`
+            : (item.fields.overviewVideo as ContentfulVideo | undefined)?.fields.file.url || '',
         detailImages: ((item.fields.detailImages || []) as ContentfulImage[]).map(mapContentfulImage).filter((img): img is ImageType => img !== null),
         mobileImages: ((item.fields.mobileImages || []) as ContentfulImage[]).map(mapContentfulImage).filter((img): img is ImageType => img !== null),
         designSystemImage: mapContentfulImage(item.fields.designSystemImage),
@@ -187,7 +189,9 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
         clientOverview: item.fields.clientOverview || '',
         websiteUrl: item.fields.websiteUrl || '',
         heroImage: mapContentfulImage(item.fields.heroImage),
-        overviewVideo: (item.fields.overviewVideo as ContentfulVideo | undefined)?.fields.file.url || '',
+        overviewVideo: (item.fields.overviewVideo as ContentfulVideo | undefined)?.fields.file.url.startsWith('//') 
+            ? `https:${(item.fields.overviewVideo as ContentfulVideo | undefined)?.fields.file.url}`
+            : (item.fields.overviewVideo as ContentfulVideo | undefined)?.fields.file.url || '',
         detailImages: ((item.fields.detailImages || []) as ContentfulImage[]).map(mapContentfulImage).filter((img): img is ImageType => img !== null),
         mobileImages: ((item.fields.mobileImages || []) as ContentfulImage[]).map(mapContentfulImage).filter((img): img is ImageType => img !== null),
         designSystemImage: mapContentfulImage(item.fields.designSystemImage),

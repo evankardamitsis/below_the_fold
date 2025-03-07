@@ -102,7 +102,7 @@ export function ProjectPageClient({ project }: { project: Project }) {
                         className="max-w-3xl"
                         style={{ y: titleY }}
                     >
-                        <h1 className="text-[7.5rem] sm:text-[3.5rem] md:text-[9.5rem] lg:text-[12.5rem] leading-[0.95] tracking-[-0.02em] font-bold text-white mt-4">
+                        <h1 className="text-[3.5rem] md:text-[9.5rem] lg:text-[12.5rem] leading-[0.95] tracking-[-0.02em] font-bold text-white mt-4">
                             {project.title}
                         </h1>
                     </motion.div>
@@ -207,27 +207,6 @@ export function ProjectPageClient({ project }: { project: Project }) {
                 </div>
             </section>
 
-            {/* Full Width Video */}
-            {project.overviewVideo && (
-                <section className="bg-page-light">
-                    <motion.div
-                        className="w-full h-[80vh]"
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                    >
-                        <video
-                            src={project.overviewVideo}
-                            className="w-full h-full object-cover"
-                            autoPlay
-                            loop
-                            muted
-                            playsInline
-                        />
-                    </motion.div>
-                </section>
-            )}
-
             {/* Image Grid Section */}
             {project.detailImages.length > 0 && (
                 <section className="bg-page-light py-24">
@@ -246,6 +225,63 @@ export function ProjectPageClient({ project }: { project: Project }) {
                                     />
                                 </div>
                             ))}
+                        </motion.div>
+                    </div>
+                </section>
+            )}
+
+            {/* Full Width Video */}
+            {project.overviewVideo && (
+                <section className="bg-neutral-800">
+                    <div className="mx-auto max-w-[1620px] px-8 rounded-full py-24">
+                        <motion.div
+                            className="w-full h-full]"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                        >
+                            <video
+                                src={project.overviewVideo}
+                                className="w-full h-full object-cover"
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                onError={(e) => {
+                                    console.error('Video loading error:', e);
+                                    e.currentTarget.style.display = 'none';
+                                }}
+                            >
+                                Your browser does not support the video tag.
+                            </video>
+                        </motion.div>
+                    </div>
+                </section>
+            )}
+
+            {/* Mobile Showcase */}
+            {project.mobileImages.length > 0 && (
+                <section className="bg-page-light py-24">
+                    <div className="mx-auto max-w-[1620px] px-8">
+                        <motion.div
+                            className="space-y-8"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                        >
+                            <h3 className="text-2xl font-bold text-neutral-900">
+                                Mobile Experience
+                            </h3>
+                            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+                                {project.mobileImages.map((image, index) => (
+                                    <div key={index} className="aspect-[9/16] rounded-xl overflow-hidden">
+                                        <ImageLightbox
+                                            src={image.url}
+                                            alt={image.alternativeText || `Mobile View ${index + 1}`}
+                                        />
+                                    </div>
+                                ))}
+                            </div>
                         </motion.div>
                     </div>
                 </section>
@@ -310,30 +346,6 @@ export function ProjectPageClient({ project }: { project: Project }) {
                     </motion.div>
                 </div>
             </section>
-
-            {/* Mobile Showcase */}
-            {project.mobileImages.length > 0 && (
-                <motion.div
-                    className="my-32"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                >
-                    <h3 className="text-2xl font-bold text-neutral-900 mb-8">
-                        Mobile Experience
-                    </h3>
-                    <div className="grid grid-cols-3 gap-8">
-                        {project.mobileImages.map((image, index) => (
-                            <div key={index} className="aspect-[9/16] rounded-xl overflow-hidden">
-                                <ImageLightbox
-                                    src={image.url}
-                                    alt={image.alternativeText || `Mobile View ${index + 1}`}
-                                />
-                            </div>
-                        ))}
-                    </div>
-                </motion.div>
-            )}
 
             {/* Process & Features */}
             <section className="bg-neutral-900 py-24">
