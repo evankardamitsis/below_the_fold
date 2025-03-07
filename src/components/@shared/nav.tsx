@@ -51,12 +51,11 @@ export function MarketingNav() {
                     <div className="flex items-center gap-4 sm:gap-8">
                         {/* Book Call - Desktop only */}
                         <Link
-                            href="https://calendly.com/kardamitsis-e-belowthefold/30min"
-                            target="_blank"
+                            href="/contact"
                             className={`hidden md:inline-block text-sm font-medium tracking-wide transition-colors duration-300 ${hasScrolled ? 'text-white hover:opacity-70' : 'text-neutral-900 hover:text-neutral-700'
                                 }`}
                         >
-                            Book a call
+                            Let&apos;s connect
                         </Link>
 
                         {/* Dynamic Island - Mobile only */}
@@ -69,6 +68,7 @@ export function MarketingNav() {
                         {/* Contact Button - Desktop only */}
                         <Link
                             href="/contact"
+                            target="_blank"
                             className={`hidden md:inline-flex items-center justify-between px-4 sm:px-6 h-10 rounded text-[15px] font-medium transition-colors duration-300 group ${hasScrolled
                                 ? 'bg-black hover:bg-neutral-800 text-white'
                                 : 'bg-neutral-900 hover:bg-neutral-800 text-white'
@@ -77,7 +77,7 @@ export function MarketingNav() {
                             <span>
                                 <ArrowIcon />
                             </span>
-                            <span className="sm:ml-1">Let&apos;s connect</span>
+                            <span className="sm:ml-1">Book a free call</span>
                         </Link>
                     </div>
                 </div>
