@@ -118,7 +118,7 @@ export default function Footer() {
                                 target="_blank"
                                 className="inline-flex items-center justify-between px-6 h-12 bg-transparent border border-white/20 rounded text-[15px] font-medium text-white hover:bg-white/5 transition-colors duration-300 group"
                             >
-                                Book a call
+                                Book a free call
                                 <span className="ml-2 opacity-0 group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all duration-300">→</span>
                             </Link>
                         </motion.div>

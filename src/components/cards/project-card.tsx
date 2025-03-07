@@ -7,7 +7,6 @@ interface ProjectCardProps {
     title: string
     description: string
     image: string
-    hoverImage: string
     category: string
     tags: string[]
     href: string
@@ -16,6 +15,9 @@ interface ProjectCardProps {
 
 export function ProjectCard({ title, description, image, category, tags, href, index }: ProjectCardProps) {
     const [isHovered, setIsHovered] = useState(false)
+
+    // Get first sentence of description
+    const firstSentence = description.split(/[.!?]+/)[0] + '.'
 
     useEffect(() => {
         const cursor = document.querySelector('.project-hover-text')
@@ -66,8 +68,7 @@ export function ProjectCard({ title, description, image, category, tags, href, i
                                 src={image}
                                 alt={title}
                                 fill
-                                className={`object-cover transition-all duration-500 ${isHovered ? 'blur-[2px] scale-[1.02]' : 'blur-0 scale-100'
-                                    }`}
+                                className={`object-cover transition-all duration-500 ${isHovered ? 'blur-[2px] scale-[1.02]' : 'blur-0 scale-100'}`}
                             />
                         </div>
 
@@ -81,40 +82,17 @@ export function ProjectCard({ title, description, image, category, tags, href, i
                             {/* Overlay */}
                             <div className="absolute inset-0 bg-black/20" />
 
-                            {/* Secondary Image Container */}
-                            {/* <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
-                                <div className="relative h-[80%] w-[60%]">
-                                    <motion.div
-                                        initial={{ scaleX: 0 }}
-                                        animate={isHovered ? { scaleX: 1 } : { scaleX: 0 }}
-                                        transition={{
-                                            duration: 1,
-                                            ease: [0.32, 0.72, 0, 1]
-                                        }}
-                                        style={{ originX: 0 }}
-                                        className="absolute inset-0 rounded-md overflow-hidden shadow-xl"
-                                    >
-                                        <Image
-                                            src={hoverImage}
-                                            alt={`${title} detail`}
-                                            fill
-                                            className="object-cover"
-                                        />
-                                    </motion.div>
-                                </div>
-                            </div> */}
-
-                            {/* Tags */}
+                            {/* All Services as Badges */}
                             <motion.div
                                 initial={{ y: 20, opacity: 0 }}
                                 animate={isHovered ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
                                 transition={{ duration: 0.3 }}
-                                className="absolute bottom-6 left-6 right-6 flex flex-wrap gap-2"
+                                className="absolute bottom-4 left-4 right-4 flex flex-wrap gap-2"
                             >
                                 {tags.map((tag) => (
                                     <span
                                         key={tag}
-                                        className="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-md text-[13px] font-medium text-neutral-900"
+                                        className="bg-white/90 backdrop-blur-sm px-2 py-1 rounded-md text-xs font-medium text-neutral-900"
                                     >
                                         {tag}
                                     </span>
@@ -124,36 +102,32 @@ export function ProjectCard({ title, description, image, category, tags, href, i
                     </Link>
                 </div>
 
-                {/* Project Info - separate link */}
-                <Link href={href} className="block mt-6">
-                    {/* Logo and Info Layout */}
-                    <div className="flex items-start gap-4">
+                {/* Project Info */}
+                <Link href={href} className="block mt-4">
+                    <div className="flex items-start gap-3">
                         {/* Left - Logo */}
-                        <div className="w-16 h-16 rounded-md bg-neutral-100 overflow-hidden flex-shrink-0">
+                        <div className="w-12 h-12 rounded-md bg-neutral-100 overflow-hidden flex-shrink-0">
                             <Image
                                 src={image}
                                 alt={`${title} logo`}
-                                width={66}
-                                height={74}
+                                width={48}
+                                height={48}
                                 className="w-full h-full object-cover"
                             />
                         </div>
 
                         {/* Right - Info */}
                         <div className="flex-1">
-                            {/* Category and Industry */}
-                            <div className="flex items-center gap-2 ml-2">
+                            {/* Categories */}
+                            <div className="flex items-center gap-2">
                                 <span className="text-xs font-medium text-neutral-400 tracking-wide">
                                     {category}
-                                </span>
-                                <span className="text-xs font-medium text-neutral-400 tracking-wide">
-                                    Jewelry & Accessories
                                 </span>
                             </div>
 
                             {/* Title */}
                             <div className="relative inline-block overflow-hidden mt-1">
-                                <h3 className="relative text-md font-bold">
+                                <h3 className="relative text-sm font-bold">
                                     <motion.div
                                         initial={{ scaleX: 0 }}
                                         animate={isHovered ? { scaleX: 1 } : { scaleX: 0 }}
@@ -167,16 +141,15 @@ export function ProjectCard({ title, description, image, category, tags, href, i
                                             transformOrigin: '0% 50%',
                                         }}
                                     />
-                                    <span className={`relative inline-block px-2 ${isHovered ? 'text-white' : 'text-neutral-900'
-                                        }`}>
+                                    <span className={`relative inline-block px-2 ${isHovered ? 'text-white' : 'text-neutral-900'}`}>
                                         {title}
                                     </span>
                                 </h3>
                             </div>
 
-                            {/* Description - Reduced top margin */}
-                            <p className="text-sm text-neutral-600 tracking-wide font-medium ml-2 mt-[-0.3rem]">
-                                {description}
+                            {/* Description */}
+                            <p className="text-xs text-neutral-600 tracking-wide font-medium mt-[-0.3rem] line-clamp-2">
+                                {firstSentence}
                             </p>
                         </div>
                     </div>

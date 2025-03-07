@@ -28,7 +28,7 @@ export function DynamicIsland() {
                         ? isLargeScreen ? '600px' : '320px'
                         : '120px',
                     height: isExpanded
-                        ? isLargeScreen ? '38px' : '280px'
+                        ? isLargeScreen ? '38px' : 'auto'
                         : '38px',
                     x: isExpanded && !isLargeScreen ? 'calc(50vw - 76% - 48px)' : 0
                 }}
@@ -78,14 +78,6 @@ export function DynamicIsland() {
                             exit={{ opacity: 0 }}
                             className="absolute top-0 right-0 h-[38px] flex items-center"
                         >
-                            <Link
-                                href={process.env.NEXT_PUBLIC_CALENDLY_URL || '#'}
-                                target="_blank"
-                                className="text-xs font-medium text-white/60 hover:text-white px-4 h-full flex items-center hover:bg-white/5 transition-colors"
-                                onClick={() => setIsExpanded(false)}
-                            >
-                                Book a Free Call
-                            </Link>
                             <button
                                 className="w-[38px] h-full flex items-center justify-center text-white/60 hover:text-white hover:bg-white/5 transition-colors"
                                 onClick={() => setIsExpanded(false)}
@@ -118,14 +110,35 @@ export function DynamicIsland() {
                             initial={{ opacity: 0, y: isLargeScreen ? 0 : -10, x: isLargeScreen ? -10 : 0 }}
                             animate={{ opacity: 1, y: 0, x: 0 }}
                             exit={{ opacity: 0, y: isLargeScreen ? 0 : -10, x: isLargeScreen ? -10 : 0 }}
-                            className={`px-0 ${isLargeScreen ? '-mt-[38px] ml-[80px]' : 'py-3'}`}
+                            className={`px-0 ${isLargeScreen ? '-mt-[38px] ml-[80px]' : 'py-4'}`}
                         >
-                            <nav className={`flex ${isLargeScreen ? 'flex-row' : 'flex-col'} gap-2`}>
+                            {/* Book a Free Call Button - Mobile Only */}
+                            <AnimatePresence>
+                                {!isLargeScreen && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: -10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -10 }}
+                                        className="px-4 mb-6"
+                                    >
+                                        <Link
+                                            href={process.env.NEXT_PUBLIC_CALENDLY_URL || '#'}
+                                            target="_blank"
+                                            className="w-full h-12 flex items-center justify-center bg-white text-black rounded-lg font-medium hover:bg-neutral-100 transition-colors"
+                                            onClick={() => setIsExpanded(false)}
+                                        >
+                                            Book a Free Call
+                                        </Link>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+
+                            <nav className={`flex ${isLargeScreen ? 'flex-row' : 'flex-col'} gap-3`}>
                                 {NAVIGATION_ITEMS.map((item) => (
                                     <Link
                                         key={item.href}
                                         href={item.href}
-                                        className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${pathname === item.href
+                                        className={`px-4 py-2.5 rounded-md text-sm font-medium transition-colors ${pathname === item.href
                                             ? 'bg-white/10 text-white'
                                             : 'text-white/60 hover:text-white hover:bg-white/5'
                                             }`}

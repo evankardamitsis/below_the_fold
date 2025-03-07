@@ -68,7 +68,7 @@ export default function ProcessPage() {
     return (
         <>
             {/* Hero Section */}
-            <section className="relative min-h-screen bg-neutral-900 overflow-hidden">
+            <section className="relative min-h-[80vh] md:min-h-screen bg-neutral-900 overflow-hidden">
                 {/* Video Background */}
                 <VideoBackground
                     src={process.env.NEXT_PUBLIC_PROCESS_VIDEO_URL!}
@@ -76,11 +76,11 @@ export default function ProcessPage() {
                 />
 
                 {/* Content */}
-                <div className="relative z-10 mx-auto max-w-[1620px] px-8 pt-48">
+                <div className="relative z-10 mx-auto max-w-[1620px] px-4 sm:px-6 md:px-8 pt-24 sm:pt-32 md:pt-48">
                     {/* Content Card */}
-                    <div className="bg-neutral-900/30 backdrop-blur-sm rounded-xl lg:rounded-2xl p-12 max-w-[90%]">
+                    <div className="bg-neutral-900/30 backdrop-blur-sm rounded-xl lg:rounded-2xl p-6 sm:p-8 md:p-12 w-full sm:max-w-[90%]">
                         <motion.p
-                            className="text-white/80 text-sm font-medium mb-6 uppercase"
+                            className="text-white/80 text-xs sm:text-sm font-medium mb-4 sm:mb-6 uppercase tracking-wider"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5 }}
@@ -89,7 +89,7 @@ export default function ProcessPage() {
                         </motion.p>
 
                         <motion.h1
-                            className="text-[2rem] md:text-[3.5rem] lg:text-[4.5rem] leading-[1.1] font-bold text-white/90 max-w-[80%]"
+                            className="text-[1.75rem] sm:text-[2rem] md:text-[3.5rem] lg:text-[4.5rem] leading-[1.1] font-bold text-white/90 max-w-full sm:max-w-[90%] md:max-w-[80%]"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.1 }}
@@ -98,7 +98,7 @@ export default function ProcessPage() {
                         </motion.h1>
 
                         <motion.p
-                            className="text-white/80 text-lg lg:text-xl max-w-[600px]"
+                            className="text-white/80 text-base sm:text-lg lg:text-xl max-w-full sm:max-w-[90%] md:max-w-[600px] mt-4 sm:mt-6"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.2 }}
@@ -121,8 +121,8 @@ export default function ProcessPage() {
                         transition={{ duration: 0.8 }}
                     >
                         <GradientHover gradient={step.gradient} />
-                        <div className="py-24 relative z-10">
-                            <div className="mx-auto max-w-[1620px] px-8">
+                        <div className="py-16 sm:py-20 md:py-24 relative z-10">
+                            <div className="mx-auto max-w-[1620px] px-4 sm:px-6 md:px-8">
                                 <div className="flex flex-col lg:flex-row lg:items-start lg:gap-12">
                                     {/* Step Number & Title */}
                                     <motion.div
@@ -134,8 +134,7 @@ export default function ProcessPage() {
                                     >
                                         <div className="relative">
                                             <motion.span
-                                                className={`text-[8rem] font-bold ${index % 2 === 0 ? 'text-white/10' : 'text-neutral-900/10'
-                                                    } leading-none block`}
+                                                className={`text-[6rem] sm:text-[7rem] md:text-[8rem] font-bold ${index % 2 === 0 ? 'text-white/10' : 'text-neutral-900/10'} leading-none block`}
                                                 initial={{ scale: 0.5, opacity: 0 }}
                                                 whileInView={{ scale: 1, opacity: 1 }}
                                                 viewport={{ once: true }}
@@ -153,10 +152,10 @@ export default function ProcessPage() {
                                                 viewport={{ once: true }}
                                                 transition={{ duration: 0.5, delay: 0.3 }}
                                             >
-                                                <h2 className={`text-4xl font-bold ${index % 2 === 0 ? 'text-white' : 'text-neutral-900'} mt-4`}>
+                                                <h2 className={`text-3xl sm:text-4xl font-bold ${index % 2 === 0 ? 'text-white' : 'text-neutral-900'} mt-4`}>
                                                     {step.title}
                                                 </h2>
-                                                <p className={`${index % 2 === 0 ? 'text-white/60' : 'text-neutral-600'} mt-4 text-lg max-w-[90%]`}>
+                                                <p className={`${index % 2 === 0 ? 'text-white/60' : 'text-neutral-600'} mt-4 text-base sm:text-lg max-w-[90%]`}>
                                                     {step.description}
                                                 </p>
                                                 <div
@@ -176,15 +175,14 @@ export default function ProcessPage() {
                                         <div className="relative">
                                             {/* Timeline Line */}
                                             <motion.div
-                                                className={`absolute left-2 top-0 w-[2px] h-full ${index % 2 === 0 ? 'bg-white/20' : 'bg-black/20'
-                                                    }`}
+                                                className={`absolute left-2 top-0 w-[2px] h-full ${index % 2 === 0 ? 'bg-white/20' : 'bg-black/20'}`}
                                                 initial={{ height: 0 }}
                                                 whileInView={{ height: '100%' }}
                                                 viewport={{ once: true }}
                                                 transition={{ duration: 0.8, delay: 0.2 }}
                                             />
 
-                                            <div className="space-y-6">
+                                            <div className="space-y-4 sm:space-y-6">
                                                 {step.deliverables.map((deliverable, deliverableIndex) => (
                                                     <motion.div
                                                         key={`${step.number}-${deliverableIndex}`}
@@ -226,9 +224,9 @@ export default function ProcessPage() {
                                                                 }`}
                                                         >
                                                             <div className="flex items-center justify-between">
-                                                                <span className="font-medium">{deliverable}</span>
+                                                                <span className="font-medium text-sm sm:text-base">{deliverable}</span>
                                                                 <motion.span
-                                                                    className={`text-sm ${index % 2 === 0
+                                                                    className={`text-xs sm:text-sm ${index % 2 === 0
                                                                         ? 'text-white/40'
                                                                         : 'text-neutral-500'
                                                                         }`}
@@ -254,8 +252,8 @@ export default function ProcessPage() {
             </section>
 
             {/* Project Banner */}
-            <div className="mx-auto max-w-[1620px] px-8">
-                <ProjectBanner className="my-24" />
+            <div className="mx-auto max-w-[1620px] px-4 sm:px-6 md:px-8">
+                <ProjectBanner className="my-16 sm:my-20 md:my-24" />
             </div>
         </>
     )

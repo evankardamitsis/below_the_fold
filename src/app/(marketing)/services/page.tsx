@@ -5,25 +5,26 @@ import Link from 'next/link'
 import { SERVICES } from '@/constants/services'
 import { VideoBackground } from '@/components/ui/video-background'
 import { ProjectBanner } from '@/components/ui/project-banner'
+import { ChevronDown, Plus } from 'lucide-react'
 
 // Services page displaying agency's service offerings
 export default function ServicesPage() {
     return (
         <>
             {/* Hero Section */}
-            <section className="relative min-h-screen bg-neutral-900 overflow-hidden">
+            <section className="relative min-h-[80vh] md:min-h-screen bg-neutral-900 overflow-hidden">
                 <VideoBackground
                     src={process.env.NEXT_PUBLIC_SERVICES_VIDEO_URL!}
                     poster="/images/services-poster.webp"
                 />
 
                 {/* Content */}
-                <div className="relative z-10 mx-auto max-w-[1620px] px-8 pt-48">
+                <div className="relative z-10 mx-auto max-w-[1620px] px-4 sm:px-6 md:px-8 pt-24 sm:pt-32 md:pt-48">
                     {/* Content Card */}
-                    <div className="bg-neutral-900/30 backdrop-blur-sm rounded-xl lg:rounded-2xl p-12 max-w-[90%]">
+                    <div className="bg-neutral-900/30 backdrop-blur-sm rounded-xl lg:rounded-2xl p-6 sm:p-8 md:p-12 w-full sm:max-w-[90%]">
                         {/* Small Label */}
                         <motion.p
-                            className="text-white/80 text-sm font-medium mb-6 uppercase"
+                            className="text-white/80 text-xs sm:text-sm font-medium mb-4 sm:mb-6 uppercase tracking-wider"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5 }}
@@ -33,7 +34,7 @@ export default function ServicesPage() {
 
                         {/* Main Heading */}
                         <motion.h1
-                            className="text-[2rem] md:text-[3.5rem] lg:text-[4.5rem] leading-[1.1] font-bold text-white/90 max-w-[80%]"
+                            className="text-[1.75rem] sm:text-[2rem] md:text-[3.5rem] lg:text-[4.5rem] leading-[1.1] font-bold text-white/90 max-w-full sm:max-w-[90%] md:max-w-[80%]"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.1 }}
@@ -43,7 +44,7 @@ export default function ServicesPage() {
 
                         {/* CTA Button */}
                         <motion.div
-                            className="mt-12"
+                            className="mt-8 sm:mt-12"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.2 }}
@@ -57,43 +58,17 @@ export default function ServicesPage() {
                             </Link>
                         </motion.div>
                     </div>
-
-                    {/* Search Bar - Optional */}
-                    {/* <motion.div
-                        className="mt-12 max-w-xl"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.3 }}
-                    >
-                        <div className="relative">
-                            <input
-                                type="text"
-                                placeholder="Search services..."
-                                className="w-full h-12 pl-12 pr-4 bg-white/10 backdrop-blur-sm text-white placeholder:text-white/40 rounded-md border border-white/20 focus:outline-none focus:border-white/40 transition-colors"
-                            />
-                            <svg
-                                className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth="2"
-                            >
-                                <circle cx="11" cy="11" r="8" />
-                                <path d="M21 21l-4.35-4.35" />
-                            </svg>
-                        </div>
-                    </motion.div> */}
                 </div>
             </section>
 
             {/* Individual Service Sections */}
-            <section className="py-24 bg-page-light text-black">
-                <div className="mx-auto max-w-[1620px] px-8">
+            <section className="py-12 sm:py-16 md:py-24 bg-page-light text-black">
+                <div className="mx-auto max-w-[1620px] px-4 sm:px-6 md:px-8">
                     {/* Strategy Section */}
-                    <div className="mb-24 bg-black p-8 rounded-xl">
-                        <div className="flex items-center justify-between mb-12">
-                            <h2 className="text-[3.5rem] font-bold text-white">Strategy</h2>
-                            <p className="text-[16px] text-white/60 max-w-[400px] uppercase">
+                    <div className="mb-12 sm:mb-16 md:mb-24 bg-black p-4 sm:p-6 md:p-8 rounded-xl">
+                        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 sm:gap-8 mb-6 sm:mb-8 md:mb-12">
+                            <h2 className="text-[2rem] sm:text-[2.5rem] md:text-[3rem] lg:text-[3.5rem] font-bold text-white leading-tight">Strategy</h2>
+                            <p className="text-[14px] sm:text-[15px] md:text-[16px] text-white/60 max-w-[400px] uppercase leading-relaxed">
                                 Providing actionable insights to help build the best version of each ecommerce presence.
                             </p>
                         </div>
@@ -102,24 +77,30 @@ export default function ServicesPage() {
                             {SERVICES[0].details.map((detail) => (
                                 <motion.div
                                     key={detail.title}
-                                    className="mb-16 text-white"
+                                    className="mb-8 sm:mb-12 md:mb-16 text-white"
                                     initial={{ opacity: 0, y: 20 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ duration: 0.5 }}
                                 >
-                                    <h3 className="text-[22px] text-white/60 uppercase">{detail.title}</h3>
+                                    <h3 className="text-[16px] sm:text-[18px] md:text-[22px] text-white/60 uppercase mb-3 sm:mb-4">{detail.title}</h3>
                                     {detail.items.map((item) => (
                                         <div
                                             key={item.name}
                                             className="group relative border-t border-white/10 transition-all duration-200"
                                         >
-                                            <div className="flex items-center justify-between py-6 px-12 group-hover:bg-neutral-900">
-                                                <h4 className="text-[1.5rem] font-medium group-hover:text-white transition-colors duration-200">
-                                                    {item.name}
-                                                </h4>
+                                            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between py-4 sm:py-5 md:py-6 px-3 sm:px-6 md:px-12 group-hover:bg-neutral-900 gap-2 sm:gap-4">
+                                                <div className="flex items-center justify-between w-full sm:w-auto">
+                                                    <h4 className="text-[1.125rem] sm:text-[1.25rem] md:text-[1.5rem] font-medium group-hover:text-white transition-colors duration-200">
+                                                        {item.name}
+                                                    </h4>
+                                                    {/* Mobile/Tablet Indicator */}
+                                                    <div className="sm:hidden flex items-center gap-2">
+                                                        <Plus className="w-4 h-4 text-white/40 group-hover:text-white/60 transition-all duration-200 group-hover:translate-y-0.5" />
+                                                    </div>
+                                                </div>
                                                 <div className="opacity-0 group-hover:opacity-100 transition-all duration-200">
-                                                    <p className="text-[15px] text-white max-w-[400px]">
+                                                    <p className="text-[13px] sm:text-[14px] md:text-[15px] text-white/80 max-w-[400px] leading-relaxed">
                                                         {item.description}
                                                     </p>
                                                 </div>
@@ -132,10 +113,10 @@ export default function ServicesPage() {
                     </div>
 
                     {/* Design Section */}
-                    <div className="mb-24 bg-page-lighter p-8 rounded-xl">
-                        <div className="flex items-center justify-between mb-12">
-                            <h2 className="text-[3.5rem] font-bold">Design</h2>
-                            <p className="text-[16px] text-black/60 max-w-[400px] uppercase">
+                    <div className="mb-12 sm:mb-16 md:mb-24 bg-page-lighter p-4 sm:p-6 md:p-8 rounded-xl">
+                        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 sm:gap-8 mb-6 sm:mb-8 md:mb-12">
+                            <h2 className="text-[2rem] sm:text-[2.5rem] md:text-[3rem] lg:text-[3.5rem] font-bold leading-tight">Design</h2>
+                            <p className="text-[14px] sm:text-[15px] md:text-[16px] text-black/60 max-w-[400px] uppercase leading-relaxed">
                                 Creating beautiful, functional, and user-centric digital experiences.
                             </p>
                         </div>
@@ -144,24 +125,24 @@ export default function ServicesPage() {
                             {SERVICES[1].details.map((detail) => (
                                 <motion.div
                                     key={detail.title}
-                                    className="mb-16"
+                                    className="mb-8 sm:mb-12 md:mb-16"
                                     initial={{ opacity: 0, y: 20 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ duration: 0.5 }}
                                 >
-                                    <h3 className="text-[22px] text-black/60 uppercase">{detail.title}</h3>
+                                    <h3 className="text-[16px] sm:text-[18px] md:text-[22px] text-black/60 uppercase mb-3 sm:mb-4">{detail.title}</h3>
                                     {detail.items.map((item) => (
                                         <div
                                             key={item.name}
                                             className="group relative border-t border-black/10 transition-all duration-200"
                                         >
-                                            <div className="flex items-center justify-between py-6 px-12 group-hover:bg-neutral-900">
-                                                <h4 className="text-[1.5rem] font-medium group-hover:text-white transition-colors duration-200">
+                                            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between py-4 sm:py-5 md:py-6 px-3 sm:px-6 md:px-12 group-hover:bg-neutral-900 gap-2 sm:gap-4">
+                                                <h4 className="text-[1.125rem] sm:text-[1.25rem] md:text-[1.5rem] font-medium group-hover:text-white transition-colors duration-200">
                                                     {item.name}
                                                 </h4>
                                                 <div className="opacity-0 group-hover:opacity-100 transition-all duration-200">
-                                                    <p className="text-[15px] text-white max-w-[400px]">
+                                                    <p className="text-[13px] sm:text-[14px] md:text-[15px] text-white/80 max-w-[400px] leading-relaxed">
                                                         {item.description}
                                                     </p>
                                                 </div>
@@ -174,10 +155,10 @@ export default function ServicesPage() {
                     </div>
 
                     {/* Development Section */}
-                    <div className="mb-24 bg-black p-8 rounded-xl">
-                        <div className="flex items-center justify-between mb-12">
-                            <h2 className="text-[3.5rem] font-bold text-white">Development</h2>
-                            <p className="text-[16px] text-white/60 max-w-[400px] uppercase">
+                    <div className="mb-12 sm:mb-16 md:mb-24 bg-black p-4 sm:p-6 md:p-8 rounded-xl">
+                        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 sm:gap-8 mb-6 sm:mb-8 md:mb-12">
+                            <h2 className="text-[2rem] sm:text-[2.5rem] md:text-[3rem] lg:text-[3.5rem] font-bold text-white leading-tight">Development</h2>
+                            <p className="text-[14px] sm:text-[15px] md:text-[16px] text-white/60 max-w-[400px] uppercase leading-relaxed">
                                 Building robust, scalable, and high-performing ecommerce solutions.
                             </p>
                         </div>
@@ -186,24 +167,33 @@ export default function ServicesPage() {
                             {SERVICES[2].details.map((detail) => (
                                 <motion.div
                                     key={detail.title}
-                                    className="mb-16"
+                                    className="mb-8 sm:mb-12 md:mb-16"
                                     initial={{ opacity: 0, y: 20 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ duration: 0.5 }}
                                 >
-                                    <h3 className="text-[22px] text-white/60 uppercase">{detail.title}</h3>
+                                    <h3 className="text-[16px] sm:text-[18px] md:text-[22px] text-white/60 uppercase mb-3 sm:mb-4">{detail.title}</h3>
                                     {detail.items.map((item) => (
                                         <div
                                             key={item.name}
                                             className="group relative border-t border-white/10 transition-all duration-200 text-white"
                                         >
-                                            <div className="flex items-center justify-between py-6 px-12 group-hover:bg-neutral-900">
-                                                <h4 className="text-[1.5rem] font-medium group-hover:text-white transition-colors duration-200">
-                                                    {item.name}
-                                                </h4>
+                                            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between py-4 sm:py-5 md:py-6 px-3 sm:px-6 md:px-12 group-hover:bg-neutral-900 gap-2 sm:gap-4">
+                                                <div className="flex items-center justify-between w-full sm:w-auto">
+                                                    <h4 className="text-[1.125rem] sm:text-[1.25rem] md:text-[1.5rem] font-medium group-hover:text-white transition-colors duration-200">
+                                                        {item.name}
+                                                    </h4>
+                                                    {/* Mobile/Tablet Indicator */}
+                                                    <div className="sm:hidden flex items-center gap-2">
+                                                        <span className="text-[12px] text-white/40 group-hover:text-white/60 transition-colors duration-200">
+                                                            Tap to expand
+                                                        </span>
+                                                        <ChevronDown className="w-4 h-4 text-white/40 group-hover:text-white/60 transition-all duration-200 group-hover:translate-y-0.5" />
+                                                    </div>
+                                                </div>
                                                 <div className="opacity-0 group-hover:opacity-100 transition-all duration-200">
-                                                    <p className="text-[15px] text-white max-w-[400px]">
+                                                    <p className="text-[13px] sm:text-[14px] md:text-[15px] text-white/80 max-w-[400px] leading-relaxed">
                                                         {item.description}
                                                     </p>
                                                 </div>
@@ -216,10 +206,10 @@ export default function ServicesPage() {
                     </div>
 
                     {/* Growth Section */}
-                    <div className="mb-24 bg-page-lighter p-8 rounded-xl">
-                        <div className="flex items-center justify-between mb-12">
-                            <h2 className="text-[3.5rem] font-bold">Growth</h2>
-                            <p className="text-[16px] text-black/60 max-w-[400px] uppercase">
+                    <div className="mb-12 sm:mb-16 md:mb-24 bg-page-lighter p-4 sm:p-6 md:p-8 rounded-xl">
+                        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 sm:gap-8 mb-6 sm:mb-8 md:mb-12">
+                            <h2 className="text-[2rem] sm:text-[2.5rem] md:text-[3rem] lg:text-[3.5rem] font-bold leading-tight">Growth</h2>
+                            <p className="text-[14px] sm:text-[15px] md:text-[16px] text-black/60 max-w-[400px] uppercase leading-relaxed">
                                 Optimizing and scaling your ecommerce business for sustainable growth.
                             </p>
                         </div>
@@ -228,24 +218,24 @@ export default function ServicesPage() {
                             {SERVICES[3].details.map((detail) => (
                                 <motion.div
                                     key={detail.title}
-                                    className="mb-16"
+                                    className="mb-8 sm:mb-12 md:mb-16"
                                     initial={{ opacity: 0, y: 20 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ duration: 0.5 }}
                                 >
-                                    <h3 className="text-[22px] text-black/60 uppercase">{detail.title}</h3>
+                                    <h3 className="text-[16px] sm:text-[18px] md:text-[22px] text-black/60 uppercase mb-3 sm:mb-4">{detail.title}</h3>
                                     {detail.items.map((item) => (
                                         <div
                                             key={item.name}
                                             className="group relative border-t border-black/10 transition-all duration-200"
                                         >
-                                            <div className="flex items-center justify-between py-6 px-12 group-hover:bg-neutral-900">
-                                                <h4 className="text-[1.5rem] font-medium group-hover:text-white transition-colors duration-200">
+                                            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between py-4 sm:py-5 md:py-6 px-3 sm:px-6 md:px-12 group-hover:bg-neutral-900 gap-2 sm:gap-4">
+                                                <h4 className="text-[1.125rem] sm:text-[1.25rem] md:text-[1.5rem] font-medium group-hover:text-white transition-colors duration-200">
                                                     {item.name}
                                                 </h4>
                                                 <div className="opacity-0 group-hover:opacity-100 transition-all duration-200">
-                                                    <p className="text-[15px] text-white max-w-[400px]">
+                                                    <p className="text-[13px] sm:text-[14px] md:text-[15px] text-white/80 max-w-[400px] leading-relaxed">
                                                         {item.description}
                                                     </p>
                                                 </div>
@@ -258,7 +248,7 @@ export default function ServicesPage() {
                     </div>
 
                     {/* Project Banner */}
-                    <ProjectBanner className="mt-24" />
+                    <ProjectBanner className="mt-12 sm:mt-16 md:mt-24" />
                 </div>
             </section>
         </>

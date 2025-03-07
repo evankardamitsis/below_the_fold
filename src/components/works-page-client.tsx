@@ -14,7 +14,7 @@ export function WorksPageClient({ projects }: WorksPageClientProps) {
     return (
         <div className="min-h-screen bg-page-background text-black">
             {/* Hero Section */}
-            <section className="relative min-h-screen bg-neutral-900 overflow-hidden">
+            <section className="relative min-h-[80vh] md:min-h-screen bg-neutral-900 overflow-hidden">
                 {/* Video Background */}
                 <VideoBackground
                     src={process.env.NEXT_PUBLIC_WORKS_VIDEO_URL!}
@@ -22,11 +22,11 @@ export function WorksPageClient({ projects }: WorksPageClientProps) {
                 />
 
                 {/* Content */}
-                <div className="relative z-10 mx-auto max-w-[1620px] px-8 pt-48">
+                <div className="relative z-10 mx-auto max-w-[1620px] px-4 sm:px-6 md:px-8 pt-24 sm:pt-32 md:pt-48">
                     {/* Content Card */}
-                    <div className="bg-neutral-900/30 backdrop-blur-sm rounded-xl lg:rounded-2xl p-12 max-w-[90%]">
+                    <div className="bg-neutral-900/30 backdrop-blur-sm rounded-xl lg:rounded-2xl p-6 sm:p-8 md:p-12 w-full sm:max-w-[90%]">
                         <motion.p
-                            className="text-white/80 text-sm font-medium mb-6 uppercase"
+                            className="text-white/80 text-xs sm:text-sm font-medium mb-4 sm:mb-6 uppercase tracking-wider"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5 }}
@@ -35,7 +35,7 @@ export function WorksPageClient({ projects }: WorksPageClientProps) {
                         </motion.p>
 
                         <motion.h1
-                            className="text-[2rem] md:text-[3.5rem] lg:text-[4.5rem] leading-[1.1] font-bold text-white/90 max-w-[80%]"
+                            className="text-[1.75rem] sm:text-[2rem] md:text-[3.5rem] lg:text-[4.5rem] leading-[1.1] font-bold text-white/90 max-w-full sm:max-w-[90%] md:max-w-[80%]"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.1 }}
@@ -44,7 +44,7 @@ export function WorksPageClient({ projects }: WorksPageClientProps) {
                         </motion.h1>
 
                         <motion.p
-                            className="text-white/80 text-lg lg:text-xl max-w-[600px]"
+                            className="text-white/80 text-base sm:text-lg lg:text-xl max-w-full sm:max-w-[90%] md:max-w-[600px] mt-4 sm:mt-6"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.2 }}
@@ -56,17 +56,16 @@ export function WorksPageClient({ projects }: WorksPageClientProps) {
             </section>
 
             {/* Projects Grid */}
-            <section className="py-24">
-                <div className="mx-auto max-w-[1620px] px-8">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <section className="py-16 sm:py-20 md:py-24">
+                <div className="mx-auto max-w-[1620px] px-4 sm:px-6 md:px-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                         {projects.map((project, index) => (
                             <ProjectCard
                                 key={project.id}
                                 title={project.title}
                                 description={project.description}
                                 image={project.heroImage?.url || ''}
-                                hoverImage={project.overviewImage?.url || project.heroImage?.url || ''}
-                                category={project.services[0]?.name || 'Web Development'}
+                                category={project.services.slice(0, 2).map(service => service.name).join(' • ')}
                                 tags={project.services.map(service => service.name)}
                                 href={`/works/${project.slug}`}
                                 index={index}
@@ -77,8 +76,8 @@ export function WorksPageClient({ projects }: WorksPageClientProps) {
             </section>
 
             {/* Project Banner */}
-            <div className="mx-auto max-w-[1620px] px-8">
-                <ProjectBanner className="my-24" />
+            <div className="mx-auto max-w-[1620px] px-4 sm:px-6 md:px-8">
+                <ProjectBanner className="my-16 sm:my-20 md:my-24" />
             </div>
         </div>
     )
