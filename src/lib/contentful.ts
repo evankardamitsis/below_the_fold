@@ -83,6 +83,7 @@ interface IProject extends EntrySkeletonType {
         clientOverview?: string
         websiteUrl?: string
         heroImage: ContentfulImage
+        clientLogo?: ContentfulImage
         overviewVideo?: ContentfulVideo
         detailImages?: ContentfulImage[]
         mobileImages?: ContentfulImage[]
@@ -137,6 +138,7 @@ export async function getProjects(): Promise<Project[]> {
         clientOverview: item.fields.clientOverview || '',
         websiteUrl: item.fields.websiteUrl || '',
         heroImage: mapContentfulImage(item.fields.heroImage),
+        clientLogo: mapContentfulImage(item.fields.clientLogo),
         overviewVideo: (item.fields.overviewVideo as ContentfulVideo | undefined)?.fields.file.url.startsWith('//') 
             ? `https:${(item.fields.overviewVideo as ContentfulVideo | undefined)?.fields.file.url}`
             : (item.fields.overviewVideo as ContentfulVideo | undefined)?.fields.file.url || '',
@@ -189,6 +191,7 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
         clientOverview: item.fields.clientOverview || '',
         websiteUrl: item.fields.websiteUrl || '',
         heroImage: mapContentfulImage(item.fields.heroImage),
+        clientLogo: mapContentfulImage(item.fields.clientLogo),
         overviewVideo: (item.fields.overviewVideo as ContentfulVideo | undefined)?.fields.file.url.startsWith('//') 
             ? `https:${(item.fields.overviewVideo as ContentfulVideo | undefined)?.fields.file.url}`
             : (item.fields.overviewVideo as ContentfulVideo | undefined)?.fields.file.url || '',

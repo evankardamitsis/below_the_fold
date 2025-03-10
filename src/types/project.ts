@@ -32,6 +32,7 @@ export interface Project {
     clientOverview: string
     websiteUrl: string
     heroImage: ImageType | null
+    clientLogo: ImageType | null
     overviewVideo: string
     overviewImage?: ImageType | null
     detailImages: ImageType[]

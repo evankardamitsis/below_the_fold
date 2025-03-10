@@ -65,6 +65,7 @@ export function WorksPageClient({ projects }: WorksPageClientProps) {
                                 title={project.title}
                                 description={project.description}
                                 image={project.heroImage?.url || ''}
+                                clientLogo={project.clientLogo?.url || null}
                                 category={project.services.slice(0, 2).map(service => service.name).join(' • ')}
                                 tags={project.services.map(service => service.name)}
                                 href={`/works/${project.slug}`}

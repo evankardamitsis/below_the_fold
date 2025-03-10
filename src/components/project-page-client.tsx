@@ -136,6 +136,24 @@ export function ProjectPageClient({ project }: { project: Project }) {
                     <div className="flex flex-col lg:flex-row lg:justify-between gap-12 lg:gap-24">
                         {/* Left Side - Main Content */}
                         <div className="lg:max-w-[60%]">
+                            {/* Client Logo */}
+                            {project.clientLogo && (
+                                <motion.div
+                                    className="mb-2"
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                >
+                                    <Image
+                                        src={project.clientLogo.url}
+                                        alt={project.clientLogo.alternativeText || `${project.title} logo`}
+                                        width={240}
+                                        height={80}
+                                        className="h-16 sm:h-20 md:h-24 w-auto object-contain"
+                                    />
+                                </motion.div>
+                            )}
+
                             <motion.p
                                 className="text-white/80 text-[1.5rem] sm:text-[1.75rem] md:text-[2rem] leading-tight font-medium"
                                 initial={{ opacity: 0, y: 20 }}
@@ -261,7 +279,7 @@ export function ProjectPageClient({ project }: { project: Project }) {
 
             {/* Mobile Showcase */}
             {project.mobileImages.length > 0 && (
-                <section className="bg-page-lighter py-24">
+                <section className="bg-neutral-900 py-24">
                     <div className="mx-auto max-w-[1620px] px-8">
                         <motion.div
                             className="space-y-8"
@@ -269,7 +287,7 @@ export function ProjectPageClient({ project }: { project: Project }) {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                         >
-                            <h3 className="text-2xl font-bold text-neutral-900">
+                            <h3 className="text-2xl font-bold text-white">
                                 Mobile Experience
                             </h3>
                             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
@@ -298,9 +316,9 @@ export function ProjectPageClient({ project }: { project: Project }) {
                             viewport={{ once: true }}
                         >
                             <h3 className="text-2xl font-bold text-neutral-900">
-                                Design System
+                                Design Elements
                             </h3>
-                            <div className="aspect-[16/9] rounded-xl overflow-hidden">
+                            <div className="rounded-xl overflow-hidden">
                                 <ImageLightbox
                                     src={project.designSystemImage.url}
                                     alt={project.designSystemImage.alternativeText || `${project.title} Design System`}

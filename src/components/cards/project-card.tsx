@@ -7,13 +7,14 @@ interface ProjectCardProps {
     title: string
     description: string
     image: string
+    clientLogo?: string | null
     category: string
     tags: string[]
     href: string
     index: number
 }
 
-export function ProjectCard({ title, description, image, category, tags, href, index }: ProjectCardProps) {
+export function ProjectCard({ title, description, image, clientLogo, category, tags, href, index }: ProjectCardProps) {
     const [isHovered, setIsHovered] = useState(false)
 
     // Get first sentence of description
@@ -108,11 +109,11 @@ export function ProjectCard({ title, description, image, category, tags, href, i
                         {/* Left - Logo */}
                         <div className="w-12 h-12 rounded-md bg-neutral-100 overflow-hidden flex-shrink-0">
                             <Image
-                                src={image}
+                                src={clientLogo || image}
                                 alt={`${title} logo`}
                                 width={48}
                                 height={48}
-                                className="w-full h-full object-cover"
+                                className="w-full h-full object-contain"
                             />
                         </div>
 

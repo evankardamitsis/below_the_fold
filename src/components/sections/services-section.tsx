@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import { CustomButton } from '../ui/custom-button'
@@ -12,6 +12,13 @@ export function ServicesSection() {
     const [activeService, setActiveService] = useState<string | null>(null)
     const [isModalOpen, setIsModalOpen] = useState(false)
     const isMobile = useMediaQuery('(max-width: 1024px)')
+
+    // Set first service as active on mount for large screens
+    useEffect(() => {
+        if (!isMobile) {
+            setActiveService(SERVICES[0].title)
+        }
+    }, [isMobile])
 
     const handleServiceClick = (title: string) => {
         if (isMobile) {
