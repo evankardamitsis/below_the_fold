@@ -5,6 +5,7 @@ import { ExploreArrow } from '@/components/icons/explore-arrow'
 import { ArrowIcon } from '../icons/arrow-icon'
 import { ScrollingText } from '@/components/@shared/scrolling-text'
 import { motion } from 'framer-motion'
+import { CloudinaryVideo } from '@/components/ui/cloudinary-video'
 
 export function MarketingHero() {
     return (
@@ -70,22 +71,14 @@ export function MarketingHero() {
                 {/* Scrolling Text */}
                 <ScrollingText />
 
-                {/* Hero Video */}
-                <div className="mt-8 lg:mt-10 w-full aspect-[16/9] lg:aspect-[21/9] rounded-xl lg:rounded-2xl overflow-hidden bg-neutral-100">
-                    <video
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        poster="/video-poster.webp"
-                        className="w-full h-full object-cover"
-                    >
-                        <source
-                            src={process.env.NEXT_PUBLIC_HERO_VIDEO_URL}
-                            type="video/mp4"
+                {/* Video Section */}
+                <div className="relative mt-12 md:mt-16 lg:mt-20">
+                    <div className="relative w-full max-w-[1620px] h-[80vh] mx-auto rounded-2xl overflow-hidden">
+                        <CloudinaryVideo
+                            publicId={process.env.NEXT_PUBLIC_HERO_VIDEO_ID!}
+                            className="w-full rounded-2xl"
                         />
-                        Your browser does not support the video tag.
-                    </video>
+                    </div>
                 </div>
             </div>
         </section>

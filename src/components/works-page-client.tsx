@@ -3,8 +3,8 @@
 import { ProjectCard } from '@/components/cards/project-card'
 import { Project } from '@/types/project'
 import { motion } from 'framer-motion'
-import { VideoBackground } from '@/components/ui/video-background'
 import { ProjectBanner } from '@/components/ui/project-banner'
+import { CloudinaryVideo } from '@/components/ui/cloudinary-video'
 
 interface WorksPageClientProps {
     projects: Project[]
@@ -16,10 +16,12 @@ export function WorksPageClient({ projects }: WorksPageClientProps) {
             {/* Hero Section */}
             <section className="relative min-h-[80vh] md:min-h-screen bg-neutral-900 overflow-hidden">
                 {/* Video Background */}
-                <VideoBackground
-                    src={process.env.NEXT_PUBLIC_WORKS_VIDEO_URL!}
-                    poster="/images/works-poster.webp"
-                />
+                <div className="absolute inset-0 w-full h-full overflow-hidden">
+                    <CloudinaryVideo
+                        publicId={process.env.NEXT_PUBLIC_WORKS_VIDEO_ID!}
+                        className="w-full h-full object-cover"
+                    />
+                </div>
 
                 {/* Content */}
                 <div className="relative z-10 mx-auto max-w-[1620px] px-4 sm:px-6 md:px-8 pt-24 sm:pt-32 md:pt-48">
