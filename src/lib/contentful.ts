@@ -126,12 +126,10 @@ function mapRichText(richText: ContentfulRichText | undefined | null): string {
 
 export async function getProjects(): Promise<Project[]> {
     try {
-        console.log('Fetching projects from Contentful...')
         const response = await client.getEntries<IProject>({
             content_type: 'project',
             order: ['-sys.createdAt'],
         })
-        console.log('Contentful response:', response.items.length, 'items found')
         
         const projects = response.items.map((item, index) => ({
             id: index + 1,
@@ -173,10 +171,8 @@ export async function getProjects(): Promise<Project[]> {
             publishedAt: item.sys.createdAt,
         }))
         
-        console.log('Mapped projects:', projects.length)
         return projects
     } catch (error) {
-        console.error('Error in getProjects:', error)
         throw error
     }
 }

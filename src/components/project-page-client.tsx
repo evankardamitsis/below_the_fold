@@ -102,7 +102,7 @@ export function ProjectPageClient({ project }: { project: Project }) {
                         className="max-w-3xl"
                         style={{ y: titleY }}
                     >
-                        <h1 className="text-[3.5rem] md:text-[9.5rem] lg:text-[12.5rem] leading-[0.95] tracking-[-0.02em] font-bold text-white mt-4">
+                        <h1 className="text-[3.5rem] md:text-[9.5rem] lg:text-[10.5rem] leading-[0.95] tracking-[-0.02em] font-bold text-white mt-4">
                             {project.title}
                         </h1>
                     </motion.div>
@@ -147,9 +147,9 @@ export function ProjectPageClient({ project }: { project: Project }) {
                                     <Image
                                         src={project.clientLogo.url}
                                         alt={project.clientLogo.alternativeText || `${project.title} logo`}
-                                        width={240}
-                                        height={80}
-                                        className="h-16 sm:h-20 md:h-24 w-auto object-contain"
+                                        width={120}
+                                        height={40}
+                                        className="h-8 sm:h-10 md:h-12 w-auto object-contain"
                                     />
                                 </motion.div>
                             )}

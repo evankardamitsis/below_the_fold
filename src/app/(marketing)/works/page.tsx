@@ -4,10 +4,8 @@ import { WorksPageClient } from '@/components/works-page-client'
 export default async function WorksPage() {
     try {
         const projects = await getProjects()
-        console.log('Projects fetched:', projects.length)
 
         if (!projects || projects.length === 0) {
-            console.error('No projects found')
             return (
                 <div className="min-h-screen flex items-center justify-center">
                     <div className="text-center">
@@ -20,7 +18,6 @@ export default async function WorksPage() {
 
         return <WorksPageClient projects={projects} />
     } catch (error) {
-        console.error('Error fetching projects:', error)
         return (
             <div className="min-h-screen flex items-center justify-center">
                 <div className="text-center">
