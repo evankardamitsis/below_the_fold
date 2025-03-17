@@ -125,50 +125,60 @@ function mapRichText(richText: ContentfulRichText | undefined | null): string {
 }
 
 export async function getProjects(): Promise<Project[]> {
-    const response = await client.getEntries<IProject>({
-        content_type: 'project',
-        order: ['-sys.createdAt'],
-    })
-
-    return response.items.map((item, index) => ({
-        id: index + 1,
-        title: item.fields.title,
-        slug: item.fields.slug,
-        description: item.fields.description,
-        clientOverview: item.fields.clientOverview || '',
-        websiteUrl: item.fields.websiteUrl || '',
-        heroImage: mapContentfulImage(item.fields.heroImage),
-        clientLogo: mapContentfulImage(item.fields.clientLogo),
-        overviewVideo: (item.fields.overviewVideo as ContentfulVideo | undefined)?.fields.file.url.startsWith('//') 
-            ? `https:${(item.fields.overviewVideo as ContentfulVideo | undefined)?.fields.file.url}`
-            : (item.fields.overviewVideo as ContentfulVideo | undefined)?.fields.file.url || '',
-        detailImages: ((item.fields.detailImages || []) as ContentfulImage[]).map(mapContentfulImage).filter((img): img is ImageType => img !== null),
-        mobileImages: ((item.fields.mobileImages || []) as ContentfulImage[]).map(mapContentfulImage).filter((img): img is ImageType => img !== null),
-        designSystemImage: mapContentfulImage(item.fields.designSystemImage),
-        stats: ((item.fields.stats || []) as ContentfulStat[]).map((stat, index) => ({
+    try {
+        console.log('Fetching projects from Contentful...')
+        const response = await client.getEntries<IProject>({
+            content_type: 'project',
+            order: ['-sys.createdAt'],
+        })
+        console.log('Contentful response:', response.items.length, 'items found')
+        
+        const projects = response.items.map((item, index) => ({
             id: index + 1,
-            label: stat.fields.label,
-            value: mapRichText(stat.fields.value),
-            suffix: undefined,
-        })),
-        features: ((item.fields.features || []) as ContentfulFeature[]).map((feature, index) => ({
-            id: index + 1,
-            title: feature.fields.title,
-        })),
-        services: ((item.fields.services || []) as ContentfulService[]).map((service, index) => ({
-            id: index + 1,
-            name: service.fields.title,
-        })),
-        process: ((item.fields.process || []) as ContentfulProcess[]).map((process, index) => ({
-            id: index + 1,
-            step: `Step ${index + 1}`,
-            title: process.fields.title,
-            description: process.fields.description || '',
-        })),
-        createdAt: item.sys.createdAt,
-        updatedAt: item.sys.updatedAt,
-        publishedAt: item.sys.createdAt,
-    }))
+            title: item.fields.title,
+            slug: item.fields.slug,
+            description: item.fields.description,
+            clientOverview: item.fields.clientOverview || '',
+            websiteUrl: item.fields.websiteUrl || '',
+            heroImage: mapContentfulImage(item.fields.heroImage),
+            clientLogo: mapContentfulImage(item.fields.clientLogo),
+            overviewVideo: (item.fields.overviewVideo as ContentfulVideo | undefined)?.fields.file.url.startsWith('//') 
+                ? `https:${(item.fields.overviewVideo as ContentfulVideo | undefined)?.fields.file.url}`
+                : (item.fields.overviewVideo as ContentfulVideo | undefined)?.fields.file.url || '',
+            detailImages: ((item.fields.detailImages || []) as ContentfulImage[]).map(mapContentfulImage).filter((img): img is ImageType => img !== null),
+            mobileImages: ((item.fields.mobileImages || []) as ContentfulImage[]).map(mapContentfulImage).filter((img): img is ImageType => img !== null),
+            designSystemImage: mapContentfulImage(item.fields.designSystemImage),
+            stats: ((item.fields.stats || []) as ContentfulStat[]).map((stat, index) => ({
+                id: index + 1,
+                label: stat.fields.label,
+                value: mapRichText(stat.fields.value),
+                suffix: undefined,
+            })),
+            features: ((item.fields.features || []) as ContentfulFeature[]).map((feature, index) => ({
+                id: index + 1,
+                title: feature.fields.title,
+            })),
+            services: ((item.fields.services || []) as ContentfulService[]).map((service, index) => ({
+                id: index + 1,
+                name: service.fields.title,
+            })),
+            process: ((item.fields.process || []) as ContentfulProcess[]).map((process, index) => ({
+                id: index + 1,
+                step: `Step ${index + 1}`,
+                title: process.fields.title,
+                description: process.fields.description || '',
+            })),
+            createdAt: item.sys.createdAt,
+            updatedAt: item.sys.updatedAt,
+            publishedAt: item.sys.createdAt,
+        }))
+        
+        console.log('Mapped projects:', projects.length)
+        return projects
+    } catch (error) {
+        console.error('Error in getProjects:', error)
+        throw error
+    }
 }
 
 export async function getProjectBySlug(slug: string): Promise<Project | null> {
