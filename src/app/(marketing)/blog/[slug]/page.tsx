@@ -25,10 +25,8 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 
     return {
         title: `${post.title} | Below The Fold Blog`,
-        description: post.description,
         openGraph: {
             title: post.title,
-            description: post.description,
             type: 'article',
             url: canonicalUrl,
             images: post.heroImage ? [
@@ -43,7 +41,6 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
         twitter: {
             card: 'summary_large_image',
             title: post.title,
-            description: post.description,
             images: post.heroImage ? [post.heroImage.url] : [],
         },
         alternates: {

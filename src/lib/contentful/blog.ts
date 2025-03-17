@@ -1,5 +1,6 @@
 import { createClient, EntrySkeletonType, EntriesQueries } from 'contentful'
 import { BlogPost } from '@/types/blog'
+import { Document } from '@contentful/rich-text-types'
 
 if (!process.env.CONTENTFUL_SPACE_ID) {
     throw new Error('CONTENTFUL_SPACE_ID is not defined')
@@ -36,28 +37,17 @@ interface ContentfulAuthor {
     }
 }
 
-interface ContentfulTag {
-    fields: {
-        name: string
-    }
-}
-
 interface BlogPostFields extends EntrySkeletonType {
     contentTypeId: 'blogPost'
     fields: {
         title: string
         slug: string
-        description: string
-        content: {
-            data: Record<string, unknown>
-            content: unknown[]
-            nodeType: string
-        }
+        content: Document
         heroImage: ContentfulImage
         category: string
         date: string
         author?: ContentfulAuthor
-        tags?: ContentfulTag[]
+        tags?: string[]
     }
 }
 
@@ -80,7 +70,6 @@ export async function getAllBlogPosts(): Promise<BlogPost[]> {
             id: item.sys.id,
             title: item.fields.title,
             slug: item.fields.slug,
-            description: item.fields.description,
             content: item.fields.content,
             heroImage: mapContentfulImage(item.fields.heroImage),
             category: item.fields.category,
@@ -89,7 +78,7 @@ export async function getAllBlogPosts(): Promise<BlogPost[]> {
                 name: item.fields.author.fields.name,
                 avatar: mapContentfulImage(item.fields.author.fields.avatar)
             } : undefined,
-            tags: (item.fields.tags || []).map(tag => tag?.fields?.name || '').filter(Boolean)
+            tags: item.fields.tags || []
         }))
     } catch (error) {
         throw error
@@ -108,11 +97,11 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
     }
 
     const item = response.items[0] as { sys: { id: string }, fields: BlogPostFields['fields'] }
+
     return {
         id: item.sys.id,
         title: item.fields.title,
         slug: item.fields.slug,
-        description: item.fields.description,
         content: item.fields.content,
         heroImage: mapContentfulImage(item.fields.heroImage),
         category: item.fields.category,
@@ -121,6 +110,6 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
             name: item.fields.author.fields.name,
             avatar: mapContentfulImage(item.fields.author.fields.avatar)
         } : undefined,
-        tags: (item.fields.tags || []).map(tag => tag?.fields?.name || '').filter(Boolean)
+        tags: item.fields.tags || []
     }
 } 

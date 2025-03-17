@@ -3,12 +3,12 @@
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { BlogPost as BlogPostType } from '@/types/blog'
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
 interface BlogPostProps extends BlogPostType { }
 
 export function BlogPost({
     title,
-    description,
     content,
     heroImage,
     category,
@@ -45,9 +45,6 @@ export function BlogPost({
                 <h1 className="text-4xl md:text-5xl font-medium text-neutral-900 mb-4">
                     {title}
                 </h1>
-                <p className="text-xl text-neutral-600">
-                    {description}
-                </p>
                 {author && (
                     <div className="flex items-center gap-3 mt-6">
                         {author.avatar && (
@@ -68,10 +65,9 @@ export function BlogPost({
             </header>
 
             {/* Content */}
-            <div
-                className="prose prose-lg max-w-none"
-                dangerouslySetInnerHTML={{ __html: content }}
-            />
+            <div className="prose prose-lg max-w-none">
+                {documentToReactComponents(content)}
+            </div>
 
             {/* Tags */}
             {tags && tags.length > 0 && (

@@ -5,14 +5,13 @@ import Link from 'next/link'
 
 interface BlogCardProps {
     title: string
-    description: string
     image: string
     category: string
     date: string
     slug: string
 }
 
-export function BlogCard({ title, description, image, category, date, slug }: BlogCardProps) {
+export function BlogCard({ title, image, category, date, slug }: BlogCardProps) {
     return (
         <Link href={`/blog/${slug}`} className="group block">
             <article className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
@@ -32,9 +31,6 @@ export function BlogCard({ title, description, image, category, date, slug }: Bl
                     <h2 className="text-xl font-medium text-neutral-900 mb-2 group-hover:text-neutral-600 transition-colors duration-300">
                         {title}
                     </h2>
-                    <p className="text-neutral-600 line-clamp-2">
-                        {description}
-                    </p>
                 </div>
             </article>
         </Link>

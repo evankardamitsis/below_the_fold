@@ -21,7 +21,6 @@ export function BlogListing({ posts = [] }: BlogListingProps) {
                 >
                     <BlogCard
                         title={post.title}
-                        description={post.description}
                         image={post.heroImage?.url || ''}
                         category={post.category}
                         date={post.date}

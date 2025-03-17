@@ -1,13 +1,10 @@
+import { Document } from '@contentful/rich-text-types'
+
 export interface BlogPost {
     id: string
     title: string
     slug: string
-    description: string
-    content: {
-        data: Record<string, unknown>
-        content: unknown[]
-        nodeType: string
-    }
+    content: Document
     heroImage?: {
         url: string
         alt: string
