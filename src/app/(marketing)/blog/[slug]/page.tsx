@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import { getBlogPostBySlug } from '@/lib/contentful/blog'
+import { getBlogPostBySlug, getAllBlogPosts } from '@/lib/contentful/blog'
 import { notFound } from 'next/navigation'
 import { BlogPost } from '@/components/blog/blog-post'
 
@@ -51,17 +51,19 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
     const { slug } = await params
-    const post = await getBlogPostBySlug(slug)
+    const [currentPost, allPosts] = await Promise.all([
+        getBlogPostBySlug(slug),
+        getAllBlogPosts()
+    ])
 
-    if (!post) {
+    if (!currentPost) {
         notFound()
     }
 
     return (
-        <main className="pt-32 pb-24">
-            <div className="mx-auto max-w-[1620px] px-8">
-                <BlogPost {...post} />
-            </div>
-        </main>
+        <BlogPost
+            currentPost={currentPost}
+            posts={allPosts}
+        />
     )
 } 

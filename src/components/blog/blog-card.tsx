@@ -24,12 +24,13 @@ export function BlogCard({ title, heroImage, category, date, slug, index, conten
         year: 'numeric'
     })
 
-    // Extract first paragraph text from content
-    const excerpt = content.content[0]?.content
-        ?.filter((node): node is Text => node.nodeType === 'text')
-        ?.map(node => node.value)
-        ?.join(' ')
-        ?.slice(0, 150) + '...'
+    // Extract text from the start of the content
+    const excerpt = content.content
+        .flatMap(node => node.content || [])
+        .filter((node): node is Text => node.nodeType === 'text')
+        .map(node => node.value)
+        .join(' ')
+        .slice(0, 400) + '...'
 
     return (
         <motion.div

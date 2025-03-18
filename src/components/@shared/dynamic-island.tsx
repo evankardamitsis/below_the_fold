@@ -96,7 +96,7 @@ export function DynamicIsland() {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            className="absolute top-0 right-0 w-[38px] h-[38px] flex items-center justify-center text-white/60 hover:text-white hover:bg-white/5 transition-colors"
+                            className="absolute top-0 left-0 w-[38px] h-[38px] flex items-center justify-center text-white/60 hover:text-white hover:bg-white/5 transition-colors"
                             onClick={() => setIsExpanded(false)}
                         >
                             ✕

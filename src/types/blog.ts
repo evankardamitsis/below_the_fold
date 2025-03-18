@@ -20,4 +20,12 @@ export interface BlogPost {
         }
     }
     tags?: string[]
+    previousPost?: {
+        title: string
+        slug: string
+    }
+    nextPost?: {
+        title: string
+        slug: string
+    }
 } 
