@@ -16,6 +16,11 @@ export function BlogPost({
     author,
     tags
 }: BlogPostProps) {
+    const formattedDate = new Date(date).toLocaleDateString('en-US', {
+        month: 'long',
+        year: 'numeric'
+    })
+
     return (
         <article className="max-w-3xl mx-auto">
             {/* Hero Image */}
@@ -40,7 +45,7 @@ export function BlogPost({
             <header className="mb-8">
                 <div className="flex items-center gap-4 mb-4">
                     <span className="text-sm text-neutral-600">{category}</span>
-                    <span className="text-sm text-neutral-400">{date}</span>
+                    <span className="text-sm text-neutral-400">{formattedDate}</span>
                 </div>
                 <h1 className="text-4xl md:text-5xl font-medium text-neutral-900 mb-4">
                     {title}

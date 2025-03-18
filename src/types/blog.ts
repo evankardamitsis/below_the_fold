@@ -11,6 +11,7 @@ export interface BlogPost {
     }
     category: string
     date: string
+    excerpt?: string
     author?: {
         name: string
         avatar?: {

@@ -21,10 +21,12 @@ export function BlogListing({ posts = [] }: BlogListingProps) {
                 >
                     <BlogCard
                         title={post.title}
-                        image={post.heroImage?.url || ''}
+                        heroImage={post.heroImage}
                         category={post.category}
                         date={post.date}
                         slug={post.slug}
+                        index={index}
+                        content={post.content}
                     />
                 </motion.div>
             ))}
