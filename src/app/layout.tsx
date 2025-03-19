@@ -13,14 +13,14 @@ const satoshi = localFont({
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://belowthefold.gr'
 
 export const metadata: Metadata = {
-    title: "Below The Fold",
+    title: "Below The Fold | Ecommerce Design & Development Agency | Shopify Experts",
     description: "We build high-performing ecommerce experiences that drive growth.",
     metadataBase: new URL(baseUrl),
     openGraph: {
         type: 'website',
         locale: 'en_US',
         url: '/',
-        siteName: 'Below The Fold',
+        siteName: 'Below The Fold | Ecommerce Design & Development Agency | Shopify Experts',
         title: 'Below The Fold - High-Performing Ecommerce Experiences',
         description: 'We build high-performing ecommerce experiences that drive growth.',
         images: [
