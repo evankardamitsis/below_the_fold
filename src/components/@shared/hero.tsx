@@ -15,10 +15,10 @@ export function MarketingHero() {
                 <div className="flex flex-col lg:flex-row lg:justify-between mt-12 md:mt-8 lg:mt-12">
                     {/* Left Side - Main Heading */}
                     <div className="lg:max-w-[75%]">
-                        <h1 className="text-[2.5rem] sm:text-[4rem] md:text-[5rem] lg:text-[6rem] leading-[0.85] tracking-[-0.03em] font-bold text-neutral-900 flex flex-col">
-                            <span className="mb-3 md:mb-4">We make e-shops</span>
+                        <h1 className="text-[2.5rem] sm:text-[4rem] md:text-[5rem] lg:text-[5rem] leading-[0.85] tracking-[-0.03em] font-bold text-neutral-900 flex flex-col">
+                            <span className="mb-3 md:mb-4">We Build Shopify Stores.</span>
                             <div className="flex items-center gap-4 lg:gap-6 group">
-                                <span>that work for you</span>
+                                <span>We Grow Brands.</span>
                                 <div className="flex items-center justify-center w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] rounded-full bg-brand-purple scale-100 lg:scale-[1.2]">
                                     <span className="text-neutral-900 flex items-center scale-[1.2] lg:scale-[1.5]">
                                         <ArrowIcon />
@@ -56,7 +56,7 @@ export function MarketingHero() {
                     {/* Right Side - Description */}
                     <div className="mt-8 sm:mt-12 lg:mt-0 lg:max-w-[20%] flex flex-col justify-between py-4 lg:py-8">
                         <p className="text-neutral-600 text-[14px] lg:text-[15px] leading-relaxed tracking-wide font-medium uppercase">
-                            <span className="text-neutral-400">BELOW THE FOLD</span> is a <span className="text-[#96bf48]">Shopify Partner</span> agency specializing in e-commerce design and development. <span className="bg-neutral-800 text-white px-2 py-1">We help businesses grow by creating high-performing stores.</span>
+                            <span className="text-neutral-400">BELOW THE FOLD</span> is a <span className="text-[#96bf48]">Shopify Partner</span> agency. We design, build, and grow Shopify stores. We deliver results in 6 weeks and stay by your side as you scale.
                         </p>
                         <Link
                             href="/works"
