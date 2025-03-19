@@ -13,6 +13,30 @@ const satoshi = localFont({
 export const metadata: Metadata = {
     title: "Below The Fold",
     description: "We build high-performing ecommerce experiences that drive growth.",
+    metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://belowthefold.com'),
+    openGraph: {
+        type: 'website',
+        locale: 'en_US',
+        url: '/',
+        siteName: 'Below The Fold',
+        title: 'Below The Fold - High-Performing Ecommerce Experiences',
+        description: 'We build high-performing ecommerce experiences that drive growth.',
+        images: [
+            {
+                url: '/images/og-image.png',
+                width: 1200,
+                height: 630,
+                alt: 'Below The Fold - Ecommerce Design & Development Agency',
+            },
+        ],
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: 'Below The Fold - High-Performing Ecommerce Experiences',
+        description: 'We build high-performing ecommerce experiences that drive growth.',
+        images: ['/images/og-image.png'],
+        creator: '@belowthefold',
+    },
     icons: {
         icon: [
             {
@@ -26,7 +50,24 @@ export const metadata: Metadata = {
                 type: 'image/svg+xml',
             },
         ],
-    }
+    },
+    robots: {
+        index: true,
+        follow: true,
+        googleBot: {
+            index: true,
+            follow: true,
+            'max-video-preview': -1,
+            'max-image-preview': 'large',
+            'max-snippet': -1,
+        },
+    },
+    verification: {
+        google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+    },
+    alternates: {
+        canonical: '/',
+    },
 };
 
 export default function RootLayout({
