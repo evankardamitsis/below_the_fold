@@ -10,10 +10,12 @@ const satoshi = localFont({
     variable: '--font-satoshi',
 })
 
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://belowthefold.gr'
+
 export const metadata: Metadata = {
-    title: "Below The Fold | Ecommerce Design & Development Agency | Shopify Experts",
+    title: "Below The Fold",
     description: "We build high-performing ecommerce experiences that drive growth.",
-    metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://belowthefold.com'),
+    metadataBase: new URL(baseUrl),
     openGraph: {
         type: 'website',
         locale: 'en_US',
@@ -23,7 +25,7 @@ export const metadata: Metadata = {
         description: 'We build high-performing ecommerce experiences that drive growth.',
         images: [
             {
-                url: '/images/og-image.png',
+                url: `${baseUrl}/images/og-image.png`,
                 width: 1200,
                 height: 630,
                 alt: 'Below The Fold - Ecommerce Design & Development Agency',
@@ -34,7 +36,7 @@ export const metadata: Metadata = {
         card: 'summary_large_image',
         title: 'Below The Fold - High-Performing Ecommerce Experiences',
         description: 'We build high-performing ecommerce experiences that drive growth.',
-        images: ['/images/og-image.png'],
+        images: [`${baseUrl}/images/og-image.png`],
         creator: '@belowthefold',
     },
     icons: {
