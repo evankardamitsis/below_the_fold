@@ -83,8 +83,8 @@ export default function Footer() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                         >
-                            We make e-shops<br />
-                            that work for you.
+                            We build Shopify stores.<br />
+                            We grow brands.
                         </motion.h2>
 
                         {/* Consultation Text */}
