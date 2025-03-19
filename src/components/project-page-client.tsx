@@ -253,7 +253,7 @@ export function ProjectPageClient({ project }: { project: Project }) {
                 <section className="bg-page-lighter">
                     <div className="mx-auto max-w-[1620px] px-8 rounded-full py-24">
                         <motion.div
-                            className="w-full h-full]"
+                            className="w-full h-full"
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}

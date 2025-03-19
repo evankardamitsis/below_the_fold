@@ -10,8 +10,8 @@ export function MarketingNav() {
     const isLargeScreen = useMediaQuery('(min-width: 1024px)')
 
     return (
-        <div className="fixed top-0 left-0 right-0 z-50 flex justify-center">
-            <header className="w-full max-w-[1620px] bg-black/40 backdrop-blur-md border-b border-white/10 rounded-b-md transition-all duration-300">
+        <div className="fixed top-3 left-0 right-0 z-50 flex justify-center">
+            <header className="w-full max-w-[1620px] bg-black/40 backdrop-blur-md border-b border-white/10 rounded-full transition-all duration-300">
                 <div className="flex h-[72px] items-center justify-between px-4 sm:px-8">
                     {/* Left side - Logo */}
                     <div className="flex items-center">
@@ -55,7 +55,7 @@ export function MarketingNav() {
 
                         {/* Contact Button - Desktop only */}
                         <Link
-                            href="/contact"
+                            href="https://calendly.com/kardamitsis-e-belowthefold/30min"
                             target="_blank"
                             className="hidden md:inline-flex items-center justify-between px-4 sm:px-6 h-10 rounded text-[15px] font-medium bg-black hover:bg-neutral-800 text-white transition-colors duration-300 group"
                         >
