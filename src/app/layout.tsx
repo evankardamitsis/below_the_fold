@@ -14,7 +14,7 @@ const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://belowthefold.gr'
 
 export const metadata: Metadata = {
     title: "Below The Fold | Ecommerce Design & Development Agency | Shopify Experts",
-    description: "We build high-performing ecommerce experiences that drive growth.",
+    description: "Below The Fold are leading Shopify Experts. We specialize in Shopify design, development, and performance-driven e-commerce solutions.",
     metadataBase: new URL(baseUrl),
     openGraph: {
         type: 'website',
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
         url: '/',
         siteName: 'Below The Fold | Ecommerce Design & Development Agency | Shopify Experts',
         title: 'Below The Fold - High-Performing Ecommerce Experiences',
-        description: 'We build high-performing ecommerce experiences that drive growth.',
+        description: 'Below The Fold are leading Shopify Experts. We specialize in Shopify design, development, and performance-driven e-commerce solutions.',
         images: [
             {
                 url: `${baseUrl}/images/og-image.png`,
@@ -34,8 +34,8 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'Below The Fold - High-Performing Ecommerce Experiences',
-        description: 'We build high-performing ecommerce experiences that drive growth.',
+        title: "Below The Fold | Ecommerce Design & Development Agency | Shopify Experts",
+        description: "Below The Fold are leading Shopify Experts. We specialize in Shopify design, development, and performance-driven e-commerce solutions.",
         images: [`${baseUrl}/images/og-image.png`],
         creator: '@belowthefold',
     },
