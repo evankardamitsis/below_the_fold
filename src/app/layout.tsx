@@ -21,7 +21,7 @@ export const metadata: Metadata = {
         locale: 'en_US',
         url: '/',
         siteName: 'Below The Fold | Ecommerce Design & Development Agency | Shopify Experts',
-        title: 'Below The Fold - High-Performing Ecommerce Experiences',
+        title: 'Below The Fold | Ecommerce Design & Development Agency | Shopify Experts',
         description: 'Below The Fold are leading Shopify Experts. We specialize in Shopify design, development, and performance-driven e-commerce solutions.',
         images: [
             {
