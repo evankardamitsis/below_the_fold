@@ -59,11 +59,11 @@ export function MarketingHero() {
                             <span className="text-neutral-400">BELOW THE FOLD</span> is a <span className="text-[#96bf48]">Shopify Partner</span> agency. We design, build, and grow Shopify stores. We deliver results in 6 weeks and stay by your side as you scale.
                         </p>
                         <Link
-                            href="/works"
+                            href="/process"
                             className="text-[14px] lg:text-[15px] text-neutral-900 hover:opacity-70 transition-opacity inline-flex items-center group mt-6"
                         >
                             <ExploreArrow />
-                            <span>Explore projects</span>
+                            <span>See how</span>
                         </Link>
                     </div>
                 </div>
