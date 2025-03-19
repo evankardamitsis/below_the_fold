@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { SERVICES } from '@/constants/services'
 import { ProjectBanner } from '@/components/ui/project-banner'
-import { ChevronDown, Plus } from 'lucide-react'
+import { Plus } from 'lucide-react'
 import { CloudinaryVideo } from '@/components/ui/cloudinary-video'
 
 // Services page displaying agency's service offerings
@@ -22,7 +22,7 @@ export default function ServicesPage() {
                 </div>
 
                 {/* Content */}
-                <div className="relative z-10 mx-auto max-w-[1620px] px-4 sm:px-6 md:px-8 pt-24 sm:pt-32 md:pt-48">
+                <div className="relative z-10 mx-auto max-w-[1620px] px-4 sm:px-6 md:px-8 h-full min-h-[80vh] md:min-h-screen flex flex-col justify-end md:justify-start pt-24 sm:pt-32 md:pt-48 pb-12 md:pb-0">
                     {/* Content Card */}
                     <div className="bg-neutral-900/30 backdrop-blur-sm rounded-xl lg:rounded-2xl p-6 sm:p-8 md:p-12 w-full sm:max-w-[90%]">
                         {/* Small Label */}
@@ -97,8 +97,8 @@ export default function ServicesPage() {
                                                     <h4 className="text-[1.125rem] sm:text-[1.25rem] md:text-[1.5rem] font-medium group-hover:text-white transition-colors duration-200">
                                                         {item.name}
                                                     </h4>
-                                                    {/* Mobile/Tablet Indicator */}
-                                                    <div className="sm:hidden flex items-center gap-2">
+                                                    {/* Mobile Indicator */}
+                                                    <div className="sm:hidden flex items-center">
                                                         <Plus className="w-4 h-4 text-white/40 group-hover:text-white/60 transition-all duration-200 group-hover:translate-y-0.5" />
                                                     </div>
                                                 </div>
@@ -141,9 +141,15 @@ export default function ServicesPage() {
                                             className="group relative border-t border-black/10 transition-all duration-200"
                                         >
                                             <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between py-4 sm:py-5 md:py-6 px-3 sm:px-6 md:px-12 group-hover:bg-neutral-900 gap-2 sm:gap-4">
-                                                <h4 className="text-[1.125rem] sm:text-[1.25rem] md:text-[1.5rem] font-medium group-hover:text-white transition-colors duration-200">
-                                                    {item.name}
-                                                </h4>
+                                                <div className="flex items-center justify-between w-full sm:w-auto">
+                                                    <h4 className="text-[1.125rem] sm:text-[1.25rem] md:text-[1.5rem] font-medium group-hover:text-white transition-colors duration-200">
+                                                        {item.name}
+                                                    </h4>
+                                                    {/* Mobile Indicator */}
+                                                    <div className="sm:hidden flex items-center">
+                                                        <Plus className="w-4 h-4 text-black/40 group-hover:text-white/60 transition-all duration-200 group-hover:translate-y-0.5" />
+                                                    </div>
+                                                </div>
                                                 <div className="opacity-0 group-hover:opacity-100 transition-all duration-200">
                                                     <p className="text-[13px] sm:text-[14px] md:text-[15px] text-white/80 max-w-[400px] leading-relaxed">
                                                         {item.description}
@@ -187,12 +193,9 @@ export default function ServicesPage() {
                                                     <h4 className="text-[1.125rem] sm:text-[1.25rem] md:text-[1.5rem] font-medium group-hover:text-white transition-colors duration-200">
                                                         {item.name}
                                                     </h4>
-                                                    {/* Mobile/Tablet Indicator */}
-                                                    <div className="sm:hidden flex items-center gap-2">
-                                                        <span className="text-[12px] text-white/40 group-hover:text-white/60 transition-colors duration-200">
-                                                            Tap to expand
-                                                        </span>
-                                                        <ChevronDown className="w-4 h-4 text-white/40 group-hover:text-white/60 transition-all duration-200 group-hover:translate-y-0.5" />
+                                                    {/* Mobile Indicator */}
+                                                    <div className="sm:hidden flex items-center">
+                                                        <Plus className="w-4 h-4 text-white/40 group-hover:text-white/60 transition-all duration-200 group-hover:translate-y-0.5" />
                                                     </div>
                                                 </div>
                                                 <div className="opacity-0 group-hover:opacity-100 transition-all duration-200">
@@ -234,9 +237,15 @@ export default function ServicesPage() {
                                             className="group relative border-t border-black/10 transition-all duration-200"
                                         >
                                             <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between py-4 sm:py-5 md:py-6 px-3 sm:px-6 md:px-12 group-hover:bg-neutral-900 gap-2 sm:gap-4">
-                                                <h4 className="text-[1.125rem] sm:text-[1.25rem] md:text-[1.5rem] font-medium group-hover:text-white transition-colors duration-200">
-                                                    {item.name}
-                                                </h4>
+                                                <div className="flex items-center justify-between w-full sm:w-auto">
+                                                    <h4 className="text-[1.125rem] sm:text-[1.25rem] md:text-[1.5rem] font-medium group-hover:text-white transition-colors duration-200">
+                                                        {item.name}
+                                                    </h4>
+                                                    {/* Mobile Indicator */}
+                                                    <div className="sm:hidden flex items-center">
+                                                        <Plus className="w-4 h-4 text-black/40 group-hover:text-white/60 transition-all duration-200 group-hover:translate-y-0.5" />
+                                                    </div>
+                                                </div>
                                                 <div className="opacity-0 group-hover:opacity-100 transition-all duration-200">
                                                     <p className="text-[13px] sm:text-[14px] md:text-[15px] text-white/80 max-w-[400px] leading-relaxed">
                                                         {item.description}

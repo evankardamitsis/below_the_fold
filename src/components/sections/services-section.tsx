@@ -13,10 +13,14 @@ export function ServicesSection() {
     const [isModalOpen, setIsModalOpen] = useState(false)
     const isMobile = useMediaQuery('(max-width: 1024px)')
 
-    // Set first service as active on mount for large screens
+    // Set first service as active on mount for large screens only
     useEffect(() => {
+        // Only set active service on desktop and when not mobile
         if (!isMobile) {
             setActiveService(SERVICES[0].title)
+        } else {
+            // Ensure no service is selected on mobile
+            setActiveService(null)
         }
     }, [isMobile])
 
@@ -35,7 +39,7 @@ export function ServicesSection() {
 
     return (
         <section className="services-section relative py-12 bg-page-light overflow-hidden">
-            <div className="relative mx-auto max-w-[1620px] px-8">
+            <div className="relative mx-auto max-w-[1620px] px-4 sm:px-6 md:px-8">
                 {/* Header */}
                 <div className="mb-16">
                     <h2 className="text-[2rem] font-bold mb-4">SERVICES</h2>
@@ -44,9 +48,9 @@ export function ServicesSection() {
                     </p>
                 </div>
 
-                <div className="flex justify-between items-start gap-24">
+                <div className="flex flex-col lg:flex-row justify-between items-start gap-8 lg:gap-24">
                     {/* Left side - Service Categories */}
-                    <div className="w-1/2 flex flex-col">
+                    <div className="w-full lg:w-1/2 flex flex-col">
                         <div className="flex-1">
                             {SERVICES.map((service) => (
                                 <div
@@ -69,8 +73,7 @@ export function ServicesSection() {
                                         }}
                                     />
 
-                                    <h3 className={`relative text-[3rem] md:text-[4rem] lg:text-[6rem] leading-[1.1] font-bold px-4 py-2 transition-colors duration-500 ${activeService === service.title ? 'text-white' : 'text-neutral-900'
-                                        }`}>
+                                    <h3 className={`relative text-[2.5rem] sm:text-[3rem] md:text-[4rem] lg:text-[6rem] leading-[1.1] font-bold px-4 py-2 transition-colors duration-500 ${activeService === service.title ? 'text-white' : 'text-neutral-900'}`}>
                                         {service.title}
                                     </h3>
                                 </div>
@@ -88,7 +91,7 @@ export function ServicesSection() {
 
                     {/* Right side - Images and Details */}
                     <div
-                        className="w-1/2 relative h-[600px] services-right-area"
+                        className="w-full lg:w-1/2 relative hidden lg:block h-[600px] services-right-area"
                         data-active={!!activeService}
                     >
                         {/* Background Images */}

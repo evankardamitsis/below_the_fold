@@ -9,7 +9,7 @@ import { CloudinaryVideo } from '@/components/ui/cloudinary-video'
 
 export function MarketingHero() {
     return (
-        <section className="relative min-h-screen bg-page-light pb-24">
+        <section className="relative min-h-screen bg-page-light">
             <div className="mx-auto max-w-[1620px] px-4 sm:px-6 lg:px-8 pt-20 md:pt-24">
                 {/* Main Content */}
                 <div className="flex flex-col lg:flex-row lg:justify-between mt-12 md:mt-8 lg:mt-12">
@@ -73,7 +73,7 @@ export function MarketingHero() {
 
                 {/* Video Section */}
                 <div className="relative mt-12 md:mt-16 lg:mt-20">
-                    <div className="relative w-full max-w-[1620px] h-[80vh] mx-auto rounded-2xl overflow-hidden">
+                    <div className="relative w-full max-w-[1620px] h-[30vh] md:h-[70vh] lg:h-[100vh] mx-auto rounded-2xl overflow-hidden">
                         <CloudinaryVideo
                             publicId={process.env.NEXT_PUBLIC_HERO_VIDEO_ID!}
                             className="w-full rounded-2xl"

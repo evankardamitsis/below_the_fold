@@ -24,7 +24,7 @@ export function WorksPageClient({ projects }: WorksPageClientProps) {
                 </div>
 
                 {/* Content */}
-                <div className="relative z-10 mx-auto max-w-[1620px] px-4 sm:px-6 md:px-8 pt-24 sm:pt-32 md:pt-48">
+                <div className="relative z-10 mx-auto max-w-[1620px] px-4 sm:px-6 md:px-8 h-full min-h-[80vh] md:min-h-screen flex flex-col justify-end md:justify-start pt-24 sm:pt-32 md:pt-48 pb-12 md:pb-0">
                     {/* Content Card */}
                     <div className="bg-neutral-900/30 backdrop-blur-sm rounded-xl lg:rounded-2xl p-6 sm:p-8 md:p-12 w-full sm:max-w-[90%]">
                         <motion.p
