@@ -11,6 +11,7 @@ const NAVIGATION_ITEMS = [
     { label: 'Services', href: '/services' },
     { label: 'Process', href: '/process' },
     { label: 'Works', href: '/works' },
+    { label: 'Pricing', href: '/pricing' },
     { label: 'Blog', href: '/blog' },
     { label: 'Contact', href: '/contact' },
 ]

@@ -12,8 +12,9 @@ import Image from 'next/image'
 
 const FOOTER_LINKS = [
     { label: 'Services', href: '/services' },
-    { label: 'Works', href: '/works' },
     { label: 'Process', href: '/process' },
+    { label: 'Works', href: '/works' },
+    { label: 'Pricing', href: '/pricing' },
     { label: 'Blog', href: '/blog' },
     { label: 'Contact', href: '/contact' },
 ]
