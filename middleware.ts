@@ -13,17 +13,16 @@ export function middleware(request: NextRequest) {
   
   // Handle CRO subdomain
   if (hostname === 'cro.belowthefold.gr') {
-    // Rewrite all paths on the CRO subdomain to the landing page
-    url.pathname = '/subdomains/cro/conversion-boost-sprint'
+    // Keep the /cro path structure but ensure we're on the subdomain
+    if (!url.pathname.startsWith('/cro')) {
+      url.pathname = '/cro' + (url.pathname === '/' ? '' : url.pathname)
+    }
     return NextResponse.rewrite(url)
   }
   
   // Block access to subdomain content from main domain
-  if (hostname === 'belowthefold.gr' && (
-    url.pathname.startsWith('/cro') || 
-    url.pathname.startsWith('/subdomains/cro')
-  )) {
-    return NextResponse.redirect(new URL('https://cro.belowthefold.gr', request.url))
+  if (hostname === 'belowthefold.gr' && url.pathname.startsWith('/cro')) {
+    return NextResponse.redirect(new URL('https://cro.belowthefold.gr' + url.pathname, request.url))
   }
 
   return NextResponse.next()
