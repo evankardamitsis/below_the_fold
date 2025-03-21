@@ -1,8 +1,13 @@
 import { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import localFont from 'next/font/local'
 import '@/styles/globals.css'
 
-const inter = Inter({ subsets: ['latin'] })
+// Satoshi font family
+const satoshi = localFont({
+    src: '../../fonts/Satoshi-Variable.woff2',
+    variable: '--font-satoshi',
+})
+
 
 export const metadata: Metadata = {
     metadataBase: new URL('https://cro.belowthefold.gr'),
@@ -25,7 +30,7 @@ export default function SubdomainLayout({
 }) {
     return (
         <html lang="en" className="h-full scroll-smooth">
-            <body className={`${inter.className} h-full bg-neutral-900`}>
+            <body className={`${satoshi.className} h-full bg-neutral-900`}>
                 <header className="fixed top-0 left-0 right-0 z-50 bg-neutral-900/80 backdrop-blur-sm border-b border-white/10">
                     <div className="mx-auto max-w-[1620px] px-4 sm:px-6 md:px-8 h-16 flex items-center justify-between">
                         <a

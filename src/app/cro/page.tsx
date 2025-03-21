@@ -1,10 +1,28 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
+import { useState } from 'react'
 
 export default function ConversionBoostSprintPage() {
+    const [activeQuestion, setActiveQuestion] = useState<number | null>(0)
+
+    const faqQuestions = [
+        {
+            question: 'What exactly is the Conversion Boost Sprint?',
+            answer: "It's a focused, 4-day intensive process specifically designed for Shopify stores. We combine data analysis, design improvements, and development to deliver measurable results — not just another audit report."
+        },
+        {
+            question: 'How long does it take to see results?',
+            answer: "You'll see the first improvements within the 4-day sprint period. We don't do endless audits — we focus on quick, high-impact changes that can boost your conversion rates immediately."
+        },
+        {
+            question: 'What happens after the sprint?',
+            answer: 'You can continue optimizing through our Revenue Booster Retainer program, where we provide ongoing CRO support, or take the insights and roadmap we provide to implement future improvements on your own.'
+        }
+    ]
+
     return (
         <main className="relative">
             {/* Hero Section */}
@@ -30,93 +48,6 @@ export default function ConversionBoostSprintPage() {
                 </div>
             </section>
 
-            {/* Why Conversion Optimization Matters */}
-            <section className="py-24 bg-neutral-900 relative overflow-hidden">
-                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-purple/20 to-transparent" />
-                <div className="mx-auto max-w-[1620px] px-4 sm:px-6 md:px-8 relative z-10">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="max-w-3xl"
-                    >
-                        <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 leading-tight">
-                            Why Conversion Optimization Matters
-                        </h2>
-                        <p className="text-2xl text-white/90 mb-6 leading-relaxed">
-                            You&apos;re already driving traffic.<br />
-                            But how much of that traffic actually buys?
-                        </p>
-                        <p className="text-lg text-white/80 mb-8 leading-relaxed">
-                            Even small friction points — a clunky product page, a confusing checkout, poor mobile UX — can cost you thousands in missed revenue.
-                        </p>
-                        <p className="text-lg text-white/90 mb-4 leading-relaxed">
-                            At <span className="font-bold text-brand-purple">belowthefold</span>, we specialize in helping brands remove those blockers and turn more visitors into paying customers.
-                        </p>
-                        <p className="text-2xl font-bold text-brand-purple">
-                            Fast.
-                        </p>
-                    </motion.div>
-                </div>
-            </section>
-
-            {/* What's the Conversion Boost Sprint? */}
-            <section className="py-24 bg-page-light relative">
-                <div className="mx-auto max-w-[1620px] px-4 sm:px-6 md:px-8 relative z-10">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="max-w-3xl"
-                    >
-                        <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 mb-8 leading-tight">
-                            What&apos;s the Conversion Boost Sprint?
-                        </h2>
-                        <p className="text-xl text-neutral-900/90 mb-8 leading-relaxed">
-                            A no-nonsense, 4-day intensive process built specifically for Shopify stores.
-                        </p>
-                        <div className="space-y-4 text-lg text-neutral-900/80 leading-relaxed">
-                            <p>We don&apos;t do endless audits and long reports you&apos;ll never act on.</p>
-                            <p>Instead, we combine data, design, and dev expertise to deliver real, measurable results in just 4 days.</p>
-                        </div>
-                    </motion.div>
-                </div>
-            </section>
-
-            {/* Who's It For */}
-            <section className="py-24 bg-neutral-900 relative">
-                <div className="mx-auto max-w-[1620px] px-4 sm:px-6 md:px-8 relative z-10">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                    >
-                        <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-12 leading-tight">
-                            Who&apos;s It For
-                        </h2>
-                        <div className="grid md:grid-cols-3 gap-8">
-                            {[
-                                'Shopify brands already driving solid traffic, but struggling to convert.',
-                                'Stores with high cart abandonment, low average order value, or plateauing sales.',
-                                'Brands ready to move fast and see improvements immediately.'
-                            ].map((item, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: index * 0.1 }}
-                                    whileHover={{ y: -5 }}
-                                    className="bg-white/10 backdrop-blur p-8 rounded-lg border border-white/10 hover:border-brand-purple/50 transition-all duration-300 shadow-lg hover:shadow-xl"
-                                >
-                                    <p className="text-lg text-white/90 leading-relaxed">{item}</p>
-                                </motion.div>
-                            ))}
-                        </div>
-                    </motion.div>
-                </div>
-            </section>
-
             {/* Our 4-Day Process */}
             <section className="py-24 bg-page-light relative">
                 <div className="mx-auto max-w-[1620px] px-4 sm:px-6 md:px-8 relative z-10">
@@ -125,9 +56,10 @@ export default function ConversionBoostSprintPage() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                     >
-                        <h2 className="text-3xl md:text-4xl font-bold text-center text-neutral-900 mb-12 leading-tight">
+                        <h2 className="text-3xl md:text-4xl font-bold text-center text-neutral-900 mb-4 leading-tight">
                             Our 4-Day Process
                         </h2>
+                        <p className="text-xl text-neutral-800 text-center mb-6 leading-relaxed">A no-nonsense, 4-day intensive process built specifically for Shopify stores.</p>
                         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                             {[
                                 {
@@ -186,6 +118,87 @@ export default function ConversionBoostSprintPage() {
                                             <li key={i} className="text-neutral-400 text-sm leading-relaxed">{item}</li>
                                         ))}
                                     </ul>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </motion.div>
+                </div>
+            </section>
+
+            {/* Why Conversion Optimization Matters */}
+            <section className="py-24 bg-neutral-900 relative overflow-hidden">
+                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-purple/20 to-transparent" />
+                <div className="mx-auto max-w-[1620px] px-4 sm:px-6 md:px-8 relative z-10">
+                    <div className="grid lg:grid-cols-2 gap-12 items-center">
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            className="max-w-3xl"
+                        >
+                            <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 leading-tight">
+                                Why Conversion Optimization Matters
+                            </h2>
+                            <p className="text-2xl text-white/90 mb-6 leading-relaxed">
+                                You&apos;re already driving traffic.<br />
+                                But how much of that traffic actually buys?
+                            </p>
+                            <p className="text-lg text-white/80 mb-8 leading-relaxed">
+                                Even small friction points — a clunky product page, a confusing checkout, poor mobile UX — can cost you thousands in missed revenue.
+                            </p>
+                            <p className="text-lg text-white/90 mb-4 leading-relaxed">
+                                At <span className="font-bold text-brand-purple">belowthefold</span>, we specialize in helping brands remove those blockers and turn more visitors into paying customers.
+                            </p>
+                            <p className="text-2xl font-bold text-brand-purple">
+                                Fast.
+                            </p>
+                        </motion.div>
+                        <motion.div
+                            initial={{ opacity: 0, x: 20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            className="relative"
+                        >
+                            <Image
+                                src="/images/conversion-illustration.svg"
+                                alt="Conversion Rate Optimization Illustration"
+                                width={500}
+                                height={400}
+                                className="w-full h-auto"
+                                priority
+                            />
+                        </motion.div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Who's It For */}
+            <section className="py-24 bg-page-light relative">
+                <div className="mx-auto max-w-[1620px] px-4 sm:px-6 md:px-8 relative z-10">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                    >
+                        <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 text-center mb-12 leading-tight">
+                            Who&apos;s It For
+                        </h2>
+                        <div className="grid md:grid-cols-3 gap-8">
+                            {[
+                                'Shopify brands already driving solid traffic, but struggling to convert.',
+                                'Stores with high cart abandonment, low average order value, or plateauing sales.',
+                                'Brands ready to move fast and see improvements immediately.'
+                            ].map((item, index) => (
+                                <motion.div
+                                    key={index}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: index * 0.1 }}
+                                    whileHover={{ y: -5 }}
+                                    className="bg-neutral-900 backdrop-blur p-8 rounded-lg border border-white/10 hover:border-brand-purple/50 transition-all duration-300 shadow-lg hover:shadow-xl"
+                                >
+                                    <p className="text-lg text-white leading-relaxed">{item}</p>
                                 </motion.div>
                             ))}
                         </div>
@@ -351,6 +364,60 @@ export default function ConversionBoostSprintPage() {
                                     </Link>
                                 </motion.div>
                             </div>
+                        </div>
+                    </motion.div>
+                </div>
+            </section>
+
+            {/* FAQ */}
+            <section className="py-24 bg-page-light relative">
+                <div className="mx-auto max-w-[1620px] px-4 sm:px-6 md:px-8 relative z-10">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="max-w-3xl mx-auto"
+                    >
+                        <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 mb-12 leading-tight text-center">
+                            Frequently Asked Questions
+                        </h2>
+                        <div className="space-y-4">
+                            {faqQuestions.map((faq, index) => (
+                                <motion.div
+                                    key={index}
+                                    initial={false}
+                                    className="border border-neutral-200 rounded-lg overflow-hidden"
+                                >
+                                    <button
+                                        onClick={() => setActiveQuestion(activeQuestion === index ? null : index)}
+                                        className="w-full px-6 py-4 flex items-center justify-between text-left bg-white hover:bg-neutral-50 transition-colors duration-200"
+                                    >
+                                        <h3 className="text-lg font-semibold text-neutral-900">
+                                            {faq.question}
+                                        </h3>
+                                        <span className={`transform transition-transform duration-200 ${activeQuestion === index ? 'rotate-180' : ''}`}>
+                                            ↓
+                                        </span>
+                                    </button>
+                                    <AnimatePresence>
+                                        {activeQuestion === index && (
+                                            <motion.div
+                                                initial={{ height: 0, opacity: 0 }}
+                                                animate={{ height: 'auto', opacity: 1 }}
+                                                exit={{ height: 0, opacity: 0 }}
+                                                transition={{ duration: 0.2 }}
+                                                className="overflow-hidden"
+                                            >
+                                                <div className="px-6 py-4 bg-white border-t border-neutral-200">
+                                                    <p className="text-neutral-700 leading-relaxed">
+                                                        {faq.answer}
+                                                    </p>
+                                                </div>
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+                                </motion.div>
+                            ))}
                         </div>
                     </motion.div>
                 </div>
