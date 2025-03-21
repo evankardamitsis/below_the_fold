@@ -10,7 +10,7 @@ const PRICING_TIERS = [
         name: '🚀 Launch',
         subtitle: 'For brands ready to start strong.',
         tag: 'Popular',
-        price: '5K',
+        price: '5K+',
         description: 'using modified premium theme',
         features: [
             'Complete Store Redesign',
@@ -27,7 +27,7 @@ const PRICING_TIERS = [
         name: '📈 Growth',
         subtitle: 'For scaling businesses',
         tag: 'Premium',
-        price: '25k',
+        price: '25k+',
         description: 'bespoke Shopify theme',
         features: [
             'Complete Store Redesign',
