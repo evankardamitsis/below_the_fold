@@ -12,7 +12,8 @@ export default {
                 ring: "hsl(var(--ring))",
                 background: "hsl(var(--background))",
                 page: {
-                    light: '#EBEBEB',
+                    light: '#f8fafc',
+                    dark: '#111827',
                     lighter: '#F5F5F5'
                 },
                 brand: {
