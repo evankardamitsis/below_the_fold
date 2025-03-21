@@ -34,22 +34,6 @@ const nextConfig = {
       },
     ],
   },
-  async rewrites() {
-    return {
-      beforeFiles: [
-        {
-          source: "/:path*",
-          has: [
-            {
-              type: "host",
-              value: "cro.belowthefold.gr",
-            },
-          ],
-          destination: "/subdomains/cro/:path*",
-        },
-      ],
-    };
-  },
 };
 
 module.exports = nextConfig;

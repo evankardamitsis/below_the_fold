@@ -8,7 +8,8 @@ export function middleware(request: NextRequest) {
   if (hostname?.includes('cro.belowthefold.gr')) {
     // Rewrite the URL to the subdomains folder
     const url = request.nextUrl.clone()
-    url.pathname = `/subdomains/cro${url.pathname}`
+    const pathname = url.pathname === '/' ? '/conversion-boost-sprint' : url.pathname
+    url.pathname = `/subdomains/cro${pathname}`
     return NextResponse.rewrite(url)
   }
 
