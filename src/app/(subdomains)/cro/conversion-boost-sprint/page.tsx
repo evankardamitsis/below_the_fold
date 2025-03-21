@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Link from 'next/link'
 
 export default function ConversionBoostSprintPage() {
     return (
@@ -16,18 +17,21 @@ export default function ConversionBoostSprintPage() {
                         <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto leading-relaxed">
                             A focused, intensive process designed to identify where your Shopify store leaks revenue — and fix it fast.
                         </p>
-                        <a
-                            href="#contact"
-                            className="inline-flex items-center justify-center px-8 h-12 bg-white text-black rounded-lg text-[15px] font-medium hover:bg-neutral-100 transition-all duration-300 shadow-lg hover:shadow-xl"
+                        <Link
+                            href="https://calendly.com/kardamitsis-e-belowthefold/30min"
+                            target="_blank"
+                            className="inline-flex items-center justify-between px-6 h-12 bg-white border border-white/20 rounded text-[15px] font-medium text-neutral-900 transition-colors duration-300 group cursor-pointer"
                         >
-                            Book Your Free CRO Discovery Call
-                        </a>
+                            Book your free CRO Discovery Call
+                            <span className="ml-2 opacity-0 group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all duration-300">→</span>
+                        </Link>
                     </div>
                 </div>
             </section>
 
             {/* Why Conversion Optimization Matters */}
             <section className="py-24 bg-neutral-900 relative overflow-hidden">
+                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-purple/20 to-transparent" />
                 <div className="mx-auto max-w-[1620px] px-4 sm:px-6 md:px-8 relative z-10">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -190,6 +194,7 @@ export default function ConversionBoostSprintPage() {
 
             {/* Revenue Booster Retainer */}
             <section className="py-24 bg-neutral-900 relative overflow-hidden">
+                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-purple/20 to-transparent" />
                 <div className="mx-auto max-w-[1620px] px-4 sm:px-6 md:px-8">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -273,6 +278,7 @@ export default function ConversionBoostSprintPage() {
 
             {/* Why Choose Our Sprint & Results */}
             <section className="py-24 bg-neutral-900 relative">
+                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-purple/20 to-transparent" />
                 <div className="mx-auto max-w-[1620px] px-4 sm:px-6 md:px-8">
                     <div className="grid md:grid-cols-2 gap-16">
                         {/* Why Choose */}
@@ -330,6 +336,7 @@ export default function ConversionBoostSprintPage() {
 
             {/* Testimonial */}
             <section className="py-24 bg-neutral-900 relative">
+                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-purple/20 to-transparent" />
                 <div className="mx-auto max-w-[1620px] px-4 sm:px-6 md:px-8">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -363,12 +370,14 @@ export default function ConversionBoostSprintPage() {
                         <p className="text-xl text-white/90 mb-8 leading-relaxed">
                             Let&apos;s boost your store&apos;s conversions — in just 4 days.
                         </p>
-                        <a
-                            href="#contact"
-                            className="inline-flex items-center justify-center px-8 h-12 bg-white text-black rounded-lg text-[15px] font-medium hover:bg-neutral-100 transition-all duration-300 shadow-lg hover:shadow-xl"
+                        <Link
+                            href="https://calendly.com/kardamitsis-e-belowthefold/30min"
+                            target="_blank"
+                            className="inline-flex items-center justify-between px-6 h-12 bg-white border border-white/20 rounded text-[15px] font-medium text-neutral-900 transition-colors duration-300 group cursor-pointer"
                         >
-                            Book Your Free CRO Discovery Call
-                        </a>
+                            Book your free CRO Discovery Call
+                            <span className="ml-2 opacity-0 group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all duration-300">→</span>
+                        </Link>
                     </motion.div>
                 </div>
             </section>
