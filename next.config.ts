@@ -35,6 +35,13 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  // Enable strict mode for better development experience
+  reactStrictMode: true,
+  // Ensure proper routing
+  trailingSlash: false,
+  skipMiddlewareUrlNormalize: true,
+  // Configure external packages
+  serverExternalPackages: [],
 };
 
 export default nextConfig;
