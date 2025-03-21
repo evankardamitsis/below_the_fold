@@ -90,7 +90,7 @@ export default function ConversionBoostSprintPage() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                     >
-                        <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 leading-tight">
+                        <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-12 leading-tight">
                             Who&apos;s It For
                         </h2>
                         <div className="grid md:grid-cols-3 gap-8">
@@ -124,7 +124,7 @@ export default function ConversionBoostSprintPage() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                     >
-                        <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 mb-12 leading-tight">
+                        <h2 className="text-3xl md:text-4xl font-bold text-center text-neutral-900 mb-12 leading-tight">
                             Our 4-Day Process
                         </h2>
                         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -178,7 +178,7 @@ export default function ConversionBoostSprintPage() {
                                     whileHover={{ y: -5 }}
                                     className="bg-neutral-900 p-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
                                 >
-                                    <div className="text-brand-purple font-bold mb-2">{phase.day}</div>
+                                    <div className="text-brand-purple font-semibold mb-2">{phase.day}</div>
                                     <h3 className="text-xl font-bold text-white mb-4 leading-tight">{phase.title}</h3>
                                     <ul className="space-y-2">
                                         {phase.items.map((item, i) => (
@@ -188,6 +188,84 @@ export default function ConversionBoostSprintPage() {
                                 </motion.div>
                             ))}
                         </div>
+                    </motion.div>
+                </div>
+            </section>
+
+            {/* Why Choose Our Sprint & Results */}
+            <section className="py-24 bg-neutral-900 relative">
+                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-purple/20 to-transparent" />
+                <div className="mx-auto max-w-[1620px] px-4 sm:px-6 md:px-8">
+                    <div className="grid md:grid-cols-2 gap-16">
+                        {/* Why Choose */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                        >
+                            <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 leading-tight">
+                                Why Brands Choose Our CRO Sprint
+                            </h2>
+                            <ul className="space-y-4">
+                                {[
+                                    'Shopify-specific — no generalist fluff',
+                                    'Real implementation, not just reports',
+                                    'Collaborative & business goal-driven',
+                                    'Done in 4 days — no dragging it out'
+                                ].map((item, index) => (
+                                    <li key={index} className="flex items-start gap-3">
+                                        <span className="text-brand-purple">✔️</span>
+                                        <span className="text-white/90 leading-relaxed">{item}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </motion.div>
+
+                        {/* Results */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.2 }}
+                        >
+                            <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 leading-tight">
+                                What Kind of Results Can You Expect?
+                            </h2>
+                            <ul className="space-y-4">
+                                {[
+                                    'Higher conversion rates',
+                                    'Increased AOV',
+                                    'Reduced cart abandonment',
+                                    'Improved mobile experience',
+                                    'More revenue without more ad spend'
+                                ].map((item, index) => (
+                                    <li key={index} className="flex items-start gap-3">
+                                        <span className="text-brand-purple">✅</span>
+                                        <span className="text-white/90 leading-relaxed">{item}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </motion.div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Testimonial */}
+            <section className="py-24 bg-page-light relative">
+                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-purple/20 to-transparent" />
+                <div className="mx-auto max-w-[1620px] px-4 sm:px-6 md:px-8">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="max-w-3xl mx-auto text-center"
+                    >
+                        <p className="text-xl text-neutral-900 mb-6 leading-relaxed">
+                            &ldquo;We thought our traffic was solid, but we had no idea how much friction our product pages were causing. After the sprint, conversion rates jumped by 25%.&rdquo;
+                        </p>
+                        {/* <p className="text-white/80">
+                            – John Smith, Brand Name
+                        </p> */}
                     </motion.div>
                 </div>
             </section>
@@ -265,7 +343,7 @@ export default function ConversionBoostSprintPage() {
                                     <Link
                                         href="https://belowthefold.gr/pricing"
                                         target="_blank"
-                                        className="inline-flex items-center justify-center px-8 h-12 bg-white text-black rounded-lg text-[15px] font-medium hover:bg-neutral-100 transition-all duration-300 shadow-lg hover:shadow-xl group"
+                                        className="inline-flex items-center justify-center px-8 h-12 bg-white text-black rounded-lg text-[15px] font-medium hover:bg-neutral-100 transition-all duration-300 shadow-lg hover:shadow-xl group cursor-pointer"
                                     >
                                         Learn More About Our Retainer
                                         <span className="ml-2 transform translate-x-0 group-hover:translate-x-1 transition-transform duration-300">→</span>
@@ -273,84 +351,6 @@ export default function ConversionBoostSprintPage() {
                                 </motion.div>
                             </div>
                         </div>
-                    </motion.div>
-                </div>
-            </section>
-
-            {/* Why Choose Our Sprint & Results */}
-            <section className="py-24 bg-neutral-900 relative">
-                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-purple/20 to-transparent" />
-                <div className="mx-auto max-w-[1620px] px-4 sm:px-6 md:px-8">
-                    <div className="grid md:grid-cols-2 gap-16">
-                        {/* Why Choose */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                        >
-                            <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 leading-tight">
-                                Why Brands Choose Our CRO Sprint
-                            </h2>
-                            <ul className="space-y-4">
-                                {[
-                                    'Shopify-specific — no generalist fluff',
-                                    'Real implementation, not just reports',
-                                    'Collaborative & business goal-driven',
-                                    'Done in 4 days — no dragging it out'
-                                ].map((item, index) => (
-                                    <li key={index} className="flex items-start gap-3">
-                                        <span className="text-brand-purple">✔️</span>
-                                        <span className="text-white/90 leading-relaxed">{item}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </motion.div>
-
-                        {/* Results */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.2 }}
-                        >
-                            <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 leading-tight">
-                                What Kind of Results Can You Expect?
-                            </h2>
-                            <ul className="space-y-4">
-                                {[
-                                    'Higher conversion rates',
-                                    'Increased AOV',
-                                    'Reduced cart abandonment',
-                                    'Improved mobile experience',
-                                    'More revenue without more ad spend'
-                                ].map((item, index) => (
-                                    <li key={index} className="flex items-start gap-3">
-                                        <span className="text-brand-purple">✅</span>
-                                        <span className="text-white/90 leading-relaxed">{item}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </motion.div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Testimonial */}
-            <section className="py-24 bg-neutral-900 relative">
-                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-purple/20 to-transparent" />
-                <div className="mx-auto max-w-[1620px] px-4 sm:px-6 md:px-8">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="max-w-3xl mx-auto text-center"
-                    >
-                        <p className="text-xl text-white/90 mb-6 leading-relaxed">
-                            &ldquo;We thought our traffic was solid, but we had no idea how much friction our product pages were causing. After the sprint, conversion rates jumped by 25%.&rdquo;
-                        </p>
-                        {/* <p className="text-white/80">
-                            – John Smith, Brand Name
-                        </p> */}
                     </motion.div>
                 </div>
             </section>
