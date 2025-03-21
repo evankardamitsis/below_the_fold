@@ -1,24 +1,28 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
+// Helper to get the hostname without www.
+function getHostname(request: NextRequest) {
+  const hostname = request.headers.get('host') || ''
+  return hostname.replace(/^www\./, '')
+}
+
 export function middleware(request: NextRequest) {
-  const hostname = request.headers.get('host')
+  const hostname = getHostname(request)
+  const url = request.nextUrl.clone()
   
   // Handle CRO subdomain
-  if (hostname?.includes('cro.belowthefold.gr')) {
-    const url = request.nextUrl.clone()
-    
-    // Only allow specific paths for the subdomain
-    if (url.pathname === '/' || url.pathname.startsWith('/conversion-boost-sprint')) {
-      url.pathname = '/subdomains/cro/conversion-boost-sprint'
-      return NextResponse.rewrite(url)
-    }
-    
-    // Block all other paths on the subdomain
-    return new NextResponse(null, { status: 404 })
+  if (hostname === 'cro.belowthefold.gr') {
+    // All paths on the CRO subdomain should show the landing page
+    url.pathname = '/subdomains/cro'
+    return NextResponse.rewrite(url)
+  }
+  
+  // Block access to subdomain content from main domain
+  if (hostname === 'belowthefold.gr' && url.pathname.startsWith('/cro')) {
+    return NextResponse.redirect(new URL('https://cro.belowthefold.gr', request.url))
   }
 
-  // Continue with default behavior for main domain
   return NextResponse.next()
 }
 
