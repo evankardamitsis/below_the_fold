@@ -6,28 +6,16 @@ export function middleware(request: NextRequest) {
   
   // Handle CRO subdomain
   if (hostname?.includes('cro.belowthefold.gr')) {
-    // Rewrite the URL to the subdomains folder
     const url = request.nextUrl.clone()
     
-    // If it's the root path, redirect to the conversion boost sprint page
-    if (url.pathname === '/') {
+    // Only allow specific paths for the subdomain
+    if (url.pathname === '/' || url.pathname.startsWith('/conversion-boost-sprint')) {
       url.pathname = '/subdomains/cro/conversion-boost-sprint'
       return NextResponse.rewrite(url)
     }
     
-    // Allow navigation to main site by checking for specific paths
-    if (url.pathname.startsWith('/_next') || 
-        url.pathname.startsWith('/api') || 
-        url.pathname.startsWith('/static') ||
-        url.pathname.includes('belowthefold.gr')) {
-      return NextResponse.next()
-    }
-    
-    // For other paths, ensure they're under the subdomains/cro directory
-    if (!url.pathname.startsWith('/subdomains/cro/')) {
-      url.pathname = `/subdomains/cro${url.pathname}`
-      return NextResponse.rewrite(url)
-    }
+    // Block all other paths on the subdomain
+    return new NextResponse(null, { status: 404 })
   }
 
   // Continue with default behavior for main domain
