@@ -262,13 +262,14 @@ export default function ConversionBoostSprintPage() {
                                     viewport={{ once: true }}
                                     className="mt-8 text-center lg:text-left"
                                 >
-                                    <a
-                                        href="/pricing"
+                                    <Link
+                                        href="https://belowthefold.gr/pricing"
+                                        target="_blank"
                                         className="inline-flex items-center justify-center px-8 h-12 bg-white text-black rounded-lg text-[15px] font-medium hover:bg-neutral-100 transition-all duration-300 shadow-lg hover:shadow-xl group"
                                     >
                                         Learn More About Our Retainer
                                         <span className="ml-2 transform translate-x-0 group-hover:translate-x-1 transition-transform duration-300">→</span>
-                                    </a>
+                                    </Link>
                                 </motion.div>
                             </div>
                         </div>
