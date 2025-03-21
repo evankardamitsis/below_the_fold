@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function ConversionBoostSprintPage() {
     return (
@@ -382,6 +383,32 @@ export default function ConversionBoostSprintPage() {
                     </motion.div>
                 </div>
             </section>
+
+            {/* Footer */}
+            <footer className="py-6 bg-neutral-900 border-t border-white/10">
+                <div className="mx-auto max-w-[1620px] px-4 sm:px-6 md:px-8">
+                    <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <Link
+                            href="https://belowthefold.gr"
+                            className="hover:opacity-80 transition-opacity"
+                        >
+                            <Image
+                                src="/images/belowthefold_white.svg"
+                                alt="Below The Fold"
+                                width={85}
+                                height={11}
+                                className="h-4 w-auto cursor-pointer"
+                            />
+                        </Link>
+                        <a
+                            href="mailto:hello@belowthefold.gr"
+                            className="text-white/80 hover:text-brand-purple transition-colors cursor-pointer"
+                        >
+                            hello@belowthefold.gr
+                        </a>
+                    </div>
+                </div>
+            </footer>
         </main>
     )
 } 
