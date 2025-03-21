@@ -451,6 +451,37 @@ export default function PricingPage() {
                     </div>
                 </div>
             </section>
+
+
+            {/* CRO Sprint Promo */}
+            <section className="py-24 bg-page-light">
+                <div className="mx-auto max-w-[1620px] px-4 sm:px-6 md:px-8">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="max-w-3xl mx-auto bg-gradient-to-br from-brand-purple via-purple-600 to-purple-900 rounded-xl p-12 relative overflow-hidden"
+                    >
+                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0)_0%,rgba(0,0,0,0.4)_100%)]" />
+                        <div className="relative z-10 text-center">
+                            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">
+                                Not ready for a full retainer?<br />
+                                Start with a 4-day CRO sprint.
+                            </h2>
+                            <p className="text-xl text-white/90 mb-8 leading-relaxed">
+                                Transform your store&apos;s performance with our focused, intensive process. See measurable results in just 4 days.
+                            </p>
+                            <Link
+                                href="https://cro.belowthefold.gr"
+                                className="inline-flex items-center justify-between px-6 h-12 bg-white border border-white/20 rounded text-[15px] font-medium text-neutral-900 transition-colors duration-300 group cursor-pointer"
+                            >
+                                Learn More About Our CRO Sprint
+                                <span className="ml-2 opacity-0 group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all duration-300">→</span>
+                            </Link>
+                        </div>
+                    </motion.div>
+                </div>
+            </section>
         </>
     )
 } 
