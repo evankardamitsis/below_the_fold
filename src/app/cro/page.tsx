@@ -129,46 +129,29 @@ export default function ConversionBoostSprintPage() {
             <section className="py-24 bg-neutral-900 relative overflow-hidden">
                 <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-purple/20 to-transparent" />
                 <div className="mx-auto max-w-[1620px] px-4 sm:px-6 md:px-8 relative z-10">
-                    <div className="grid lg:grid-cols-2 gap-12 items-center">
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="max-w-3xl"
-                        >
-                            <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 leading-tight">
-                                Why Conversion Optimization Matters
-                            </h2>
-                            <p className="text-2xl text-white/90 mb-6 leading-relaxed">
-                                You&apos;re already driving traffic.<br />
-                                But how much of that traffic actually buys?
-                            </p>
-                            <p className="text-lg text-white/80 mb-8 leading-relaxed">
-                                Even small friction points — a clunky product page, a confusing checkout, poor mobile UX — can cost you thousands in missed revenue.
-                            </p>
-                            <p className="text-lg text-white/90 mb-4 leading-relaxed">
-                                At <span className="font-bold text-brand-purple">belowthefold</span>, we specialize in helping brands remove those blockers and turn more visitors into paying customers.
-                            </p>
-                            <p className="text-2xl font-bold text-brand-purple">
-                                Fast.
-                            </p>
-                        </motion.div>
-                        <motion.div
-                            initial={{ opacity: 0, x: 20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            className="relative"
-                        >
-                            <Image
-                                src="/images/conversion-illustration.svg"
-                                alt="Conversion Rate Optimization Illustration"
-                                width={500}
-                                height={400}
-                                className="w-full h-auto"
-                                priority
-                            />
-                        </motion.div>
-                    </div>
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="max-w-3xl mx-auto"
+                    >
+                        <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 leading-tight">
+                            Why Conversion Optimization Matters
+                        </h2>
+                        <p className="text-2xl text-white/90 mb-6 leading-relaxed">
+                            You&apos;re already driving traffic.<br />
+                            But how much of that traffic actually buys?
+                        </p>
+                        <p className="text-lg text-white/80 mb-8 leading-relaxed">
+                            Even small friction points — a clunky product page, a confusing checkout, poor mobile UX — can cost you thousands in missed revenue.
+                        </p>
+                        <p className="text-lg text-white/90 mb-4 leading-relaxed">
+                            At <span className="font-bold text-brand-purple">belowthefold</span>, we specialize in helping brands remove those blockers and turn more visitors into paying customers.
+                        </p>
+                        <p className="text-2xl font-bold text-brand-purple">
+                            Fast.
+                        </p>
+                    </motion.div>
                 </div>
             </section>
 
@@ -294,76 +277,73 @@ export default function ConversionBoostSprintPage() {
                         viewport={{ once: true }}
                         className="relative overflow-hidden"
                     >
-                        <div className="relative z-10 grid lg:grid-cols-2 gap-12 items-center">
-                            <div className="p-12">
-                                <motion.div
-                                    initial={{ opacity: 0, x: -20 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true }}
-                                >
-                                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">
-                                        Keep The Momentum Going
-                                    </h2>
-                                    <p className="text-xl text-white/90 mb-8 leading-relaxed">
-                                        Continue improving through our Revenue Booster Retainer — your dedicated CRO team, ready to drive ongoing growth.
-                                    </p>
-                                </motion.div>
-                            </div>
-                            <div className="lg:p-12">
-                                <motion.div
-                                    initial={{ opacity: 0, x: 20 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true }}
-                                    className="grid sm:grid-cols-2 gap-4"
-                                >
-                                    {[
-                                        {
-                                            title: 'Ongoing CRO',
-                                            description: 'Continuous optimization based on real data and user behavior'
-                                        },
-                                        {
-                                            title: 'Landing Pages',
-                                            description: 'High-converting pages for campaigns and product launches'
-                                        },
-                                        {
-                                            title: 'Dev Tweaks',
-                                            description: 'Quick technical improvements and feature additions'
-                                        },
-                                        {
-                                            title: 'Strategy',
-                                            description: 'Monthly planning and performance reviews'
-                                        }
-                                    ].map((feature, index) => (
-                                        <motion.div
-                                            key={index}
-                                            initial={{ opacity: 0, y: 20 }}
-                                            whileInView={{ opacity: 1, y: 0 }}
-                                            viewport={{ once: true }}
-                                            transition={{ delay: index * 0.1 }}
-                                            whileHover={{ scale: 1.02 }}
-                                            className="bg-white/10 backdrop-blur p-6 rounded-lg border border-white/10 hover:border-brand-purple/50 transition-all duration-300 shadow-lg hover:shadow-xl"
-                                        >
-                                            <h3 className="text-lg font-bold text-white mb-2 leading-tight">{feature.title}</h3>
-                                            <p className="text-sm text-white/80 leading-relaxed">{feature.description}</p>
-                                        </motion.div>
-                                    ))}
-                                </motion.div>
-                                <motion.div
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    className="mt-8 text-center lg:text-left"
-                                >
-                                    <Link
-                                        href="https://belowthefold.gr/pricing"
-                                        target="_blank"
-                                        className="inline-flex items-center justify-center px-8 h-12 bg-white text-black rounded-lg text-[15px] font-medium hover:bg-neutral-100 transition-all duration-300 shadow-lg hover:shadow-xl group cursor-pointer"
+                        <div className="relative z-10">
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                className="max-w-3xl mx-auto text-center mb-12"
+                            >
+                                <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">
+                                    Keep The Momentum Going
+                                </h2>
+                                <p className="text-xl text-white/90 mb-8 leading-relaxed">
+                                    Continue improving through our Revenue Booster Retainer — your dedicated CRO team, ready to drive ongoing growth.
+                                </p>
+                            </motion.div>
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                className="grid sm:grid-cols-2 gap-4 max-w-4xl mx-auto"
+                            >
+                                {[
+                                    {
+                                        title: 'Ongoing CRO',
+                                        description: 'Continuous optimization based on real data and user behavior'
+                                    },
+                                    {
+                                        title: 'Landing Pages',
+                                        description: 'High-converting pages for campaigns and product launches'
+                                    },
+                                    {
+                                        title: 'Dev Tweaks',
+                                        description: 'Quick technical improvements and feature additions'
+                                    },
+                                    {
+                                        title: 'Strategy',
+                                        description: 'Monthly planning and performance reviews'
+                                    }
+                                ].map((feature, index) => (
+                                    <motion.div
+                                        key={index}
+                                        initial={{ opacity: 0, y: 20 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: index * 0.1 }}
+                                        whileHover={{ scale: 1.02 }}
+                                        className="bg-white/10 backdrop-blur p-6 rounded-lg border border-white/10 hover:border-brand-purple/50 transition-all duration-300 shadow-lg hover:shadow-xl"
                                     >
-                                        Learn More About Our Retainer
-                                        <span className="ml-2 transform translate-x-0 group-hover:translate-x-1 transition-transform duration-300">→</span>
-                                    </Link>
-                                </motion.div>
-                            </div>
+                                        <h3 className="text-lg font-bold text-white mb-2 leading-tight">{feature.title}</h3>
+                                        <p className="text-sm text-white/80 leading-relaxed">{feature.description}</p>
+                                    </motion.div>
+                                ))}
+                            </motion.div>
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                className="mt-8 text-center"
+                            >
+                                <Link
+                                    href="https://belowthefold.gr/pricing"
+                                    target="_blank"
+                                    className="inline-flex items-center justify-center px-8 h-12 bg-white text-black rounded-lg text-[15px] font-medium hover:bg-neutral-100 transition-all duration-300 shadow-lg hover:shadow-xl group cursor-pointer"
+                                >
+                                    Learn More About Our Retainer
+                                    <span className="ml-2 transform translate-x-0 group-hover:translate-x-1 transition-transform duration-300">→</span>
+                                </Link>
+                            </motion.div>
                         </div>
                     </motion.div>
                 </div>
@@ -424,7 +404,7 @@ export default function ConversionBoostSprintPage() {
             </section>
 
             {/* Final CTA */}
-            <section className="py-24 bg-gradient-to-br from-brand-purple via-purple-600 to-purple-900 relative">
+            <section className="py-24 bg-gradient-to-br  from-brand-purple via-purple-600 to-purple-900 relative">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0)_0%,rgba(0,0,0,0.4)_100%)]" />
                 <div className="relative z-10 mx-auto max-w-[1620px] px-4 sm:px-6 md:px-8">
                     <motion.div
