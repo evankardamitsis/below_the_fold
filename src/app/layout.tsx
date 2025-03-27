@@ -6,6 +6,7 @@ import { Analytics } from "@vercel/analytics/react"
 import { ApolloScript } from '@/components/@shared/apollo-script'
 import { SilktideConsent } from '@/components/@shared/silktide-consent'
 import { GoogleTagManager } from '@/components/@shared/google-tag-manager'
+import { GoogleAnalytics } from '@/components/@shared/google-analytics'
 
 // Satoshi font family
 const satoshi = localFont({
@@ -84,6 +85,7 @@ export default function RootLayout({
         <html lang="en">
             <head>
                 <GoogleTagManager />
+                <GoogleAnalytics />
                 <SilktideConsent />
                 <ApolloScript />
             </head>
