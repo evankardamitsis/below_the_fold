@@ -7,6 +7,7 @@ import { ApolloScript } from '@/components/@shared/apollo-script'
 import { SilktideConsent } from '@/components/@shared/silktide-consent'
 import { GoogleTagManager } from '@/components/@shared/google-tag-manager'
 import { GoogleAnalytics } from '@/components/@shared/google-analytics'
+import { Hotjar } from '@/components/@shared/hotjar'
 
 // Satoshi font family
 const satoshi = localFont({
@@ -88,6 +89,7 @@ export default function RootLayout({
                 <GoogleAnalytics />
                 <SilktideConsent />
                 <ApolloScript />
+                <Hotjar />
             </head>
             <body className={`${satoshi.variable} font-sans antialiased`}>
                 {children}
