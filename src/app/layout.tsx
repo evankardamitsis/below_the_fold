@@ -4,7 +4,7 @@ import "./globals.css";
 import { AnimatedCursor } from '@/components/ui/animated-cursor'
 import { Analytics } from "@vercel/analytics/react"
 import { ApolloScript } from '@/components/@shared/apollo-script'
-import { UsercentricsScript } from '@/components/@shared/usercentrics-script'
+import { SilktideConsent } from '@/components/@shared/silktide-consent'
 
 // Satoshi font family
 const satoshi = localFont({
@@ -82,7 +82,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             <head>
-                <UsercentricsScript />
+                <SilktideConsent />
                 <ApolloScript />
             </head>
             <body className={`${satoshi.variable} font-sans antialiased`}>
