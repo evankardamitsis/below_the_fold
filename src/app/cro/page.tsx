@@ -59,31 +59,31 @@ export default function ConversionBoostSprintPage() {
                             y: ["-25%", "5%", "-25%"],
                         }}
                         transition={{
-                            duration: 20,
+                            duration: 12,
                             repeat: Infinity,
                             ease: "easeInOut"
                         }}
                     />
                     <motion.div
-                        className="absolute right-0 w-[500px] h-[500px] rounded-full bg-blue-500/10 blur-[100px]"
+                        className="absolute right-0 w-[500px] h-[500px] rounded-full bg-emerald-500/10 blur-[100px]"
                         animate={{
                             x: ["5%", "-15%", "5%"],
                             y: ["5%", "-15%", "5%"],
                         }}
                         transition={{
-                            duration: 15,
+                            duration: 10,
                             repeat: Infinity,
                             ease: "easeInOut"
                         }}
                     />
                     <motion.div
-                        className="absolute bottom-0 left-1/2 w-[500px] h-[500px] rounded-full bg-rose-500/10 blur-[100px]"
+                        className="absolute bottom-0 left-1/2 w-[500px] h-[500px] rounded-full bg-violet-500/10 blur-[100px]"
                         animate={{
                             x: ["-25%", "15%", "-25%"],
                             y: ["15%", "-5%", "15%"],
                         }}
                         transition={{
-                            duration: 18,
+                            duration: 14,
                             repeat: Infinity,
                             ease: "easeInOut"
                         }}
