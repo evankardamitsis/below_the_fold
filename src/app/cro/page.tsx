@@ -23,7 +23,7 @@ export default function ConversionBoostSprintPage() {
         },
         {
             question: "What kind of changes do you actually make during the sprint?",
-            answer: "We don’t just give you a list of suggestions — we roll up our sleeves. From sticky CTAs and simplified checkouts to fixing friction on mobile, we implement real improvements that can move the needle right away."
+            answer: "We don't just give you a list of suggestions — we roll up our sleeves. From sticky CTAs and simplified checkouts to fixing friction on mobile, we implement real improvements that can move the needle right away."
         },
         {
             question: "Do I need to pause my live campaigns or promos?",
@@ -31,20 +31,66 @@ export default function ConversionBoostSprintPage() {
         },
         {
             question: "Is this only for stores with low conversion rates?",
-            answer: "Definitely not. Even top-performing brands have blind spots. We’ve helped 7-figure stores uncover leaks, improve mobile UX, and scale with confidence. There’s always room to optimize."
+            answer: "Definitely not. Even top-performing brands have blind spots. We've helped 7-figure stores uncover leaks, improve mobile UX, and scale with confidence. There's always room to optimize."
         },
         {
             question: "How do you decide what to test or change?",
-            answer: "We don’t guess. We dig into your data, heatmaps, and customer behavior to spot friction and opportunity. Then we prioritize what’ll make the biggest impact, fastest. No fluff. Just focused action."
+            answer: "We don't guess. We dig into your data, heatmaps, and customer behavior to spot friction and opportunity. Then we prioritize what'll make the biggest impact, fastest. No fluff. Just focused action."
         }
     ]
 
     return (
         <main className="relative">
             {/* Hero Section */}
-            <section className="relative min-h-screen bg-neutral-900">
+            <section className="relative min-h-[85vh] bg-neutral-900 overflow-hidden">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0)_0%,rgba(0,0,0,0.4)_100%)]" />
-                <div className="relative z-10 mx-auto max-w-[1620px] px-4 sm:px-6 md:px-8 h-screen flex items-center justify-center">
+
+                {/* Animated Background Gradients */}
+                <motion.div
+                    className="absolute inset-0"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 1 }}
+                >
+                    <motion.div
+                        className="absolute w-[500px] h-[500px] rounded-full bg-brand-purple/10 blur-[100px]"
+                        animate={{
+                            x: ["-25%", "5%", "-25%"],
+                            y: ["-25%", "5%", "-25%"],
+                        }}
+                        transition={{
+                            duration: 20,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                        }}
+                    />
+                    <motion.div
+                        className="absolute right-0 w-[500px] h-[500px] rounded-full bg-blue-500/10 blur-[100px]"
+                        animate={{
+                            x: ["5%", "-15%", "5%"],
+                            y: ["5%", "-15%", "5%"],
+                        }}
+                        transition={{
+                            duration: 15,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                        }}
+                    />
+                    <motion.div
+                        className="absolute bottom-0 left-1/2 w-[500px] h-[500px] rounded-full bg-rose-500/10 blur-[100px]"
+                        animate={{
+                            x: ["-25%", "15%", "-25%"],
+                            y: ["15%", "-5%", "15%"],
+                        }}
+                        transition={{
+                            duration: 18,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                        }}
+                    />
+                </motion.div>
+
+                <div className="relative z-10 mx-auto max-w-[1620px] px-4 sm:px-6 md:px-8 h-[85vh] flex items-center justify-center">
                     <div className="max-w-3xl text-center">
                         <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
                             Unlock More Sales in Just 4 Days.
@@ -60,6 +106,44 @@ export default function ConversionBoostSprintPage() {
                             Book your free CRO Discovery Call
                             <span className="ml-2 opacity-0 group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all duration-300">→</span>
                         </Link>
+
+                        {/* Scroll Indicator */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 1 }}
+                            className="absolute left-1/2 bottom-[5vh] transform -translate-x-1/2"
+                        >
+                            <motion.div
+                                animate={{
+                                    y: [0, 8, 0],
+                                }}
+                                transition={{
+                                    duration: 1.5,
+                                    repeat: Infinity,
+                                    ease: "easeInOut"
+                                }}
+                                className="flex flex-col items-center gap-2"
+                            >
+                                <span className="text-white/50 text-sm uppercase tracking-wider font-medium">Scroll</span>
+                                <svg
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 16 16"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="text-white/50"
+                                >
+                                    <path
+                                        d="M8 3v10M4 9l4 4 4-4"
+                                        stroke="currentColor"
+                                        strokeWidth="2"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    />
+                                </svg>
+                            </motion.div>
+                        </motion.div>
                     </div>
                 </div>
             </section>
