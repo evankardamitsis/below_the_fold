@@ -42,7 +42,7 @@ export default function ConversionBoostSprintPage() {
     return (
         <main className="relative">
             {/* Hero Section */}
-            <section className="relative min-h-[85vh] bg-neutral-900 overflow-hidden">
+            <section className="relative min-h-screen bg-neutral-900 overflow-hidden">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0)_0%,rgba(0,0,0,0.4)_100%)]" />
 
                 {/* Animated Background Gradients */}
