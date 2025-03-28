@@ -26,6 +26,7 @@ export const tokens = {
       error: 'hsl(var(--destructive))',
       warning: 'hsl(38 92% 50%)',
       info: 'hsl(221 83% 53%)',
+      bgDark: '#181818',
     },
     
     // UI Colors - Interface-specific color tokens

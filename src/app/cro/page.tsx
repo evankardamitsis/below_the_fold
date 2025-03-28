@@ -20,21 +20,37 @@ export default function ConversionBoostSprintPage() {
         {
             question: 'What happens after the sprint?',
             answer: 'You can continue optimizing through our Revenue Booster Retainer program, where we provide ongoing CRO support, or take the insights and roadmap we provide to implement future improvements on your own.'
+        },
+        {
+            question: "What kind of changes do you actually make during the sprint?",
+            answer: "We don’t just give you a list of suggestions — we roll up our sleeves. From sticky CTAs and simplified checkouts to fixing friction on mobile, we implement real improvements that can move the needle right away."
+        },
+        {
+            question: "Do I need to pause my live campaigns or promos?",
+            answer: "Not at all. We work in the background while your store keeps running. No traffic disruptions, no drama — just smart changes, quietly making your funnel better."
+        },
+        {
+            question: "Is this only for stores with low conversion rates?",
+            answer: "Definitely not. Even top-performing brands have blind spots. We’ve helped 7-figure stores uncover leaks, improve mobile UX, and scale with confidence. There’s always room to optimize."
+        },
+        {
+            question: "How do you decide what to test or change?",
+            answer: "We don’t guess. We dig into your data, heatmaps, and customer behavior to spot friction and opportunity. Then we prioritize what’ll make the biggest impact, fastest. No fluff. Just focused action."
         }
     ]
 
     return (
         <main className="relative">
             {/* Hero Section */}
-            <section className="relative min-h-screen bg-gradient-to-br from-brand-purple via-purple-600 to-purple-900">
+            <section className="relative min-h-screen bg-neutral-900">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0)_0%,rgba(0,0,0,0.4)_100%)]" />
                 <div className="relative z-10 mx-auto max-w-[1620px] px-4 sm:px-6 md:px-8 h-screen flex items-center justify-center">
                     <div className="max-w-3xl text-center">
                         <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-                            Transform Your Store&apos;s Performance in 4 Days
+                            Unlock More Sales in Just 4 Days.
                         </h1>
                         <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto leading-relaxed">
-                            A focused, intensive process designed to identify where your Shopify store leaks revenue — and fix it fast.
+                            A focused, intensive process designed to uncover exactly why visitors aren&apos;t converting — and fix it fast.
                         </p>
                         <Link
                             href="https://calendly.com/kardamitsis-e-belowthefold/30min"
@@ -48,107 +64,30 @@ export default function ConversionBoostSprintPage() {
                 </div>
             </section>
 
-            {/* Our 4-Day Process */}
-            <section className="py-24 bg-page-light relative">
-                <div className="mx-auto max-w-[1620px] px-4 sm:px-6 md:px-8 relative z-10">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                    >
-                        <h2 className="text-3xl md:text-4xl font-bold text-center text-neutral-900 mb-4 leading-tight">
-                            Our 4-Day Process
-                        </h2>
-                        <p className="text-xl text-neutral-800 text-center mb-6 leading-relaxed">A no-nonsense, 4-day intensive process built specifically for Shopify stores.</p>
-                        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                            {[
-                                {
-                                    day: 'Day 1',
-                                    title: 'Data Deep Dive & Funnel Audit',
-                                    items: [
-                                        'Shopify Analytics, GA4, heatmaps, session recordings',
-                                        'Homepage → Product → Cart → Checkout',
-                                        'Mobile vs. desktop behavior',
-                                        'Friction points & revenue leaks identified'
-                                    ]
-                                },
-                                {
-                                    day: 'Day 2',
-                                    title: 'Live CRO Workshop (2-3 Hours)',
-                                    items: [
-                                        'Present key findings clearly',
-                                        'Align on business priorities (AOV, conversions, retention)',
-                                        'Collaboratively prioritize fixes (quick wins + high-impact)'
-                                    ]
-                                },
-                                {
-                                    day: 'Day 3',
-                                    title: 'Execution Sprint',
-                                    items: [
-                                        'Product page improvements',
-                                        'Checkout simplification',
-                                        'Trust signal & CTA optimization',
-                                        'Upsell, cross-sell opportunities',
-                                        'Mobile UX tweaks'
-                                    ]
-                                },
-                                {
-                                    day: 'Day 4',
-                                    title: 'Testing + Results Roadmap',
-                                    items: [
-                                        'QA & testing across devices',
-                                        'Post-implementation performance benchmarks',
-                                        'Roadmap for longer-term CRO strategy'
-                                    ]
-                                }
-                            ].map((phase, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: index * 0.1 }}
-                                    whileHover={{ y: -5 }}
-                                    className="bg-neutral-900 p-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
-                                >
-                                    <div className="text-brand-purple font-semibold mb-2">{phase.day}</div>
-                                    <h3 className="text-xl font-bold text-white mb-4 leading-tight">{phase.title}</h3>
-                                    <ul className="space-y-2">
-                                        {phase.items.map((item, i) => (
-                                            <li key={i} className="text-neutral-400 text-sm leading-relaxed">{item}</li>
-                                        ))}
-                                    </ul>
-                                </motion.div>
-                            ))}
-                        </div>
-                    </motion.div>
-                </div>
-            </section>
-
             {/* Why Conversion Optimization Matters */}
-            <section className="py-24 bg-neutral-900 relative overflow-hidden">
+            <section className="py-24 bg-page-lighter relative overflow-hidden">
                 <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-purple/20 to-transparent" />
                 <div className="mx-auto max-w-[1620px] px-4 sm:px-6 md:px-8 relative z-10">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="max-w-3xl mx-auto"
+                        className="max-w-3xl"
                     >
-                        <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 leading-tight">
+                        <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 mb-8 leading-tight">
                             Why Conversion Optimization Matters
                         </h2>
-                        <p className="text-2xl text-white/90 mb-6 leading-relaxed">
+                        <p className="text-2xl text-black/90 mb-6 leading-relaxed">
                             You&apos;re already driving traffic.<br />
                             But how much of that traffic actually buys?
                         </p>
-                        <p className="text-lg text-white/80 mb-8 leading-relaxed">
+                        <p className="text-lg text-black/80 mb-8 leading-relaxed">
                             Even small friction points — a clunky product page, a confusing checkout, poor mobile UX — can cost you thousands in missed revenue.
                         </p>
-                        <p className="text-lg text-white/90 mb-4 leading-relaxed">
-                            At <span className="font-bold text-brand-purple">belowthefold</span>, we specialize in helping brands remove those blockers and turn more visitors into paying customers.
+                        <p className="text-lg text-black/90 mb-4 leading-relaxed">
+                            At <span className="font-bold bg-brand-purple">belowthefold</span>, we specialize in helping brands remove those blockers and turn more visitors into paying customers.
                         </p>
-                        <p className="text-2xl font-bold text-brand-purple">
+                        <p className="text-2xl w-14 font-bold bg-brand-purple">
                             Fast.
                         </p>
                     </motion.div>
@@ -156,21 +95,22 @@ export default function ConversionBoostSprintPage() {
             </section>
 
             {/* Who's It For */}
-            <section className="py-24 bg-page-light relative">
+            <section className="pb-24 bg-page-lighter relative">
                 <div className="mx-auto max-w-[1620px] px-4 sm:px-6 md:px-8 relative z-10">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
+                        className="w-full"
                     >
-                        <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 text-center mb-12 leading-tight">
+                        <h2 className="text-xl text-neutral-900 mb-6 leading-tight">
                             Who&apos;s It For
                         </h2>
-                        <div className="grid md:grid-cols-3 gap-8">
+                        <div className="grid md:grid-cols-3 gap-6">
                             {[
-                                'Shopify brands already driving solid traffic, but struggling to convert.',
-                                'Stores with high cart abandonment, low average order value, or plateauing sales.',
-                                'Brands ready to move fast and see improvements immediately.'
+                                'Brands already driving traffic but struggling to convert',
+                                'Stores with high cart abandonment, low AOV, or poor mobile conversions',
+                                'Shopify brands ready to act fast, not sit on reports'
                             ].map((item, index) => (
                                 <motion.div
                                     key={index}
@@ -178,10 +118,10 @@ export default function ConversionBoostSprintPage() {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ delay: index * 0.1 }}
-                                    whileHover={{ y: -5 }}
-                                    className="bg-neutral-900 backdrop-blur p-8 rounded-lg border border-white/10 hover:border-brand-purple/50 transition-all duration-300 shadow-lg hover:shadow-xl"
+                                    className="bg-white rounded-xl p-3 shadow-[0_2px_8px_rgba(0,0,0,0.08)] flex items-center gap-3"
                                 >
-                                    <p className="text-lg text-white leading-relaxed">{item}</p>
+                                    <span className="text-[#96BF48] text-2xl font-bold flex-shrink-0">✓</span>
+                                    <p className="text-md text-neutral-600 leading-relaxed">{item}</p>
                                 </motion.div>
                             ))}
                         </div>
@@ -189,60 +129,292 @@ export default function ConversionBoostSprintPage() {
                 </div>
             </section>
 
-            {/* Why Choose Our Sprint & Results */}
-            <section className="py-24 bg-neutral-900 relative">
-                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-purple/20 to-transparent" />
-                <div className="mx-auto max-w-[1620px] px-4 sm:px-6 md:px-8">
-                    <div className="grid md:grid-cols-2 gap-16">
-                        {/* Why Choose */}
+            {/* Why This Sprint Works & What Makes Our Sprint Different */}
+            <section className="py-24 bg-page-light relative">
+                <div className="mx-auto max-w-[1620px] px-4 sm:px-6 md:px-8 relative z-10">
+                    <div className="grid lg:grid-cols-2 gap-16 items-center">
+                        {/* Why This Sprint Works */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
+                            className="max-w-3xl"
                         >
-                            <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 leading-tight">
-                                Why Brands Choose Our CRO Sprint
+                            <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 mb-8 leading-tight">
+                                Why This Sprint Works
                             </h2>
-                            <ul className="space-y-4">
-                                {[
-                                    'Shopify-specific — no generalist fluff',
-                                    'Real implementation, not just reports',
-                                    'Collaborative & business goal-driven',
-                                    'Done in 4 days — no dragging it out'
-                                ].map((item, index) => (
-                                    <li key={index} className="flex items-start gap-3">
-                                        <span className="text-brand-purple">✔️</span>
-                                        <span className="text-white/90 leading-relaxed">{item}</span>
-                                    </li>
-                                ))}
-                            </ul>
+                            <p className="text-lg text-neutral-600 mb-4 leading-tight">
+                                Most audits drag on for weeks. We don&apos;t waste time.
+                            </p>
+                            <p className="text-lg text-neutral-600 leading-tight">
+                                In 4 days, we deep-dive, prioritize, and implement fixes that move the needle.
+                            </p>
                         </motion.div>
 
-                        {/* Results */}
+                        {/* What Makes Our Sprint Different */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ delay: 0.2 }}
+                            className="w-full"
                         >
-                            <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 leading-tight">
-                                What Kind of Results Can You Expect?
+                            <h2 className="text-xl text-neutral-900 mb-6 leading-tight">
+                                What Makes Our Sprint Different
                             </h2>
-                            <ul className="space-y-4">
-                                {[
-                                    'Higher conversion rates',
-                                    'Increased AOV',
-                                    'Reduced cart abandonment',
-                                    'Improved mobile experience',
-                                    'More revenue without more ad spend'
-                                ].map((item, index) => (
-                                    <li key={index} className="flex items-start gap-3">
-                                        <span className="text-brand-purple">✅</span>
-                                        <span className="text-white/90 leading-relaxed">{item}</span>
-                                    </li>
-                                ))}
-                            </ul>
+                            <div className="grid md:grid-cols-2 gap-6 items-center">
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    className="bg-white rounded-xl p-6 shadow-[0_2px_8px_rgba(0,0,0,0.08)]"
+                                >
+                                    <div className="flex items-center gap-4">
+                                        <Image
+                                            src="/images/shopify_icon.svg"
+                                            alt="Shopify Specific"
+                                            width={40}
+                                            height={40}
+                                            className="flex-shrink-0"
+                                        />
+                                        <div>
+                                            <h3 className="text-lg font-semibold text-neutral-900 mb-1">Shopify Specific</h3>
+                                            <p className="text-neutral-600 text-sm leading-tight">No generalized CRO fluff</p>
+                                        </div>
+                                    </div>
+                                </motion.div>
+
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    className="bg-white rounded-xl p-6 shadow-[0_2px_8px_rgba(0,0,0,0.08)] items-center"
+                                >
+                                    <div className="flex items-center gap-4">
+                                        <Image
+                                            src="/images/data_icon.svg"
+                                            alt="Data + design driven"
+                                            width={40}
+                                            height={40}
+                                            className="flex-shrink-0"
+                                        />
+                                        <div>
+                                            <h3 className="text-lg font-semibold text-neutral-900 mb-1">Data + design driven</h3>
+                                            <p className="text-neutral-600 text-sm leading-tight">We don&apos;t rely on gut feelings</p>
+                                        </div>
+                                    </div>
+                                </motion.div>
+
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    className="bg-white rounded-xl p-6 shadow-[0_2px_8px_rgba(0,0,0,0.08)] items-center"
+                                >
+                                    <div className="flex items-center gap-4">
+                                        <Image
+                                            src="/images/speed_icon.svg"
+                                            alt="Speed"
+                                            width={40}
+                                            height={40}
+                                            className="flex-shrink-0"
+                                        />
+                                        <div>
+                                            <h3 className="text-lg font-semibold text-neutral-900 mb-1">Speed</h3>
+                                            <p className="text-neutral-600 text-sm leading-tight">Done in 4 days, not 4 weeks</p>
+                                        </div>
+                                    </div>
+                                </motion.div>
+
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    className="bg-white rounded-xl p-6 shadow-[0_2px_8px_rgba(0,0,0,0.08)]"
+                                >
+                                    <div className="flex items-center gap-4">
+                                        <Image
+                                            src="/images/code_icon.svg"
+                                            alt="Implement, not just audit"
+                                            width={40}
+                                            height={40}
+                                            className="flex-shrink-0 items-center"
+                                        />
+                                        <div>
+                                            <h3 className="text-lg font-semibold text-neutral-900 mb-1">Implement, not just audit</h3>
+                                            <p className="text-neutral-600 text-sm leading-tight">Real fixes, not theory</p>
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            </div>
                         </motion.div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Our 4-Day Process */}
+            <section className="py-24 bg-neutral-900 relative">
+                <div className="mx-auto max-w-[1620px] px-4 sm:px-6 md:px-8 relative z-10">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="mb-16"
+                    >
+                        <h2 className="text-[2rem] font-bold text-white mb-4 leading-tight">
+                            Our 4-Day Process
+                        </h2>
+                        <p className="text-neutral-400 text-[14px] lg:text-[15px] leading-relaxed tracking-wide font-medium uppercase w-full lg:max-w-[550px]">
+                            A no-nonsense, 4-day intensive process built specifically for Shopify stores.
+                        </p>
+                    </motion.div>
+
+                    {/* Process Steps Grid */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
+                        {/* Main Connecting Line */}
+                        <div className="absolute top-1/2 left-0 right-0 h-[2px] hidden lg:block">
+                            <motion.div
+                                className="h-full bg-white/10"
+                                initial={{ scaleX: 0 }}
+                                whileInView={{ scaleX: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 1, delay: 0.5 }}
+                            />
+                        </div>
+
+                        {[
+                            {
+                                number: '01',
+                                day: 'Day 1',
+                                title: 'Data Deep Dive & Funnel Audit',
+                                items: [
+                                    'Shopify Analytics, GA4, heatmaps, session recordings',
+                                    'Homepage → Product → Cart → Checkout',
+                                    'Mobile vs. desktop behavior',
+                                    'Friction points & revenue leaks identified'
+                                ],
+                                gradient: 'from-emerald-500/70 to-emerald-400/70'
+                            },
+                            {
+                                number: '02',
+                                day: 'Day 2',
+                                title: 'Live Workshop',
+                                items: [
+                                    'Present key findings clearly',
+                                    'Align on business priorities (AOV, conversions, retention)',
+                                    'Collaboratively prioritize fixes (quick wins + high-impact)'
+                                ],
+                                gradient: 'from-blue-500/70 to-cyan-400/70'
+                            },
+                            {
+                                number: '03',
+                                day: 'Day 3',
+                                title: 'Execution Sprint',
+                                items: [
+                                    'Product page improvements',
+                                    'Checkout simplification',
+                                    'Trust signal & CTA optimization',
+                                    'Upsell, cross-sell opportunities',
+                                    'Mobile UX tweaks'
+                                ],
+                                gradient: 'from-rose-500/70 to-rose-400/70'
+                            },
+                            {
+                                number: '04',
+                                day: 'Day 4',
+                                title: 'Testing + Results Roadmap',
+                                items: [
+                                    'QA & testing across devices',
+                                    'Post-implementation performance benchmarks',
+                                    'Roadmap for longer-term CRO strategy'
+                                ],
+                                gradient: 'from-purple-500/70 to-indigo-400/70'
+                            }
+                        ].map((phase, index) => (
+                            <motion.div
+                                key={phase.day}
+                                className="group relative bg-neutral-900 rounded-xl p-6 min-h-[400px] border border-white/10"
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: index * 0.1 }}
+                                whileHover={{ scale: 1.02 }}
+                            >
+                                {/* Gradient Background */}
+                                <motion.div
+                                    className={`absolute inset-0 bg-gradient-to-b ${phase.gradient} rounded-xl opacity-0 group-hover:opacity-15 transition-opacity duration-300`}
+                                />
+
+                                {/* Content */}
+                                <div className="relative h-full flex flex-col">
+                                    <span className="block text-[3rem] font-bold text-white/20 mb-4 group-hover:text-white/40 transition-colors duration-300">
+                                        {phase.number}
+                                    </span>
+                                    <div className="text-brand-purple font-semibold mb-2">{phase.day}</div>
+                                    <h3 className="text-[1.25rem] font-bold text-white mb-4 leading-tight group-hover:translate-x-2 transition-transform duration-300">
+                                        {phase.title}
+                                    </h3>
+                                    <ul className="space-y-2">
+                                        {phase.items.map((item, i) => (
+                                            <li key={i} className="text-neutral-400 text-[15px] leading-relaxed tracking-wide font-medium group-hover:translate-x-2 transition-transform duration-300">
+                                                {item}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+
+                                {/* Step Connector */}
+                                {index < 3 && (
+                                    <motion.div
+                                        className="absolute -right-6 top-1/2 w-12 h-[2px] hidden lg:block bg-white/10 group-hover:bg-white/40 group-hover:h-[3px] transition-all duration-300"
+                                    />
+                                )}
+
+                                {/* Border Highlight */}
+                                <motion.div
+                                    className="absolute inset-0 rounded-xl border border-white/0 group-hover:border-white/20 transition-colors duration-300"
+                                />
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Results You Can Expect */}
+            <section className="py-24 bg-neutral-900 relative">
+                <div className="absolute inset-x-0 top-0 bg-gradient-to-r from-transparent via-brand-purple/20 to-transparent" />
+                <div className="mx-auto max-w-[1620px] px-4 sm:px-6 md:px-8">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="text-center mb-12"
+                    >
+                        <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 leading-tight">
+                            Results You Can Expect
+                        </h2>
+                    </motion.div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        {[
+                            'Higher conversion rates',
+                            'Improved AOV',
+                            'Less cart abandonment',
+                            'Faster site performance',
+                            'Improved mobile experience',
+                            'More revenue without more ad spend'
+                        ].map((item, index) => (
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: index * 0.1 }}
+                                className="bg-neutral-800 rounded-xl p-6 flex items-center gap-3 group hover:bg-neutral-800/80 transition-colors duration-300"
+                            >
+                                <span className="text-brand-purple text-xl">✓</span>
+                                <p className="text-white/90 text-lg font-medium">{item}</p>
+                            </motion.div>
+                        ))}
                     </div>
                 </div>
             </section>
@@ -404,7 +576,7 @@ export default function ConversionBoostSprintPage() {
             </section>
 
             {/* Final CTA */}
-            <section className="py-24 bg-gradient-to-br  from-brand-purple via-purple-600 to-purple-900 relative">
+            <section className="py-24 bg-neutral-900 relative">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0)_0%,rgba(0,0,0,0.4)_100%)]" />
                 <div className="relative z-10 mx-auto max-w-[1620px] px-4 sm:px-6 md:px-8">
                     <motion.div
