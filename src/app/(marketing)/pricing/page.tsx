@@ -53,7 +53,7 @@ const PRICING_TIERS = [
         name: 'Hourly Updates',
         subtitle: 'For ad hoc work',
         tag: 'Hourly',
-        price: '120',
+        price: '80',
         description: 'per hour',
         features: [
             'Theme tweaks',
