@@ -27,7 +27,7 @@ const PRICING_TIERS = [
         name: '📈 Growth',
         subtitle: 'For scaling businesses',
         tag: 'Premium',
-        price: '25k+',
+        price: '15k+',
         description: 'bespoke Shopify theme',
         features: [
             'Complete Store Redesign',
