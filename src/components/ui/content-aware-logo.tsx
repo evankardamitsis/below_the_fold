@@ -21,7 +21,7 @@ function isPredominantlyLightLogo(imageData: ImageData): boolean {
     const { data } = imageData
     let opaqueCount = 0
     let lightCount = 0
-    let luminanceSum = 0
+    let darkCount = 0
 
     for (let i = 0; i < data.length; i += 4) {
         const alpha = data[i + 3]
@@ -34,17 +34,19 @@ function isPredominantlyLightLogo(imageData: ImageData): boolean {
         const luminance = 0.2126 * red + 0.7152 * green + 0.0722 * blue
 
         opaqueCount++
-        luminanceSum += luminance
         if (luminance > 200) lightCount++
+        // Dark letterforms / marks that already read on light backgrounds
+        else if (luminance < 90) darkCount++
     }
 
     if (!opaqueCount) return false
 
     const lightRatio = lightCount / opaqueCount
-    const averageLuminance = luminanceSum / opaqueCount
+    const darkRatio = darkCount / opaqueCount
 
-    // White / very light logos disappear on light section backgrounds
-    return lightRatio >= 0.55 || averageLuminance >= 200
+    // Only force a dark bg for mostly-white logos with little/no dark content.
+    // Logos that already have dark letters stay as-is.
+    return lightRatio >= 0.6 && darkRatio < 0.1
 }
 
 export function ContentAwareLogo({
