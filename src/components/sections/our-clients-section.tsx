@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import Image from 'next/image'
+import { ContentAwareLogo } from '@/components/ui/content-aware-logo'
 
 const CLIENTS = [
     {
@@ -51,6 +51,35 @@ const CLIENTS = [
     }
 ]
 
+function ClientLogoSlide({
+    name,
+    logo,
+    url,
+}: {
+    name: string
+    logo: string
+    url: string
+}) {
+    return (
+        <div className="flex items-center justify-center min-w-[300px] h-[120px] px-12">
+            <a
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center h-full group"
+            >
+                <ContentAwareLogo
+                    src={logo}
+                    alt={name}
+                    width={200}
+                    height={80}
+                    imageClassName="w-auto max-h-[50px] object-contain opacity-60 group-hover:opacity-100 transition-opacity duration-300"
+                />
+            </a>
+        </div>
+    )
+}
+
 export function OurClientsSection() {
     return (
         <section className="py-24 bg-page-lighter overflow-hidden">
@@ -76,49 +105,14 @@ export function OurClientsSection() {
                     {/* Scrolling Container */}
                     <div className="flex overflow-hidden">
                         <div className="flex animate-scroll">
-                            {/* First Set */}
                             {CLIENTS.map((client) => (
-                                <div
-                                    key={client.name}
-                                    className="flex items-center justify-center min-w-[300px] h-[120px] px-12"
-                                >
-                                    <a
-                                        href={client.url}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="flex items-center justify-center h-full group"
-                                    >
-                                        <Image
-                                            src={client.logo}
-                                            alt={client.name}
-                                            width={200}
-                                            height={80}
-                                            className="w-auto max-h-[50px] object-contain opacity-60 group-hover:opacity-100 transition-opacity duration-300"
-                                        />
-                                    </a>
-                                </div>
+                                <ClientLogoSlide key={client.name} {...client} />
                             ))}
-                            {/* Duplicate Set for Seamless Loop */}
                             {CLIENTS.map((client) => (
-                                <div
+                                <ClientLogoSlide
                                     key={`${client.name}-duplicate`}
-                                    className="flex items-center justify-center min-w-[300px] h-[120px] px-12"
-                                >
-                                    <a
-                                        href={client.url}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="flex items-center justify-center h-full group"
-                                    >
-                                        <Image
-                                            src={client.logo}
-                                            alt={client.name}
-                                            width={200}
-                                            height={80}
-                                            className="w-auto max-h-[50px] object-contain opacity-60 group-hover:opacity-100 transition-opacity duration-300"
-                                        />
-                                    </a>
-                                </div>
+                                    {...client}
+                                />
                             ))}
                         </div>
                     </div>
@@ -126,4 +120,4 @@ export function OurClientsSection() {
             </div>
         </section>
     )
-} 
+}
