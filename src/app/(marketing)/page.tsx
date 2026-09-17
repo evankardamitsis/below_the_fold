@@ -9,6 +9,9 @@ import { BlogPostsSectionServer } from '@/components/sections/blog-posts-section
 import { MarketingHero } from '@/components/@shared/hero'
 import { ShortPitch } from '@/components/sections/partner-section'
 
+// Re-fetch Contentful data at most every 60s so new projects/posts appear without a rebuild
+export const revalidate = 60
+
 export default async function HomePage() {
     const projects = await ProjectsSectionServer()
     const posts = await BlogPostsSectionServer()

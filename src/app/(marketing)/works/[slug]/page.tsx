@@ -2,6 +2,8 @@ import { getProjectBySlug } from '@/lib/contentful'
 import { ProjectPageClient } from '@/components/project-page-client'
 import { Suspense } from 'react'
 
+export const revalidate = 60
+
 interface PageProps {
     params: Promise<{
         slug: string

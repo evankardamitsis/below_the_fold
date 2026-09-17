@@ -1,6 +1,9 @@
 import { getProjects } from '@/lib/contentful'
 import { WorksPageClient } from '@/components/works-page-client'
 
+// Re-fetch Contentful data at most every 60s so new projects appear without a rebuild
+export const revalidate = 60
+
 export default async function WorksPage() {
     try {
         const projects = await getProjects()

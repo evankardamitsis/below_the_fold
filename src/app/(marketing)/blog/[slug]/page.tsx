@@ -3,6 +3,8 @@ import { getBlogPostBySlug, getAllBlogPosts } from '@/lib/contentful/blog'
 import { notFound } from 'next/navigation'
 import { BlogPost } from '@/components/blog/blog-post'
 
+export const revalidate = 60
+
 interface BlogPostPageProps {
     params: Promise<{
         slug: string

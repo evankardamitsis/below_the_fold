@@ -2,6 +2,9 @@ import { Metadata } from 'next'
 import { BlogListing } from '@/components/blog/blog-listing'
 import { getAllBlogPosts } from '@/lib/contentful/blog'
 
+// Re-fetch Contentful data at most every 60s so new posts appear without a rebuild
+export const revalidate = 60
+
 export const metadata: Metadata = {
     title: 'Blog | Below The Fold',
     description: 'Insights, thoughts, and updates from our team about ecommerce design and development.',
