@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { ContentAwareLogo } from '@/components/ui/content-aware-logo'
 
 interface ProjectCardProps {
     title: string
@@ -107,15 +108,16 @@ export function ProjectCard({ title, description, image, clientLogo, category, t
                 <Link href={href} className="block mt-4">
                     <div className="flex items-start gap-3">
                         {/* Left - Logo */}
-                        <div className="w-12 h-12 rounded-md bg-neutral-100 overflow-hidden flex-shrink-0">
-                            <Image
-                                src={clientLogo || image}
-                                alt={`${title} logo`}
-                                width={48}
-                                height={48}
-                                className="w-full h-full object-contain"
-                            />
-                        </div>
+                        <ContentAwareLogo
+                            src={clientLogo || image}
+                            alt={`${title} logo`}
+                            width={48}
+                            height={48}
+                            className="w-12 h-12 rounded-md overflow-hidden flex-shrink-0"
+                            lightBackgroundClassName="bg-neutral-100"
+                            darkBackgroundClassName="bg-neutral-900"
+                            imageClassName="w-full h-full object-contain p-1"
+                        />
 
                         {/* Right - Info */}
                         <div className="flex-1">

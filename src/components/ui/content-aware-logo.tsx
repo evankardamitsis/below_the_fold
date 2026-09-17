@@ -11,6 +11,10 @@ interface ContentAwareLogoProps {
     height: number
     className?: string
     imageClassName?: string
+    /** Applied when the logo is not predominantly light */
+    lightBackgroundClassName?: string
+    /** Applied when a white/light logo needs contrast */
+    darkBackgroundClassName?: string
 }
 
 function isPredominantlyLightLogo(imageData: ImageData): boolean {
@@ -50,6 +54,8 @@ export function ContentAwareLogo({
     height,
     className,
     imageClassName,
+    lightBackgroundClassName,
+    darkBackgroundClassName = 'rounded-md bg-neutral-900 px-5 py-3',
 }: ContentAwareLogoProps) {
     const [needsDarkBackground, setNeedsDarkBackground] = useState(false)
 
@@ -92,7 +98,7 @@ export function ContentAwareLogo({
         <div
             className={cn(
                 'flex items-center justify-center transition-colors duration-300',
-                needsDarkBackground && 'rounded-md bg-neutral-900 px-5 py-3',
+                needsDarkBackground ? darkBackgroundClassName : lightBackgroundClassName,
                 className
             )}
         >
